@@ -1,9 +1,12 @@
 // Factory function to create a todo task
-function TodoTask(title, description, dueDate, priority, destination) {
+function TodoTask(title, description, dueDate, priority, destination, index) {
+
     title = title.toString();
     description = description.toString();
 
-    
+    if (destination === undefined || destination === 'inbox') {
+        this
+    }
     // console.log(typeof title);
 
     return {title, description, dueDate, priority, destination};
@@ -14,8 +17,10 @@ const task2 = TodoTask('chores', 'wash dishes', 'nov 23', 'high');
 const task3 = TodoTask('chores', 'wash dishes', 'nov 23', 'high');
 
 const testTask = TodoTask(4516, 'wash dishes', 'nov 23', 'high');
+const testTask2 = TodoTask(45164, 'wash dishgffdes', 'novhf 23', 'higgdh');
 
-const proj1 = Projects(testTask);
+const proj1 = Projects("project 1", testTask);
+const proj2 = Projects(testTask2);
 
 // const projects = [
 //     {
@@ -27,14 +32,26 @@ const proj1 = Projects(testTask);
     
 // ]
 
-function Projects(task) {
-    let projects = [];
+function Projects(title, task) {
+    let tasks = [];
 
-    projects.push(task);
+    tasks.push(task);
 
-    return {projects};
+    const addTask = (newTaskName) => {
+        tasks.push(newTaskName);
+    }
+
+    return {title, tasks, addTask};
 }
 
-console.log(testTask);
+function Inbox() {
+    let allTasks = [];
+
+    return allTasks;
+}
+
+// console.log(testTask);
 console.log(proj1);
+proj1.addTask(testTask2);
+// console.log(proj2);
 // console.log(projects[0].project1);
