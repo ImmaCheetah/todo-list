@@ -7,16 +7,21 @@ function TodoTask(title, description, dueDate, priority) {
     return {title, description, dueDate, priority};
 };
 
-function Projects(title, task) {
+function Projects(title) {
     let projectTasks = [];
-    
-    projectTasks.push(task);
     
     const addTask = (newTaskName) => {
         projectTasks.push(newTaskName);
     }
+
+    const displayTasks = () => {
+        for (let i = 0; i < projectTasks.length; i++) {
+            console.log(`Task ${i} - ${projectTasks[i].title}, ${projectTasks[i].description}, ${projectTasks[i].dueDate}, ${projectTasks[i].priority}`);
+        }
+    }    
+
     
-    return {title, projectTasks, addTask};
+    return {title, projectTasks, addTask, displayTasks};
 }
 
 function Inbox() {
@@ -38,10 +43,10 @@ const task3 = TodoTask('coding', 'todo list', 'dec 10', 'low');
 const proj1 = Projects("project 1", task1);
 const proj2 = Projects('project 2');
 
-// console.log(testTask);
+
 proj1.addTask(task2);
 proj2.addTask(task1);
 mainInbox.addTask(task3);
-console.log(proj1);
-console.log(proj2);
-console.log(mainInbox);
+console.log(proj1.displayTasks());
+// console.log(proj2);
+// console.log(mainInbox);
