@@ -1,57 +1,47 @@
 // Factory function to create a todo task
-function TodoTask(title, description, dueDate, priority, destination, index) {
+function TodoTask(title, description, dueDate, priority) {
 
     title = title.toString();
     description = description.toString();
 
-    if (destination === undefined || destination === 'inbox') {
-        this
-    }
-    // console.log(typeof title);
-
-    return {title, description, dueDate, priority, destination};
+    return {title, description, dueDate, priority};
 };
 
-const task1 = TodoTask('chores', 'wash dishes', 'nov 23', 'high');
-const task2 = TodoTask('chores', 'wash dishes', 'nov 23', 'high');
-const task3 = TodoTask('chores', 'wash dishes', 'nov 23', 'high');
-
-const testTask = TodoTask(4516, 'wash dishes', 'nov 23', 'high');
-const testTask2 = TodoTask(45164, 'wash dishgffdes', 'novhf 23', 'higgdh');
-
-const proj1 = Projects("project 1", testTask);
-const proj2 = Projects(testTask2);
-
-// const projects = [
-//     {
-//         'project1': [task1, task2]
-//     },
-//     {
-//         'project2': [task3]
-//     }
-    
-// ]
-
 function Projects(title, task) {
-    let tasks = [];
-
-    tasks.push(task);
-
+    let projectTasks = [];
+    
+    projectTasks.push(task);
+    
     const addTask = (newTaskName) => {
-        tasks.push(newTaskName);
+        projectTasks.push(newTaskName);
     }
-
-    return {title, tasks, addTask};
+    
+    return {title, projectTasks, addTask};
 }
 
 function Inbox() {
-    let allTasks = [];
+    let inboxTasks = [];
 
-    return allTasks;
+    const addTask = (newTaskName) => {
+        inboxTasks.push(newTaskName);
+    }
+    
+    return {inboxTasks, addTask};
 }
 
+const mainInbox = Inbox();
+
+const task1 = TodoTask('chores', 'wash dishes', 'nov 23', 'high');
+const task2 = TodoTask('movies', 'avatar', 'nov 29', 'med');
+const task3 = TodoTask('coding', 'todo list', 'dec 10', 'low');
+
+const proj1 = Projects("project 1", task1);
+const proj2 = Projects('project 2');
+
 // console.log(testTask);
+proj1.addTask(task2);
+proj2.addTask(task1);
+mainInbox.addTask(task3);
 console.log(proj1);
-proj1.addTask(testTask2);
-// console.log(proj2);
-// console.log(projects[0].project1);
+console.log(proj2);
+console.log(mainInbox);
