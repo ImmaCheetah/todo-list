@@ -64,17 +64,19 @@ const task3 = Task('coding', 'todo list', 'dec 10', 'low');
 const proj1 = Folder("project 1");
 const proj2 = Folder('project 2');
 
-proj1.addTask(task1);
 task1.editTask('new thing', 'another new thing', 'new date', 'HIGH');
-console.log(proj1.tasks[0].printTask());
+// console.log(proj1.tasks[0].printTask());
 
 
-// proj1.addTask(task2);
-// proj1.deleteTask(1)
-// mainFolder.addTask(task3);
-// console.log(proj1);
-// console.log(mainFolder);
-// console.log(proj1.displayTasks());
+proj1.addTask(task1);
+task1.printTask();
+proj1.addTask(task2);
+proj1.displayTasks();
+proj1.deleteTask(1)
+proj1.displayTasks();
+mainFolder.addTask(task3);
+mainFolder.displayTasks();
+
 
 
 
