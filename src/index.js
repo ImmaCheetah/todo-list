@@ -1,7 +1,6 @@
 // Factory function to create a todo task
 function Task(title, description, dueDate, priority) {
-    let id = 0
-    id++;
+
     title = title.toString();
     description = description.toString();
 
@@ -9,13 +8,25 @@ function Task(title, description, dueDate, priority) {
         priority = newPriority;
     }
 
+    const editTask = (newTitle, newDescription, newDueDate, newPriority) => {
+        title = newTitle;
+        description = newDescription;
+        dueDate = newDueDate;
+        changePriority(newPriority);
+    }
+
+    const printTask = () => {
+        console.log(`Task title - ${title}, Desc - ${description}, Date - ${dueDate}, Priority - ${priority}`);
+    }
+
     return {
-        title, 
-        description, 
-        dueDate, 
+        get title() {return title}, 
+        get description() {return description}, 
+        get dueDate() {return dueDate}, 
         get priority() {return priority;}, 
         changePriority,
-        id
+        editTask,
+        printTask
     };
 };
 
@@ -32,6 +43,8 @@ function Folder(title) {
             console.log(`Task ${i} - ${tasks[i].title}, ${tasks[i].description}, ${tasks[i].dueDate}, ${tasks[i].priority}`);
         }
     }
+
+    
     
     const deleteTask = (index) => {
         tasks.splice(index, 1);
@@ -53,16 +66,17 @@ const task3 = Task('coding', 'todo list', 'dec 10', 'low');
 const proj1 = Folder("project 1");
 const proj2 = Folder('project 2');
 
+task1.editTask('new thing', 'another new thing', 'new date', 'HIGH');
+console.log(task1.printTask());
 
 
-
-proj1.addTask(task1);
-proj1.addTask(task2);
-proj1.deleteTask(1)
-mainFolder.addTask(task3);
-console.log(proj1);
-console.log(mainFolder);
-console.log(proj1.displayTasks());
+// proj1.addTask(task1);
+// proj1.addTask(task2);
+// proj1.deleteTask(1)
+// mainFolder.addTask(task3);
+// console.log(proj1);
+// console.log(mainFolder);
+// console.log(proj1.displayTasks());
 
 
 
