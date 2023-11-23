@@ -1,9 +1,8 @@
 // Factory function to create a todo task
-function TodoTask(title, description, dueDate, priority) {
+function Task(title, description, dueDate, priority) {
 
     title = title.toString();
     description = description.toString();
-    // priority = 'bop';
 
     const changePriority = (newPriority) => {
         priority = newPriority;
@@ -18,8 +17,8 @@ function TodoTask(title, description, dueDate, priority) {
     };
 };
 
-//get priority(){return priority;}, set priority(value){priority = value},
-function Inbox() {
+
+function Folder(title) {
     let tasks = [];
 
     const addTask = (newTaskName) => {
@@ -33,13 +32,37 @@ function Inbox() {
     } 
 
     
-    return {tasks, addTask, displayTasks};
+    return {title, tasks, addTask, displayTasks};
 }
 
-function Projects(title) {
-    tasks = [];
+
+
+
+const mainFolder = Folder('Inbox');
+
+const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
+const task2 = Task('movies', 'avatar', 'nov 29', 'med');
+const task3 = Task('coding', 'todo list', 'dec 10', 'low');
+
+const proj1 = Folder("project 1");
+const proj2 = Folder('project 2');
+
+task1.changePriority('low');
+// console.log(task1);
+proj1.addTask(task1);
+proj1.addTask(task2);
+mainFolder.addTask(task3);
+console.log(proj1);
+console.log(mainFolder);
+console.log(proj1.displayTasks());
+proj1.tasks[0].changePriority('HIGH');
+console.log(proj1.displayTasks());
+
+
+// function Projects(title) {
+//     tasks = [];
     
-    const {addTask, displayTasks} = Inbox();
+//     const {addTask, displayTasks} = Inbox();
 
 
     
@@ -54,25 +77,5 @@ function Projects(title) {
     // }    
 
     
-    return {title, tasks, addTask, displayTasks};
-}
-
-
-
-const mainInbox = Inbox();
-
-const task1 = TodoTask('chores', 'wash dishes', 'nov 23', 'high');
-const task2 = TodoTask('movies', 'avatar', 'nov 29', 'med');
-const task3 = TodoTask('coding', 'todo list', 'dec 10', 'low');
-
-const proj1 = Projects("project 1");
-const proj2 = Projects('project 2');
-
-task1.changePriority('low');
-console.log(task1);
-proj1.addTask(task1);
-proj2.addTask(task2);
-mainInbox.addTask(task3);
-console.log(proj1);
-console.log(proj2);
-console.log(mainInbox);
+//     return {title, tasks, addTask, displayTasks};
+// }
