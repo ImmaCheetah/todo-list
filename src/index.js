@@ -77,7 +77,8 @@ proj1.displayTasks();
 mainFolder.addTask(task3);
 mainFolder.displayTasks();
 
-
+const dialog = document.getElementById('dialog');
+dialog.show();
 
 
 // function Projects(title) {
