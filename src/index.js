@@ -1,3 +1,5 @@
+import dom from './dom.js';
+
 // Factory function to create a todo task
 function Task(title, description, dueDate, priority) {
 
@@ -80,6 +82,8 @@ mainFolder.displayTasks();
 const dialog = document.getElementById('dialog');
 dialog.show();
 
+dom();
+// addDomTask();
 
 // function Projects(title) {
 //     tasks = [];
