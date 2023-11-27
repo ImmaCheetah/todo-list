@@ -1,4 +1,7 @@
-import dom from './dom.js';
+import {
+    getFormInfo,
+    addTaskToDom
+} from './dom.js';
 
 // Factory function to create a todo task
 function Task(title, description, dueDate, priority) {
@@ -54,22 +57,22 @@ function Folder(title) {
     return {title, tasks, addTask, displayTasks, deleteTask};
 }
 
-
-
-
+// Main Folder that tasks will go into
 const mainFolder = Folder('Inbox');
 
+// Test tasks
 const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
 const task2 = Task('movies', 'avatar', 'nov 29', 'med');
 const task3 = Task('coding', 'todo list', 'dec 10', 'low');
 
+// Test folders
 const proj1 = Folder("project 1");
 const proj2 = Folder('project 2');
 
 task1.editTask('new thing', 'another new thing', 'new date', 'HIGH');
 // console.log(proj1.tasks[0].printTask());
 
-
+// Testing functionalities
 proj1.addTask(task1);
 task1.printTask();
 proj1.addTask(task2);
@@ -79,29 +82,24 @@ proj1.displayTasks();
 mainFolder.addTask(task3);
 mainFolder.displayTasks();
 
+const addBtn = document.getElementById('add-btn');
+
 const dialog = document.getElementById('dialog');
 dialog.show();
 
-dom();
+addBtn.addEventListener('click', function() {
+    let formInfo = getFormInfo();
+
+    let title = getFormInfo().taskTitle;
+    let desc = getFormInfo().taskDescription;
+    let dueDate = getFormInfo().taskDueDate;
+    let priority = getFormInfo().taskPriority;
+
+    const testTask = Task(title, desc, dueDate, priority);
+    console.log(testTask.printTask());
+})
+
+getFormInfo();
+// addTaskToDom('testing');
+// getInfoFromForm();
 // addDomTask();
-
-// function Projects(title) {
-//     tasks = [];
-    
-//     const {addTask, displayTasks} = Inbox();
-
-
-    
-    // const addTask = (newTaskName) => {
-    //     projectTasks.push(newTaskName);
-    // }
-
-    // const displayTasks = () => {
-    //     for (let i = 0; i < projectTasks.length; i++) {
-    //         console.log(`Task ${i} - ${projectTasks[i].title}, ${projectTasks[i].description}, ${projectTasks[i].dueDate}, ${projectTasks[i].priority}`);
-    //     }
-    // }    
-
-    
-//     return {title, tasks, addTask, displayTasks};
-// }
