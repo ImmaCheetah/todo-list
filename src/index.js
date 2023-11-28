@@ -88,14 +88,12 @@ const dialog = document.getElementById('dialog');
 dialog.show();
 
 addBtn.addEventListener('click', function() {
-    let formInfo = getFormInfo();
+    // This version uses arrays
+    // let taskDetails = getFormInfo();
+    // const testTask = Task(taskDetails[0], taskDetails[1], taskDetails[2], taskDetails[3]);
+    const {taskTitle, taskDescription, taskDueDate, taskPriority} = getFormInfo();
 
-    let title = getFormInfo().taskTitle;
-    let desc = getFormInfo().taskDescription;
-    let dueDate = getFormInfo().taskDueDate;
-    let priority = getFormInfo().taskPriority;
-
-    const testTask = Task(title, desc, dueDate, priority);
+    const testTask = Task(taskTitle, taskDescription, taskDueDate, taskPriority);
     console.log(testTask.printTask());
 })
 
