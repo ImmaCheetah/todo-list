@@ -6,6 +6,13 @@ import {
 // Factory function to create a todo task
 function Task(title, description, dueDate, priority) {
 
+    let completeState = false;
+
+    const getCompleteState = () => completeState;
+
+    const setComplete = () => {
+        completeState = true;
+    }
     title = title.toString();
     description = description.toString();
 
@@ -28,7 +35,9 @@ function Task(title, description, dueDate, priority) {
         get title() {return title}, 
         get description() {return description}, 
         get dueDate() {return dueDate}, 
-        get priority() {return priority;}, 
+        get priority() {return priority},
+        getCompleteState,
+        setComplete, 
         changePriority,
         editTask,
         printTask
@@ -76,16 +85,16 @@ task1.editTask('new thing', 'another new thing', 'new date', 'HIGH');
 proj1.addTask(task1);
 task1.printTask();
 proj1.addTask(task2);
-proj1.displayTasks();
-proj1.deleteTask(1)
-proj1.displayTasks();
 mainFolder.addTask(task3);
 mainFolder.displayTasks();
 
-const addBtn = document.getElementById('add-btn');
 
-const dialog = document.getElementById('dialog');
-dialog.show();
+const addBtn = document.getElementById('task-add-btn');
+
+const taskDialog = document.getElementById('task-dialog');
+const folderDialog = document.getElementById('folder-dialog');
+
+taskDialog.show();
 
 addBtn.addEventListener('click', function() {
     // This version uses arrays

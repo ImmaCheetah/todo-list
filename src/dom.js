@@ -26,6 +26,38 @@ function addTaskToDom(title, desc, date, priority) {
     testDiv.textContent = title;
 }
 
+
+// add folder button
+// - when clicked, create dialog modal
+// - get input from user
+// - save input value when add is clicked
+// - use saved value to create folder on sidebar
+
+function getFolderDialog() {
+    const folderDialog = document.getElementById('folder-dialog');
+
+    return folderDialog;
+}
+
+function showFolderDialog() {
+    getFolderDialog();
+    folderDialog.show();
+}
+
+function getFolderFormInfo() {
+    const folderForm = document.getElementById('folder-form');
+
+    const folderTitleInForm = form.elements['folder-title'];
+
+    return {folderForm, folderTitleInForm};
+}
+
+function addFolder(titleValue) {
+    const folderDiv = document.createElement('div');
+    
+}
+
+
 export {
     getFormInfo,
     addTaskToDom
