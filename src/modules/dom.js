@@ -20,10 +20,17 @@ function createTaskElement(taskName) {
     taskDiv.appendChild(taskDueDateInDiv);
     taskDiv.appendChild(taskPriorityInDiv);
 
+    return taskDiv;
 }
 
-function appendTask(taskElement, location) {
+function appendTask(taskName, location) {
+    let taskDOM = createTaskElement(taskName);
 
+    // const header = document.getElementById('header');
+    // header.appendChild(taskDOM);
+
+    const locationDOM = document.getElementById(location);
+    locationDOM.appendChild(taskDOM);
 }
 
 function getFormInfo() {
@@ -90,5 +97,6 @@ export {
     getFormInfo,
     addTaskToDom,
     createTaskElement,
-    displayFolderTasks
+    displayFolderTasks,
+    appendTask
 }
