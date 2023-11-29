@@ -1,3 +1,31 @@
+function displayFolderTasks(folderName) {
+    folderName.displayTasks();
+}
+
+function createTaskElement(taskName) {
+    const taskDiv = document.createElement('div');
+    const taskTitleInDiv = document.createElement('p');
+    const taskDescriptionInDiv = document.createElement('p');
+    const taskDueDateInDiv = document.createElement('p');
+    const taskPriorityInDiv = document.createElement('p');
+
+    taskDiv.classList.add('task-div');
+    taskTitleInDiv.textContent = taskName.title;
+    taskDescriptionInDiv.textContent = taskName.description;
+    taskDueDateInDiv.textContent = taskName.dueDate;
+    taskPriorityInDiv.textContent = taskName.priority;
+
+    taskDiv.appendChild(taskTitleInDiv);
+    taskDiv.appendChild(taskDescriptionInDiv);
+    taskDiv.appendChild(taskDueDateInDiv);
+    taskDiv.appendChild(taskPriorityInDiv);
+
+}
+
+function appendTask(taskElement, location) {
+
+}
+
 function getFormInfo() {
     const form = document.getElementById('main-form');
 
@@ -60,5 +88,7 @@ function addFolder(titleValue) {
 
 export {
     getFormInfo,
-    addTaskToDom
+    addTaskToDom,
+    createTaskElement,
+    displayFolderTasks
 }

@@ -1,7 +1,9 @@
 import {
     getFormInfo,
-    addTaskToDom
-} from './dom.js';
+    addTaskToDom,
+    createTaskElement,
+    displayFolderTasks
+} from './modules/dom.js';
 
 // Factory function to create a todo task
 function Task(title, description, dueDate, priority) {
@@ -91,6 +93,8 @@ mainFolder.displayTasks();
 
 const addBtn = document.getElementById('task-add-btn');
 
+
+
 const taskDialog = document.getElementById('task-dialog');
 const folderDialog = document.getElementById('folder-dialog');
 
@@ -107,6 +111,6 @@ addBtn.addEventListener('click', function() {
 })
 
 getFormInfo();
-// addTaskToDom('testing');
-// getInfoFromForm();
-// addDomTask();
+// createTaskElement(task1);
+displayFolderTasks(mainFolder);
+createTaskElement(task1);
