@@ -1,5 +1,7 @@
 function displayFolderTasks(folderName) {
-    folderName.displayTasks();
+    folderName.tasks.forEach(task => {
+        appendTask(task, ['task-container']);
+    });
 }
 
 function createTaskElement(taskName) {
@@ -25,9 +27,6 @@ function createTaskElement(taskName) {
 
 function appendTask(taskName, location) {
     let taskDOM = createTaskElement(taskName);
-
-    // const header = document.getElementById('header');
-    // header.appendChild(taskDOM);
 
     const locationDOM = document.getElementById(location);
     locationDOM.appendChild(taskDOM);
