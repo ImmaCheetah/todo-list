@@ -5,6 +5,7 @@ function displayFolderTasks(folderName) {
 }
 
 function displayFolders() {
+    
 
 }
 
