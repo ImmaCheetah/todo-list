@@ -4,14 +4,18 @@ function displayFolderTasks(folderName) {
     });
 }
 
-function displayFolders() {
-    
+function displayFolders(superFolderName) {
+    // const mainFolderDiv = document.querySelector('.folder-div');
+
+    superFolderName.folders.forEach(folder => {
+        appendFolder(folder);
+    });
 
 }
 
 function createFolderElement(folderName) {
     const folderDiv = document.createElement('div');
-    const folderTitleInDiv = document.createElement('p');
+    const folderTitleInDiv = document.createElement('button');
 
     folderDiv.classList.add('folder-div');
     folderTitleInDiv.textContent = folderName.title;
@@ -121,5 +125,6 @@ export {
     addTaskToDom,
     createTaskElement,
     displayFolderTasks,
-    appendTask
+    appendTask,
+    displayFolders
 }

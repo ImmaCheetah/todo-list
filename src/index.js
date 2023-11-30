@@ -3,7 +3,8 @@ import {
     addTaskToDom,
     createTaskElement,
     displayFolderTasks,
-    appendTask
+    appendTask,
+    displayFolders
 } from './modules/dom.js';
 
 // Factory function to create a todo task
@@ -135,4 +136,5 @@ addBtn.addEventListener('click', function() {
 getFormInfo();
 // createTaskElement(task1);
 displayFolderTasks(mainFolder);
+displayFolders(superFolder);
 
