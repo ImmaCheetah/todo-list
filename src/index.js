@@ -61,13 +61,30 @@ function Folder(title) {
         }
     }
 
-    const deleteTask = (index) => {
-        tasks.splice(index, 1);
+    const deleteTask = (taskName) => {
+        tasks.splice(taskName, 1);
     }
 
     
     return {title, tasks, addTask, displayTasks, deleteTask};
 }
+
+function SuperFolder() {
+    let folders = []
+
+    const addFolder = (newFolderName) => {
+        folders.push(newFolderName);
+    }
+
+    const deleteFolder = (folderName) => {
+        folders.splice(folderName, 1);
+    }
+
+    return {folders, addFolder, deleteFolder}
+}
+
+//Super Folder 
+const superFolder = SuperFolder();
 
 // Main Folder that tasks will go into
 const mainFolder = Folder('Inbox');
@@ -92,6 +109,8 @@ mainFolder.addTask(task3);
 mainFolder.addTask(task2);
 mainFolder.addTask(task1);
 mainFolder.displayTasks();
+superFolder.addFolder(mainFolder);
+console.log(superFolder);
 
 
 const addBtn = document.getElementById('task-add-btn');

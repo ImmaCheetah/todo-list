@@ -4,6 +4,29 @@ function displayFolderTasks(folderName) {
     });
 }
 
+function displayFolders() {
+
+}
+
+function createFolderElement(folderName) {
+    const folderDiv = document.createElement('div');
+    const folderTitleInDiv = document.createElement('p');
+
+    folderDiv.classList.add('folder-div');
+    folderTitleInDiv.textContent = folderName.title;
+
+    folderDiv.appendChild(folderTitleInDiv);
+
+    return folderDiv;
+}
+
+function appendFolder(folderName) {
+    let folderDOM = createFolderElement(folderName);
+
+    const sidebarFolders = document.querySelector('.sidebar');
+    sidebarFolders.appendChild(folderDOM);
+}
+
 function createTaskElement(taskName) {
     const taskDiv = document.createElement('div');
     const taskTitleInDiv = document.createElement('p');
