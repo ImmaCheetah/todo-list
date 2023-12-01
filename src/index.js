@@ -19,7 +19,7 @@ import {
 const superFolder = SuperFolder();
 
 // Main Folder that tasks will go into
-const mainFolder = Folder('Inbox');
+const inboxFolder = Folder('Inbox');
 
 // Test tasks
 const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
@@ -37,11 +37,11 @@ task1.editTask('new thing', 'another new thing', 'new date', 'HIGH');
 proj1.addTask(task1);
 task1.printTask();
 proj1.addTask(task2);
-mainFolder.addTask(task3);
-mainFolder.addTask(task2);
-mainFolder.addTask(task1);
-mainFolder.displayTasks();
-superFolder.addFolder(mainFolder);
+inboxFolder.addTask(task3);
+inboxFolder.addTask(task2);
+inboxFolder.addTask(task1);
+inboxFolder.displayTasks();
+superFolder.addFolder(inboxFolder);
 console.log(superFolder);
 
 
@@ -66,6 +66,6 @@ addBtn.addEventListener('click', function() {
 
 getFormInfo();
 // createTaskElement(task1);
-displayFolderTasks(mainFolder);
+displayFolderTasks(inboxFolder);
 displayFolders(superFolder);
 
