@@ -7,6 +7,7 @@ import {
 
 import {
     getFormInfo,
+    getFolderDialog,
     createTaskElement,
     displayFolderTasks,
     appendTask,
@@ -45,11 +46,8 @@ console.log(superFolder);
 
 
 const addBtn = document.getElementById('task-add-btn');
-const header = document.getElementById('header');
-
 
 const taskDialog = document.getElementById('task-dialog');
-
 
 taskDialog.show();
 
@@ -71,7 +69,7 @@ displayFolders(superFolder);
 const addFolderBtn = document.getElementById('folder-add-btn');
 
 addFolderBtn.addEventListener('click', function() {
-    const folderDialog = document.getElementById('folder-dialog');
+    getFolderDialog();
 
     folderDialog.show();
 });
