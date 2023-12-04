@@ -14,7 +14,6 @@ import {
 } from './modules/dom.js';
 
 
-
 //Super Folder 
 const superFolder = SuperFolder();
 
@@ -50,7 +49,7 @@ const header = document.getElementById('header');
 
 
 const taskDialog = document.getElementById('task-dialog');
-const folderDialog = document.getElementById('folder-dialog');
+
 
 taskDialog.show();
 
@@ -69,3 +68,10 @@ getFormInfo();
 displayFolderTasks(inboxFolder);
 displayFolders(superFolder);
 
+const addFolderBtn = document.getElementById('folder-add-btn');
+
+addFolderBtn.addEventListener('click', function() {
+    const folderDialog = document.getElementById('folder-dialog');
+
+    folderDialog.show();
+});
