@@ -69,9 +69,6 @@ function displayFolders(superFolderName) {
 }
 
 
-
-
-
 function getFormInfo() {
     const form = document.getElementById('main-form');
 
