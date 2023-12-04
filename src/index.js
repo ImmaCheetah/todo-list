@@ -9,6 +9,8 @@ import {
     getFormInfo,
     getFolderDialog,
     createTaskElement,
+    createFolderElement,
+    appendFolder,
     displayFolderTasks,
     appendTask,
     displayFolders
@@ -69,7 +71,23 @@ displayFolders(superFolder);
 const addFolderBtn = document.getElementById('folder-add-btn');
 
 addFolderBtn.addEventListener('click', function() {
-    getFolderDialog();
+    
+    const folderDialog = document.getElementById('folder-dialog');
+    // getFolderDialog();
+    //use showModal()
+    folderDialog.showModal();
+});
 
-    folderDialog.show();
+const folderSubmitBtn = document.getElementById('folder-confirm-btn');
+
+// Event listener to submit folder form
+// Should be done on the form instead of button but MDN example with dialog did it this way
+folderSubmitBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log("submitted");
+    
+    
+
+    // createFolderElement(inputValue);
+    // appendFolder(inputValue);
 });

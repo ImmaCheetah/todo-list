@@ -25,7 +25,7 @@
                 <button id="folder-add-btn">Add Folder</button>
             </div>
             <dialog id="folder-dialog">
-                <form id="folder-form" name="folder-form" action="" method="POST">
+                <form id="folder-form" name="folder-form">
                     <div class="form-header form-div">
                         <h3 class="form-title">Add a Folder</h3>
                         <button class="close-btn" type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
@@ -36,8 +36,8 @@
                         <span></span>
                     </div>
                     <div id="confirm-div" class="form-div">
-                        <button id="folder-confirm-btn" type="submit">Add</button>
-                        <button id="folder-reset-btn" type="reset">Reset</button>
+                        <button id="folder-confirm-btn" formmethod="dialog">Add</button>
+                        <button id="folder-cancel-btn">Reset</button>
                     </div>
                 </form>
             </dialog>

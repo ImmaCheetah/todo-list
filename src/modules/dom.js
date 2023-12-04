@@ -94,12 +94,6 @@ function getFormInfo() {
 // - save input value when add is clicked
 // - use saved value to create folder on sidebar
 
-function getFolderDialog() {
-    const folderDialog = document.getElementById('folder-dialog');
-
-    return folderDialog;
-}
-
 
 function getFolderFormInfo() {
     const folderForm = document.getElementById('folder-form');
@@ -117,8 +111,9 @@ function addFolder(titleValue) {
 
 export {
     getFormInfo,
-    addTaskToDom,
     createTaskElement,
+    createFolderElement,
+    appendFolder,
     displayFolderTasks,
     appendTask,
     displayFolders,
