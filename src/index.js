@@ -8,6 +8,7 @@ import {
 import {
     getFormInfo,
     getFolderDialog,
+    getFolderFormInfo,
     createTaskElement,
     createFolderElement,
     appendFolder,
@@ -84,10 +85,13 @@ const folderSubmitBtn = document.getElementById('folder-confirm-btn');
 // Should be done on the form instead of button but MDN example with dialog did it this way
 folderSubmitBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    console.log("submitted");
     
+    const folderDialog = document.getElementById('folder-dialog');
     
+    const {folderTitleInForm} = getFolderFormInfo();
 
-    // createFolderElement(inputValue);
-    // appendFolder(inputValue);
+    createFolderElement(folderTitleInForm);
+    appendFolder(folderTitleInForm);
+
+    folderDialog.close();
 });

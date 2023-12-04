@@ -45,7 +45,7 @@ function createFolderElement(folderName) {
     const folderTitleInDiv = document.createElement('button');
 
     folderDiv.classList.add('folder-div');
-    folderTitleInDiv.textContent = folderName.title;
+    folderTitleInDiv.textContent = folderName;
 
     folderDiv.appendChild(folderTitleInDiv);
 
@@ -98,7 +98,7 @@ function getFormInfo() {
 function getFolderFormInfo() {
     const folderForm = document.getElementById('folder-form');
 
-    const folderTitleInForm = form.elements['folder-title'];
+    const folderTitleInForm = folderForm.elements['folder-title'].value;
 
     return {folderForm, folderTitleInForm};
 }
@@ -111,11 +111,11 @@ function addFolder(titleValue) {
 
 export {
     getFormInfo,
+    getFolderFormInfo,
     createTaskElement,
     createFolderElement,
     appendFolder,
     displayFolderTasks,
     appendTask,
-    displayFolders,
-    getFolderDialog
+    displayFolders
 }
