@@ -18,11 +18,16 @@ import {
 } from './modules/dom.js';
 
 
+
+
+
+
 //Super Folder 
 const superFolder = SuperFolder();
 
 // Main Folder that tasks will go into
 const inboxFolder = Folder('Inbox');
+console.log(inboxFolder.myuuid);
 
 // Test tasks
 const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
@@ -92,6 +97,9 @@ folderSubmitBtn.addEventListener('click', function(e) {
 
     createFolderElement(folderTitleInForm);
     appendFolder(folderTitleInForm);
+
+    let newFolder = Folder(folderTitleInForm);
+    console.log(newFolder.myuuid);
 
     folderDialog.close();
 });

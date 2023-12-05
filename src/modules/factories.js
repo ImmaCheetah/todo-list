@@ -1,3 +1,5 @@
+import {v4 as uuidv4} from 'uuid';
+
 export function Task(title, description, dueDate, priority) {
 
     let completeState = false;
@@ -40,6 +42,9 @@ export function Task(title, description, dueDate, priority) {
 
 
 export function Folder(title) {
+    
+
+    let myuuid = uuidv4();
     let tasks = [];
 
     const addTask = (newTaskName) => {
@@ -57,7 +62,7 @@ export function Folder(title) {
     }
 
     
-    return {title, tasks, addTask, displayTasks, deleteTask};
+    return {title, tasks, myuuid, addTask, displayTasks, deleteTask};
 }
 
 export function SuperFolder() {
