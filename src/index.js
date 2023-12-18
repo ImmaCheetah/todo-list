@@ -5,7 +5,7 @@ import {
 } from './modules/factories.js';
 
 import {
-    getFormInfo,
+    getTaskFormInfo,
     getFolderDialog,
     getFolderFormInfo,
     createTaskElement,
@@ -55,15 +55,15 @@ taskDialog.show();
 
 addBtn.addEventListener('click', function() {
     // This version uses arrays
-    // let taskDetails = getFormInfo();
+    // let taskDetails = getTaskFormInfo();
     // const testTask = Task(taskDetails[0], taskDetails[1], taskDetails[2], taskDetails[3]);
-    const {taskTitle, taskDescription, taskDueDate, taskPriority} = getFormInfo();
+    const {taskTitle, taskDescription, taskDueDate, taskPriority} = getTaskFormInfo();
 
     const testTask = Task(taskTitle, taskDescription, taskDueDate, taskPriority);
     console.log(testTask.printTask());
 })
 
-getFormInfo();
+getTaskFormInfo();
 // createTaskElement(task1);
 displayFolderTasks(inboxFolder);
 // displayFolders(superFolder);

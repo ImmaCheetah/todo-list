@@ -38,6 +38,25 @@ function displayFolderTasks(folderName) {
     });
 }
 
+function getTaskFormInfo() {
+    const form = document.getElementById('main-form');
+
+    const taskTitleInForm = form.elements['task-title'];
+    const taskDescriptionInForm = form.elements['task-description'];
+    const taskDueDateInForm = form.elements['task-due-date'];
+    const taskPriorityInForm = form.elements['task-priority'];
+    
+    let taskTitle = taskTitleInForm.value;
+    let taskDescription = taskDescriptionInForm.value;
+    let taskDueDate = taskDueDateInForm.value;
+    let taskPriority = taskPriorityInForm.value;
+
+    console.log(taskTitle)
+    console.log('dom works');
+    
+    return {taskTitle, taskDescription, taskDueDate, taskPriority};
+} 
+
 // Create button to hold folder and title
 // Add title to div and return
 function createFolderElement(folderName) {
@@ -57,7 +76,7 @@ function createFolderElement(folderName) {
 // Append to sidebar
 function appendFolder(folderName) {
     let folderDOM = createFolderElement(folderName);
-
+    
     const sidebarFolders = document.querySelector('.sidebar');
     sidebarFolders.appendChild(folderDOM);
 }
@@ -70,38 +89,6 @@ function displayFolders(superFolderName) {
     });
 }
 
-function clearSidebar() {
-    const foldersDiv = document.querySelector('.folders-div');
-    foldersDiv.textContent = '';
-}
-
-
-function getFormInfo() {
-    const form = document.getElementById('main-form');
-
-    const taskTitleInForm = form.elements['task-title'];
-    const taskDescriptionInForm = form.elements['task-description'];
-    const taskDueDateInForm = form.elements['task-due-date'];
-    const taskPriorityInForm = form.elements['task-priority'];
-    
-    let taskTitle = taskTitleInForm.value;
-    let taskDescription = taskDescriptionInForm.value;
-    let taskDueDate = taskDueDateInForm.value;
-    let taskPriority = taskPriorityInForm.value;
-
-    console.log(taskTitle)
-    console.log('dom works');
-    
-    return {taskTitle, taskDescription, taskDueDate, taskPriority};
-} 
-    
-// add folder button
-// - when clicked, create dialog modal
-// - get input from user
-// - save input value when add is clicked
-// - use saved value to create folder on sidebar
-
-
 function getFolderFormInfo() {
     const folderForm = document.getElementById('folder-form');
 
@@ -110,14 +97,25 @@ function getFolderFormInfo() {
     return {folderForm, folderTitleInForm};
 }
 
-function addFolder(titleValue) {
-    const folderDiv = document.createElement('div');
-    
+function clearSidebar() {
+    const foldersDiv = document.querySelector('.folders-div');
+    foldersDiv.textContent = '';
 }
 
 
+
+    
+// add folder button
+// - when clicked, create dialog modal
+// - get input from user
+// - save input value when add is clicked
+// - use saved value to create folder on sidebar
+
+
+
+
 export {
-    getFormInfo,
+    getTaskFormInfo,
     getFolderFormInfo,
     createTaskElement,
     createFolderElement,
