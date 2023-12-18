@@ -89,3 +89,16 @@ folderSubmitBtn.addEventListener('click', function(e) {
     folderDialog.close();
 });
 
+let folderTest = 'test';
+
+appendFolder(folderTest);
+let idTest = Folder(folderTest);
+console.log(idTest.myuuid);
+
+// const folderBtn = document.querySelector('.folder-button');
+
+// folderBtn.addEventListener('click', function(e) {
+//     console.log('testing folder btn');
+//     console.log(e.target.value);
+// })
+

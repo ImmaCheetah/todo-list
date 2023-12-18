@@ -58,13 +58,14 @@ function getTaskFormInfo() {
 // Add title to div and return
 function createFolderElement(folderName) {
     const folderDiv = document.querySelector('.folders-div');
-    const folderTitle = document.createElement('button');
+    const folderBtn = document.createElement('button');
 
     // folderDiv.classList.add('folder-div');
-    folderTitle.classList.add('folder-button');
-    folderTitle.textContent = folderName;
+    folderBtn.classList.add('folder-button');
+    folderBtn.textContent = folderName;
+    folderBtn.value = folderName.myuuid;
 
-    folderDiv.appendChild(folderTitle);
+    folderDiv.appendChild(folderBtn);
 
     return folderDiv;
 }
