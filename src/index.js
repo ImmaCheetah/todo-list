@@ -21,24 +21,16 @@ const superFolder = SuperFolder();
 
 // Main Folder that tasks will go into
 const inboxFolder = Folder('Inbox');
-console.log(inboxFolder.myuuid);
+console.log("Inbox Folder ID is " + inboxFolder.myuuid);
 
 // Test tasks
 const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
 const task2 = Task('movies', 'avatar', 'nov 29', 'med');
 const task3 = Task('coding', 'todo list', 'dec 10', 'low');
 
-// Test folders
-const proj1 = Folder("project 1");
-const proj2 = Folder('project 2');
-
 task1.editTask('new thing', 'another new thing', 'new date', 'HIGH');
-// console.log(proj1.tasks[0].printTask());
 
 // Testing functionalities
-proj1.addTask(task1);
-task1.printTask();
-proj1.addTask(task2);
 inboxFolder.addTask(task3);
 inboxFolder.addTask(task2);
 inboxFolder.addTask(task1);
@@ -63,8 +55,6 @@ addBtn.addEventListener('click', function() {
     console.log(testTask.printTask());
 })
 
-getTaskFormInfo();
-// createTaskElement(task1);
 displayFolderTasks(inboxFolder);
 // displayFolders(superFolder);
 
@@ -89,7 +79,6 @@ folderSubmitBtn.addEventListener('click', function(e) {
     
     const {folderTitleInForm} = getFolderFormInfo();
 
-    // createFolderElement(folderTitleInForm);
     appendFolder(folderTitleInForm);
 
     let newFolder = Folder(folderTitleInForm);

@@ -54,6 +54,16 @@ table {
     --light-txt-clr: rgb(148, 148, 148);
 }
 
+/* HEADER || */
+#header {
+	font-weight: bold;
+	background-color: #381d1f;
+	color: white;
+	font-size: 40px;
+	height: 60px;
+	
+}
+
 /* CONTAINER || */
 .container {
     display: grid;

@@ -51,9 +51,6 @@ function getTaskFormInfo() {
     let taskDueDate = taskDueDateInForm.value;
     let taskPriority = taskPriorityInForm.value;
 
-    console.log(taskTitle)
-    console.log('dom works');
-    
     return {taskTitle, taskDescription, taskDueDate, taskPriority};
 } 
 
