@@ -91,8 +91,8 @@ folderSubmitBtn.addEventListener('click', function(e) {
 
 let folderTest = 'test';
 
-appendFolder(folderTest);
 let idTest = Folder(folderTest);
+appendFolder(folderTest);
 console.log(idTest.myuuid);
 
 // const folderBtn = document.querySelector('.folder-button');
