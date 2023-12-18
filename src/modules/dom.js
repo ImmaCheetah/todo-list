@@ -67,6 +67,11 @@ function createFolderElement(folderName) {
 
     folderDiv.appendChild(folderBtn);
 
+    folderBtn.addEventListener('click', function() {
+        console.log('testing folder btn');
+        console.log(this.value);
+    })
+
     return folderDiv;
 }
 

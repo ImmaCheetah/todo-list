@@ -76,29 +76,25 @@ folderSubmitBtn.addEventListener('click', function(e) {
     e.preventDefault();
     
     const folderDialog = document.getElementById('folder-dialog');
-    
     const {folderTitleInForm} = getFolderFormInfo();
 
     let newFolder = Folder(folderTitleInForm);
     appendFolder(newFolder);
     
     superFolder.addFolder(newFolder);
-    // displayFolders();
     console.log(superFolder.folders);
 
     folderDialog.close();
 });
 
-let folderTest = 'test';
 
-let idTest = Folder(folderTest);
-appendFolder(folderTest);
-console.log(idTest.myuuid);
+// const folderBtn = document.querySelector('.folder-button');
 
-const folderBtn = document.querySelector('.folder-button');
+// folderBtn.addEventListener('click', function() {
+//     console.log('testing folder btn');
+//     console.log(this.value);
+// })
 
-folderBtn.addEventListener('click', function() {
-    console.log('testing folder btn');
-    console.log(this.value);
-})
+// function addEventListenerToFolderButton() {
 
+// }
