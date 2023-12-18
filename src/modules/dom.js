@@ -41,13 +41,14 @@ function displayFolderTasks(folderName) {
 // Create button to hold folder and title
 // Add title to div and return
 function createFolderElement(folderName) {
-    const folderDiv = document.createElement('div');
-    const folderTitleInDiv = document.createElement('button');
+    const folderDiv = document.querySelector('.folders-div');
+    const folderTitle = document.createElement('button');
 
-    folderDiv.classList.add('folder-div');
-    folderTitleInDiv.textContent = folderName;
+    // folderDiv.classList.add('folder-div');
+    folderTitle.classList.add('folder-button');
+    folderTitle.textContent = folderName;
 
-    folderDiv.appendChild(folderTitleInDiv);
+    folderDiv.appendChild(folderTitle);
 
     return folderDiv;
 }
@@ -63,9 +64,15 @@ function appendFolder(folderName) {
 
 // Take in super folder name to loop through each folder and append to sidebar
 function displayFolders(superFolderName) {
+    // clearSidebar();
     superFolderName.folders.forEach(folder => {
         appendFolder(folder);
     });
+}
+
+function clearSidebar() {
+    const foldersDiv = document.querySelector('.folders-div');
+    foldersDiv.textContent = '';
 }
 
 

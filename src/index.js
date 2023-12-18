@@ -1,4 +1,3 @@
-
 import {
     Task,
     Folder,
@@ -16,11 +15,6 @@ import {
     appendTask,
     displayFolders
 } from './modules/dom.js';
-
-
-
-
-
 
 //Super Folder 
 const superFolder = SuperFolder();
@@ -72,7 +66,7 @@ addBtn.addEventListener('click', function() {
 getFormInfo();
 // createTaskElement(task1);
 displayFolderTasks(inboxFolder);
-displayFolders(superFolder);
+// displayFolders(superFolder);
 
 const addFolderBtn = document.getElementById('folder-add-btn');
 
@@ -95,11 +89,14 @@ folderSubmitBtn.addEventListener('click', function(e) {
     
     const {folderTitleInForm} = getFolderFormInfo();
 
-    createFolderElement(folderTitleInForm);
+    // createFolderElement(folderTitleInForm);
     appendFolder(folderTitleInForm);
 
     let newFolder = Folder(folderTitleInForm);
-    console.log(newFolder.myuuid);
+    superFolder.addFolder(newFolder);
+    // displayFolders();
+    console.log(superFolder.folders);
 
     folderDialog.close();
 });
+
