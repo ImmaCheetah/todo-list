@@ -97,8 +97,8 @@ console.log(idTest.myuuid);
 
 const folderBtn = document.querySelector('.folder-button');
 
-folderBtn.addEventListener('click', function(e) {
+folderBtn.addEventListener('click', function() {
     console.log('testing folder btn');
-    console.log(e.target.value);
+    console.log(this.value);
 })
 
