@@ -79,9 +79,9 @@ folderSubmitBtn.addEventListener('click', function(e) {
     
     const {folderTitleInForm} = getFolderFormInfo();
 
-    appendFolder(folderTitleInForm);
-
     let newFolder = Folder(folderTitleInForm);
+    appendFolder(newFolder);
+    
     superFolder.addFolder(newFolder);
     // displayFolders();
     console.log(superFolder.folders);
@@ -95,10 +95,10 @@ let idTest = Folder(folderTest);
 appendFolder(folderTest);
 console.log(idTest.myuuid);
 
-// const folderBtn = document.querySelector('.folder-button');
+const folderBtn = document.querySelector('.folder-button');
 
-// folderBtn.addEventListener('click', function(e) {
-//     console.log('testing folder btn');
-//     console.log(e.target.value);
-// })
+folderBtn.addEventListener('click', function(e) {
+    console.log('testing folder btn');
+    console.log(e.target.value);
+})
 

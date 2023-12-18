@@ -62,7 +62,7 @@ function createFolderElement(folderName) {
 
     // folderDiv.classList.add('folder-div');
     folderBtn.classList.add('folder-button');
-    folderBtn.textContent = folderName;
+    folderBtn.textContent = folderName.title;
     folderBtn.value = folderName.myuuid;
 
     folderDiv.appendChild(folderBtn);
