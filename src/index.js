@@ -88,13 +88,19 @@ folderSubmitBtn.addEventListener('click', function(e) {
 });
 
 
-// const folderBtn = document.querySelector('.folder-button');
+function openFolderWithID() {
+    console.log(this.value);
 
-// folderBtn.addEventListener('click', function() {
-//     console.log('testing folder btn');
-//     console.log(this.value);
-// })
+    let tempId = this.value;
+    superFolder.folders.forEach(folder => {
+        if (tempId === folder.myuuid) {
+            //display all tasks of this folder to page
+            console.log("match found");
+        }
+    });
+}
 
-// function addEventListenerToFolderButton() {
 
-// }
+export {
+    openFolderWithID
+}

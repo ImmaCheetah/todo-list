@@ -1,3 +1,7 @@
+import {
+    openFolderWithID
+} from '../index.js';
+
 // Create all elements for each task property and change text content to corresponding value
 // Then add them to a main div and return
 function createTaskElement(taskName) {
@@ -67,10 +71,10 @@ function createFolderElement(folderName) {
 
     folderDiv.appendChild(folderBtn);
 
-    folderBtn.addEventListener('click', function() {
-        console.log('testing folder btn');
-        console.log(this.value);
-    })
+    folderBtn.addEventListener('click', openFolderWithID);
+    // folderBtn.addEventListener('click', function() {
+    //     console.log(this.value);
+    // });
 
     return folderDiv;
 }
