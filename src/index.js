@@ -39,13 +39,18 @@ inboxFolder.displayTasks();
 superFolder.addFolder(inboxFolder);
 console.log(superFolder);
 
-const taskDialog = document.getElementById('task-dialog');
 
-// taskDialog.show();
+// Open task modal when clicked
+const openTaskModalBtn = document.getElementById('open-task-modal-btn');
+openTaskModalBtn.addEventListener('click', function() {
+    const taskDialog = document.getElementById('task-dialog');
 
-const addBtn = document.getElementById('task-add-btn');
+    taskDialog.show();
+})
+
+const taskAddBtn = document.getElementById('task-add-btn');
 // Create new task instance using info from form
-addBtn.addEventListener('click', function() {
+taskAddBtn.addEventListener('click', function() {
     // This version uses arrays
     // let taskDetails = getTaskFormInfo();
     // const testTask = Task(taskDetails[0], taskDetails[1], taskDetails[2], taskDetails[3]);
