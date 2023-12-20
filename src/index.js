@@ -45,20 +45,9 @@ const openTaskModalBtn = document.getElementById('open-task-modal-btn');
 openTaskModalBtn.addEventListener('click', function() {
     const taskDialog = document.getElementById('task-dialog');
 
-    taskDialog.show();
+    taskDialog.showModal();
 })
 
-const taskAddBtn = document.getElementById('task-add-btn');
-// Create new task instance using info from form
-taskAddBtn.addEventListener('click', function() {
-    // This version uses arrays
-    // let taskDetails = getTaskFormInfo();
-    // const testTask = Task(taskDetails[0], taskDetails[1], taskDetails[2], taskDetails[3]);
-    const {taskTitle, taskDescription, taskDueDate, taskPriority} = getTaskFormInfo();
-
-    const testTask = Task(taskTitle, taskDescription, taskDueDate, taskPriority);
-    console.log(testTask.printTask());
-})
 
 // displayFolderTasks(inboxFolder);
 // displayFolders(superFolder);
@@ -97,8 +86,6 @@ folderSubmitBtn.addEventListener('click', function(e) {
 // Go through all folders and check if the clicked button value matches folder value
 // then display tasks of that folder to screen
 function openFolderWithID() {
-    console.log(this.value);
-
     let tempId = this.value;
     superFolder.folders.forEach(folder => {
         if (tempId === folder.myuuid) {
@@ -108,7 +95,26 @@ function openFolderWithID() {
             console.log("match found");
         }
     });
+    return tempId;
 }
+
+const taskAddBtn = document.getElementById('task-add-btn');
+// Create new task instance using info from form
+taskAddBtn.addEventListener('click', function() {
+    
+    const {taskTitle, taskDescription, taskDueDate, taskPriority} = getTaskFormInfo();
+
+    const newTask = Task(taskTitle, taskDescription, taskDueDate, taskPriority);
+    superFolder.folders.forEach(folder => {
+        if (tempId === folder.myuuid) {
+            folder.addTask(newTask);
+        }
+    });
+    console.log(newTask.printTask());
+})
+
+// Set current folder ID to a variable
+// 
 
 let testFolder = Folder('test');
 testFolder.addTask(task1);
