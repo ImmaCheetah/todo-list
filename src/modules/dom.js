@@ -1,5 +1,5 @@
 import {
-    openFolderWithID
+    displayCurrentFolderWithId
 } from '../index.js';
 
 // Create all elements for each task property and change text content to corresponding value
@@ -61,17 +61,22 @@ function getTaskFormInfo() {
 // Create button to hold folder and title
 // Add title to div and return
 function createFolderElement(folderName) {
-    const folderDiv = document.querySelector('.folders-div');
+    // const folderDiv = document.querySelector('.folders-div');
+    const sidebar = document.querySelector('.sidebar');
+    const folderDiv = document.createElement('div');
     const folderBtn = document.createElement('button');
+    const folderDeleteBtn = document.createElement
 
-    // folderDiv.classList.add('folder-div');
+    folderDiv.classList.add('folder-div');
     folderBtn.classList.add('folder-button');
     folderBtn.textContent = folderName.title;
     folderBtn.value = folderName.myuuid;
 
     folderDiv.appendChild(folderBtn);
 
-    folderBtn.addEventListener('click', openFolderWithID);
+    sidebar.appendChild(folderDiv);
+
+    folderBtn.addEventListener('click', displayCurrentFolderWithId);
     
     return folderDiv;
 }
