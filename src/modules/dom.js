@@ -72,10 +72,7 @@ function createFolderElement(folderName) {
     folderDiv.appendChild(folderBtn);
 
     folderBtn.addEventListener('click', openFolderWithID);
-    // folderBtn.addEventListener('click', function() {
-    //     console.log(this.value);
-    // });
-
+    
     return folderDiv;
 }
 
@@ -104,21 +101,16 @@ function getFolderFormInfo() {
     return {folderForm, folderTitleInForm};
 }
 
+function clearTaskContainer() {
+    const taskContainer = document.getElementById('task-container');
+
+    taskContainer.textContent = '';
+}
+
 function clearSidebar() {
     const foldersDiv = document.querySelector('.folders-div');
     foldersDiv.textContent = '';
 }
-
-
-
-    
-// add folder button
-// - when clicked, create dialog modal
-// - get input from user
-// - save input value when add is clicked
-// - use saved value to create folder on sidebar
-
-
 
 
 export {
@@ -129,5 +121,6 @@ export {
     appendFolder,
     displayFolderTasks,
     appendTask,
-    displayFolders
+    displayFolders,
+    clearTaskContainer
 }

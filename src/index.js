@@ -13,7 +13,8 @@ import {
     appendFolder,
     displayFolderTasks,
     appendTask,
-    displayFolders
+    displayFolders,
+    clearTaskContainer
 } from './modules/dom.js';
 
 //Super Folder 
@@ -40,7 +41,7 @@ console.log(superFolder);
 
 const taskDialog = document.getElementById('task-dialog');
 
-taskDialog.show();
+// taskDialog.show();
 
 const addBtn = document.getElementById('task-add-btn');
 // Create new task instance using info from form
@@ -54,7 +55,7 @@ addBtn.addEventListener('click', function() {
     console.log(testTask.printTask());
 })
 
-displayFolderTasks(inboxFolder);
+// displayFolderTasks(inboxFolder);
 // displayFolders(superFolder);
 
 // Open folder modal when clicked
@@ -96,6 +97,7 @@ function openFolderWithID() {
     let tempId = this.value;
     superFolder.folders.forEach(folder => {
         if (tempId === folder.myuuid) {
+            clearTaskContainer();
             //display all tasks of this folder to page
             displayFolderTasks(folder);
             console.log("match found");
@@ -103,7 +105,15 @@ function openFolderWithID() {
     });
 }
 
+let testFolder = Folder('test');
+testFolder.addTask(task1);
+superFolder.addFolder(testFolder);
+appendFolder(testFolder);
 
+let testFolder2 = Folder('test2');
+testFolder2.addTask(task2);
+superFolder.addFolder(testFolder2);
+appendFolder(testFolder2);
 
 export {
     openFolderWithID
