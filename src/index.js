@@ -87,6 +87,7 @@ folderSubmitBtn.addEventListener('click', function(e) {
 // then display tasks of that folder to screen
 function displayCurrentFolderWithId() {
     let tempId = this.value;
+    getCurrentId(this.folderName);
     superFolder.folders.forEach(folder => {
         if (tempId === folder.myuuid) {
             clearTaskContainer();
@@ -97,23 +98,43 @@ function displayCurrentFolderWithId() {
     });
 }
 
+function getCurrentId(folderName) {
+    return folderName.myuuid;
+}
+
+function loopThroughFolders() {
+    superFolder.folders.forEach(folder => {
+        return folder;
+    });
+}
+
+
+// function displayCurrentFolderWithId() {
+//     // 1 Should displayCurrentFolderWithId be responsible for assigning the button value to tempId?
+//     // 2 Should displayCurrentFolderWithId be responsible for going through each folder inside superFolder
+//     // 3 Should displayCurrentFolderWithId be responsible for checking if tempId matches the uuid of the current folder in the loop
+//     // 4 Should displayCurrentFolderWithId be responsible for clearing the task container div
+//     // 5 Should displayCurrentFolderWithId be responsible for going through the tasks of a folder and creating/appending the element to the DOM
+//                 console.log("match found");
+//             }
+//         });
+//     }
+
 const taskAddBtn = document.getElementById('task-add-btn');
 // Create new task instance using info from form
 taskAddBtn.addEventListener('click', function() {
-
+    let anotherID = displayCurrentFolderWithId();
     const {taskTitle, taskDescription, taskDueDate, taskPriority} = getTaskFormInfo();
 
     const newTask = Task(taskTitle, taskDescription, taskDueDate, taskPriority);
     superFolder.folders.forEach(folder => {
-        if (temperId === folder.myuuid) {
+        if (anotherID === folder.myuuid) {
             folder.addTask(newTask);
         }
     });
     console.log(newTask.printTask());
 })
 
-// Set current folder ID to a variable
-// 
 
 let testFolder = Folder('test');
 testFolder.addTask(task1);
@@ -124,6 +145,9 @@ let testFolder2 = Folder('test2');
 testFolder2.addTask(task2);
 superFolder.addFolder(testFolder2);
 appendFolder(testFolder2);
+
+console.log(getCurrentId(testFolder));
+loopThroughFolders();
 
 export {
     displayCurrentFolderWithId

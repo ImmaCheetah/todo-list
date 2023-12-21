@@ -65,7 +65,7 @@ function createFolderElement(folderName) {
     const sidebar = document.querySelector('.sidebar');
     const folderDiv = document.createElement('div');
     const folderBtn = document.createElement('button');
-    const folderDeleteBtn = document.createElement
+    // const folderDeleteBtn = document.createElement('button');
 
     folderDiv.classList.add('folder-div');
     folderBtn.classList.add('folder-button');
