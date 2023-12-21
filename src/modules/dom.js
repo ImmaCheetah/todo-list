@@ -76,7 +76,10 @@ function createFolderElement(folderName) {
 
     sidebar.appendChild(folderDiv);
 
-    folderBtn.addEventListener('click', displayCurrentFolderWithId);
+    folderBtn.addEventListener('click', function() {
+        displayCurrentFolderWithId(folderName.myuuid);
+        console.log(folderName.title, folderName.myuuid);
+    });
     
     return folderDiv;
 }
