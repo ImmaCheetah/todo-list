@@ -61,12 +61,10 @@ function getTaskFormInfo() {
 
 // Create button to hold folder and title
 // Add title to div and return
-function createFolderElement(folderName) {
-    // const folderDiv = document.querySelector('.folders-div');
+function createFolderButton(folderName) {
     const sidebar = document.querySelector('.sidebar');
     const folderDiv = document.createElement('div');
     const folderBtn = document.createElement('button');
-    // const folderDeleteBtn = document.createElement('button');
 
     folderDiv.classList.add('folder-div');
     folderBtn.classList.add('folder-button');
@@ -74,6 +72,7 @@ function createFolderElement(folderName) {
     folderBtn.value = folderName.myuuid;
 
     folderDiv.appendChild(folderBtn);
+    createFolderDeleteButton(folderDiv);
 
     sidebar.appendChild(folderDiv);
 
@@ -85,10 +84,19 @@ function createFolderElement(folderName) {
     return folderDiv;
 }
 
+function createFolderDeleteButton(folder) {
+    const deleteBtn = document.createElement('button');
+
+    deleteBtn.classList.add('folder-delete-btn');
+    deleteBtn.textContent = '-';
+
+    folder.appendChild(deleteBtn);
+}
+
 // Take in folder name and create folder using function
 // Append to sidebar
 function appendFolder(folderName) {
-    let folderDOM = createFolderElement(folderName);
+    let folderDOM = createFolderButton(folderName);
     
     const sidebarFolders = document.querySelector('.sidebar');
     sidebarFolders.appendChild(folderDOM);
@@ -101,6 +109,7 @@ function displayFolders(superFolderName) {
         appendFolder(folder);
     });
 }
+
 
 function getFolderFormInfo() {
     const folderForm = document.getElementById('folder-form');
@@ -143,7 +152,7 @@ export {
     getTaskFormInfo,
     getFolderFormInfo,
     createTaskElement,
-    createFolderElement,
+    createFolderButton,
     appendFolder,
     displayFolderTasks,
     appendTask,

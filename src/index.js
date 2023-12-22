@@ -9,7 +9,7 @@ import {
     getFolderDialog,
     getFolderFormInfo,
     createTaskElement,
-    createFolderElement,
+    createFolderButton,
     appendFolder,
     displayFolderTasks,
     appendTask,
@@ -25,7 +25,6 @@ const superFolder = SuperFolder();
 
 // Main Folder that tasks will go into
 const inboxFolder = Folder('Inbox');
-console.log("Inbox Folder ID is " + inboxFolder.myuuid);
 
 // Test tasks
 const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
@@ -66,7 +65,7 @@ addFolderBtn.addEventListener('click', function() {
     
     const folderDialog = document.getElementById('folder-dialog');
     // getFolderDialog();
-    //use showModal()
+    // use showModal()
     folderDialog.showModal();
 });
 
