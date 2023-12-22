@@ -72,7 +72,8 @@ function createFolderButton(folderName) {
     folderBtn.value = folderName.myuuid;
 
     folderDiv.appendChild(folderBtn);
-    createFolderDeleteButton(folderDiv);
+    
+    createFolderDeleteButton(folderDiv).value = folderName.myuuid;
 
     sidebar.appendChild(folderDiv);
 
@@ -91,6 +92,8 @@ function createFolderDeleteButton(folder) {
     deleteBtn.textContent = '-';
 
     folder.appendChild(deleteBtn);
+
+    return deleteBtn;
 }
 
 // Take in folder name and create folder using function
