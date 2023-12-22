@@ -14,7 +14,8 @@ import {
     displayFolderTasks,
     appendTask,
     displayFolders,
-    clearTaskContainer
+    clearTaskContainer,
+    appendDropdown
 } from './modules/dom.js';
 
 //Super Folder 
@@ -46,6 +47,7 @@ openTaskModalBtn.addEventListener('click', function() {
     const taskDialog = document.getElementById('task-dialog');
 
     taskDialog.showModal();
+    appendDropdown();
 })
 
 
@@ -97,11 +99,10 @@ function displayCurrentFolderWithId(tempId) {
     });
 }
 
-
 const taskAddBtn = document.getElementById('task-add-btn');
 // Create new task instance using info from form
 taskAddBtn.addEventListener('click', function() {
-    let anotherID = displayCurrentFolderWithId();
+    let anotherID = displayCurrentFolderWithId(folderName.myuuid);
     const {taskTitle, taskDescription, taskDueDate, taskPriority} = getTaskFormInfo();
 
     const newTask = Task(taskTitle, taskDescription, taskDueDate, taskPriority);

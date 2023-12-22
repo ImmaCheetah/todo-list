@@ -115,6 +115,15 @@ function clearTaskContainer() {
     taskContainer.textContent = '';
 }
 
+function appendDropdown() {
+    const select = document.createElement('select');
+    const fieldset = document.getElementById('priority-options');
+    
+    select.setAttribute('id', 'folder-selection');
+
+    fieldset.after(select);
+}
+
 function clearSidebar() {
     const foldersDiv = document.querySelector('.folders-div');
     foldersDiv.textContent = '';
@@ -130,5 +139,6 @@ export {
     displayFolderTasks,
     appendTask,
     displayFolders,
-    clearTaskContainer
+    clearTaskContainer,
+    appendDropdown
 }
