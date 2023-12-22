@@ -15,7 +15,9 @@ import {
     appendTask,
     displayFolders,
     clearTaskContainer,
-    appendDropdown
+    appendDropdown,
+    clearSelectMenu
+
 } from './modules/dom.js';
 
 //Super Folder 
@@ -101,17 +103,24 @@ function displayCurrentFolderWithId(tempId) {
 
 const taskAddBtn = document.getElementById('task-add-btn');
 // Create new task instance using info from form
-taskAddBtn.addEventListener('click', function() {
-    let anotherID = displayCurrentFolderWithId(folderName.myuuid);
+taskAddBtn.addEventListener('click', function(e) {
+    e.preventDefault()
+    // let anotherID = displayCurrentFolderWithId(folderName.myuuid);
+    const selectedFolder = document.getElementById('folder-selection');
+    const selectedFolderValue = selectedFolder.value;
+    console.log(selectedFolderValue);
+
     const {taskTitle, taskDescription, taskDueDate, taskPriority} = getTaskFormInfo();
 
     const newTask = Task(taskTitle, taskDescription, taskDueDate, taskPriority);
     superFolder.folders.forEach(folder => {
-        if (anotherID === folder.myuuid) {
+        if (selectedFolderValue === folder.myuuid) {
             folder.addTask(newTask);
         }
     });
-    console.log(newTask.printTask());
+    // displayFolderTasks(newTask);
+    console.log(testFolder);
+    clearSelectMenu();
 })
 
 

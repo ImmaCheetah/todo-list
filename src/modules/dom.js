@@ -1,7 +1,7 @@
 import {
     displayCurrentFolderWithId
 } from '../index.js';
-import { SuperFolder } from './factories.js';
+
 
 // Create all elements for each task property and change text content to corresponding value
 // Then add them to a main div and return
@@ -136,6 +136,12 @@ function appendDropdown(superFolder) {
     })
 }
 
+function clearSelectMenu() {
+    const select = document.getElementById('folder-selection')
+
+    select.remove();
+}
+
 function clearSidebar() {
     const foldersDiv = document.querySelector('.folders-div');
     foldersDiv.textContent = '';
@@ -152,5 +158,6 @@ export {
     appendTask,
     displayFolders,
     clearTaskContainer,
-    appendDropdown
+    appendDropdown,
+    clearSelectMenu
 }
