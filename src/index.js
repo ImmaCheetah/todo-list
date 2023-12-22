@@ -42,16 +42,20 @@ inboxFolder.displayTasks();
 superFolder.addFolder(inboxFolder);
 console.log(superFolder);
 
-
 // Open task modal when clicked
 const openTaskModalBtn = document.getElementById('open-task-modal-btn');
 openTaskModalBtn.addEventListener('click', function() {
+
+    getTaskDialog().showModal();
+    appendDropdown(superFolder);
+});
+
+// Get task dialog and return 
+function getTaskDialog() {
     const taskDialog = document.getElementById('task-dialog');
 
-    taskDialog.showModal();
-    appendDropdown(superFolder);
-})
-
+    return taskDialog;
+}
 
 // displayFolderTasks(inboxFolder);
 // displayFolders(superFolder);
@@ -105,22 +109,26 @@ const taskAddBtn = document.getElementById('task-add-btn');
 // Create new task instance using info from form
 taskAddBtn.addEventListener('click', function(e) {
     e.preventDefault()
-    // let anotherID = displayCurrentFolderWithId(folderName.myuuid);
+    // Get value of the selected field (Id because value is set to id in dom.js)
     const selectedFolder = document.getElementById('folder-selection');
     const selectedFolderValue = selectedFolder.value;
-    console.log(selectedFolderValue);
-
+    // Get values of the form
     const {taskTitle, taskDescription, taskDueDate, taskPriority} = getTaskFormInfo();
 
+    // Create new task and loop through folder to find matching Id and add
     const newTask = Task(taskTitle, taskDescription, taskDueDate, taskPriority);
     superFolder.folders.forEach(folder => {
         if (selectedFolderValue === folder.myuuid) {
             folder.addTask(newTask);
         }
     });
-    // displayFolderTasks(newTask);
+
     console.log(testFolder);
-    clearSelectMenu();
+
+    // Clear form fields
+    const taskForm = document.getElementById('main-form');
+    taskForm.reset();
+    getTaskDialog().close();
 })
 
 

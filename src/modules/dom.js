@@ -119,34 +119,25 @@ function clearTaskContainer() {
 function appendDropdown(superFolder) {
     let index = 0;
     const select = document.getElementById('folder-selection');
-    const fieldset = document.getElementById('priority-options');
-    
-    // select.setAttribute('id', 'folder-selection');
-    fieldset.after(select);
+
+    clearSelectMenu(select);
 
     superFolder.folders.forEach(folder => {
         const option = document.createElement('option');
         
-        
         option.textContent = folder.title;
         option.value = folder.myuuid; // figure out if this is good way to select
-        option.setAttribute('index', index++);
+        // option.setAttribute('index', index++);
 
         select.appendChild(option);
     })
 }
 
-function clearSelectMenu() {
-    const select = document.getElementById('folder-selection')
-
-    // select.remove();
+function clearSelectMenu(selectOption) {
+    for (let i = selectOption.options.length; i >= 0; i--) {
+        selectOption.remove(0);
+    }
 }
-
-function clearSidebar() {
-    const foldersDiv = document.querySelector('.folders-div');
-    foldersDiv.textContent = '';
-}
-
 
 export {
     getTaskFormInfo,
