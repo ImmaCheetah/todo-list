@@ -1,6 +1,7 @@
 import {
     displayCurrentFolderWithId
 } from '../index.js';
+import { SuperFolder } from './factories.js';
 
 // Create all elements for each task property and change text content to corresponding value
 // Then add them to a main div and return
@@ -115,13 +116,24 @@ function clearTaskContainer() {
     taskContainer.textContent = '';
 }
 
-function appendDropdown() {
+function appendDropdown(superFolder) {
+    let index = 0;
     const select = document.createElement('select');
     const fieldset = document.getElementById('priority-options');
     
     select.setAttribute('id', 'folder-selection');
-
     fieldset.after(select);
+
+    superFolder.folders.forEach(folder => {
+        const option = document.createElement('option');
+        
+        
+        option.textContent = folder.title;
+        option.value = folder.myuuid; // figure out if this is good way to select
+        option.setAttribute('index', index++);
+
+        select.appendChild(option);
+    })
 }
 
 function clearSidebar() {

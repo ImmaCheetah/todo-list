@@ -47,7 +47,7 @@ openTaskModalBtn.addEventListener('click', function() {
     const taskDialog = document.getElementById('task-dialog');
 
     taskDialog.showModal();
-    appendDropdown();
+    appendDropdown(superFolder);
 })
 
 
@@ -113,6 +113,7 @@ taskAddBtn.addEventListener('click', function() {
     });
     console.log(newTask.printTask());
 })
+
 
 
 let testFolder = Folder('test');
