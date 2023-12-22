@@ -118,10 +118,10 @@ function clearTaskContainer() {
 
 function appendDropdown(superFolder) {
     let index = 0;
-    const select = document.createElement('select');
+    const select = document.getElementById('folder-selection');
     const fieldset = document.getElementById('priority-options');
     
-    select.setAttribute('id', 'folder-selection');
+    // select.setAttribute('id', 'folder-selection');
     fieldset.after(select);
 
     superFolder.folders.forEach(folder => {
@@ -139,7 +139,7 @@ function appendDropdown(superFolder) {
 function clearSelectMenu() {
     const select = document.getElementById('folder-selection')
 
-    select.remove();
+    // select.remove();
 }
 
 function clearSidebar() {
