@@ -123,6 +123,8 @@ taskAddBtn.addEventListener('click', function(e) {
         }
     });
 
+    // Update the tasks of the folder that is currently being displayed to avoid reloading folder
+    displayCurrentFolderWithId(selectedFolderValue);
     console.log(testFolder);
 
     // Clear form fields
