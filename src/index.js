@@ -132,6 +132,28 @@ taskAddBtn.addEventListener('click', function(e) {
     getTaskDialog().close();
 })
 
+// const folderDeleteBtn = document.querySelector('.folder-delete-btn');
+// folderDeleteBtn.addEventListener('click', function() {
+//     superFolder.folders.forEach(folder => {
+//         if (folderDeleteBtn.value === folder.myuuid) {
+//             return;
+//         }
+//     });
+// })
+
+function getFolderDeleteBtn() {
+    const folderDeleteBtn = document.querySelector('.folder-delete-btn');
+
+    return folderDeleteBtn;
+}
+
+function deleteFolderWithId(buttonId) {
+    superFolder.folders.forEach(folder => {
+        if (buttonId === folder.myuuid) {
+            console.log(buttonId);
+        }
+    });
+}
 
 
 let testFolder = Folder('test');
@@ -146,5 +168,7 @@ appendFolder(testFolder2);
 
 
 export {
-    displayCurrentFolderWithId
+    displayCurrentFolderWithId,
+    getFolderDeleteBtn,
+    deleteFolderWithId
 }

@@ -1,5 +1,6 @@
 import {
-    displayCurrentFolderWithId
+    displayCurrentFolderWithId,
+    deleteFolderWithId
 } from '../index.js';
 
 
@@ -73,6 +74,7 @@ function createFolderButton(folderName) {
 
     folderDiv.appendChild(folderBtn);
     
+    // Create the del btn and  assign same id as folder to it
     createFolderDeleteButton(folderDiv).value = folderName.myuuid;
 
     sidebar.appendChild(folderDiv);
@@ -92,6 +94,12 @@ function createFolderDeleteButton(folder) {
     deleteBtn.textContent = '-';
 
     folder.appendChild(deleteBtn);
+
+    deleteBtn.addEventListener('click', function(e) {
+        // getFolderDeleteBtn(e.target);
+        let thisButton = e.target;
+        deleteFolderWithId(thisButton.value);
+    })
 
     return deleteBtn;
 }
