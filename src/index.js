@@ -95,7 +95,7 @@ folderSubmitBtn.addEventListener('click', function(e) {
 function displayCurrentFolderWithId(tempId) {
     // let tempId = this.value;
     superFolder.folders.forEach(folder => {
-        if (tempId === folder.myuuid) {
+        if (tempId === folder.myFolderUuid) {
             clearTaskContainer();
             //display all tasks of this folder to page
             displayFolderTasks(folder);
@@ -117,7 +117,7 @@ taskAddBtn.addEventListener('click', function(e) {
     // Create new task and loop through folder to find matching Id and add
     const newTask = Task(taskTitle, taskDescription, taskDueDate, taskPriority);
     superFolder.folders.forEach(folder => {
-        if (selectedFolderValue === folder.myuuid) {
+        if (selectedFolderValue === folder.myFolderUuid) {
             folder.addTask(newTask);
         }
     });
@@ -132,25 +132,13 @@ taskAddBtn.addEventListener('click', function(e) {
     getTaskDialog().close();
 })
 
-// const folderDeleteBtn = document.querySelector('.folder-delete-btn');
-// folderDeleteBtn.addEventListener('click', function() {
-//     superFolder.folders.forEach(folder => {
-//         if (folderDeleteBtn.value === folder.myuuid) {
-//             return;
-//         }
-//     });
-// })
-
-function getFolderDeleteBtn() {
-    const folderDeleteBtn = document.querySelector('.folder-delete-btn');
-
-    return folderDeleteBtn;
-}
-
+console.log('Super folder before delete', superFolder);
 function deleteFolderWithId(buttonId) {
     superFolder.folders.forEach(folder => {
-        if (buttonId === folder.myuuid) {
+        if (buttonId === folder.myFolderUuid) {
             console.log(buttonId);
+            superFolder.deleteFolder(folder);
+            console.log('super folder after delete', superFolder);
         }
     });
 }
@@ -163,12 +151,14 @@ appendFolder(testFolder);
 
 let testFolder2 = Folder('test2');
 testFolder2.addTask(task2);
+testFolder2.addTask(task1);
+testFolder2.addTask(task3);
+// testFolder.deleteTask(task3);
 superFolder.addFolder(testFolder2);
 appendFolder(testFolder2);
 
 
 export {
     displayCurrentFolderWithId,
-    getFolderDeleteBtn,
     deleteFolderWithId
 }

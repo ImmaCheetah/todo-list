@@ -70,18 +70,18 @@ function createFolderButton(folderName) {
     folderDiv.classList.add('folder-div');
     folderBtn.classList.add('folder-button');
     folderBtn.textContent = folderName.title;
-    folderBtn.value = folderName.myuuid;
+    folderBtn.value = folderName.myFolderUuid;
 
     folderDiv.appendChild(folderBtn);
     
     // Create the del btn and  assign same id as folder to it
-    createFolderDeleteButton(folderDiv).value = folderName.myuuid;
+    createFolderDeleteButton(folderDiv).value = folderName.myFolderUuid;
 
     sidebar.appendChild(folderDiv);
 
     folderBtn.addEventListener('click', function() {
-        displayCurrentFolderWithId(folderName.myuuid);
-        console.log(folderName.title, folderName.myuuid);
+        displayCurrentFolderWithId(folderName.myFolderUuid);
+        console.log(folderName.title, folderName.myFolderUuid);
     });
     
     return folderDiv;
@@ -99,6 +99,7 @@ function createFolderDeleteButton(folder) {
         // getFolderDeleteBtn(e.target);
         let thisButton = e.target;
         deleteFolderWithId(thisButton.value);
+        thisButton.remove();
     })
 
     return deleteBtn;
@@ -146,7 +147,7 @@ function appendDropdown(superFolder) {
         const option = document.createElement('option');
         
         option.textContent = folder.title;
-        option.value = folder.myuuid; // figure out if this is good way to select
+        option.value = folder.myFolderUuid; // figure out if this is good way to select
         // option.setAttribute('index', index++);
 
         select.appendChild(option);

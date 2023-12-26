@@ -44,7 +44,7 @@ export function Task(title, description, dueDate, priority) {
 export function Folder(title) {
     
 
-    let myuuid = uuidv4();
+    let myFolderUuid = uuidv4();
     let tasks = [];
 
     const addTask = (newTaskName) => {
@@ -62,7 +62,7 @@ export function Folder(title) {
     }
 
     
-    return {title, tasks, myuuid, addTask, displayTasks, deleteTask};
+    return {title, tasks, myFolderUuid, addTask, displayTasks, deleteTask};
 }
 
 export function SuperFolder() {
@@ -73,7 +73,12 @@ export function SuperFolder() {
     }
 
     const deleteFolder = (folderName) => {
-        folders.splice(folderName, 1);
+        // folders.splice(folderName, 1);
+        for (let i = folders.length - 1; i >= 0; --i) {
+            if (folders[i].myFolderUuid === folderName.myFolderUuid) {
+                folders.splice(i, 1);
+            }
+        }
     }
 
     return {folders, addFolder, deleteFolder}
