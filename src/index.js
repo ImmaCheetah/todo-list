@@ -132,13 +132,11 @@ taskAddBtn.addEventListener('click', function(e) {
     getTaskDialog().close();
 })
 
-console.log('Super folder before delete', superFolder);
 function deleteFolderWithId(buttonId) {
     superFolder.folders.forEach(folder => {
         if (buttonId === folder.myFolderUuid) {
             console.log(buttonId);
             superFolder.deleteFolder(folder);
-            console.log('super folder after delete', superFolder);
         }
     });
 }
@@ -153,10 +151,11 @@ let testFolder2 = Folder('test2');
 testFolder2.addTask(task2);
 testFolder2.addTask(task1);
 testFolder2.addTask(task3);
-// testFolder.deleteTask(task3);
+testFolder2.deleteTask(task2);
 superFolder.addFolder(testFolder2);
 appendFolder(testFolder2);
 
+console.log(testFolder2);
 
 export {
     displayCurrentFolderWithId,

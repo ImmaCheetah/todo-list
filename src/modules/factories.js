@@ -2,6 +2,8 @@ import {v4 as uuidv4} from 'uuid';
 
 export function Task(title, description, dueDate, priority) {
 
+    let myTaskUuid = uuidv4();
+
     let completeState = false;
 
     const getCompleteState = () => completeState;
@@ -36,7 +38,8 @@ export function Task(title, description, dueDate, priority) {
         setComplete, 
         changePriority,
         editTask,
-        printTask
+        printTask,
+        myTaskUuid
     };
 };
 
@@ -58,7 +61,12 @@ export function Folder(title) {
     }
 
     const deleteTask = (taskName) => {
-        tasks.splice(taskName, 1);
+        // tasks.splice(taskName, 1);
+        for (let i = tasks.length - 1; i >= 0; --i) {
+            if (tasks[i].myTaskUuid === taskName.myTaskUuid) {
+                tasks.splice(i, 1);
+            }
+        }
     }
 
     
@@ -73,7 +81,6 @@ export function SuperFolder() {
     }
 
     const deleteFolder = (folderName) => {
-        // folders.splice(folderName, 1);
         for (let i = folders.length - 1; i >= 0; --i) {
             if (folders[i].myFolderUuid === folderName.myFolderUuid) {
                 folders.splice(i, 1);
