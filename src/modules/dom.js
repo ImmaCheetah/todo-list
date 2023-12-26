@@ -99,7 +99,7 @@ function createFolderDeleteButton(folder) {
         // getFolderDeleteBtn(e.target);
         let thisButton = e.target;
         deleteFolderWithId(thisButton.value);
-        thisButton.remove();
+        thisButton.parentNode.remove();
     })
 
     return deleteBtn;
