@@ -141,6 +141,14 @@ function deleteFolderWithId(buttonId) {
     });
 }
 
+function deleteTaskWithId(folder, buttonId) {
+    folder.tasks.forEach(task => {
+        if (buttonId === task.myTaskUuid) {
+            folder.deleteTask(task);
+        }
+    })
+}
+
 
 let testFolder = Folder('test');
 testFolder.addTask(task1);
@@ -159,5 +167,6 @@ console.log(testFolder2);
 
 export {
     displayCurrentFolderWithId,
-    deleteFolderWithId
+    deleteFolderWithId,
+    deleteTaskWithId
 }

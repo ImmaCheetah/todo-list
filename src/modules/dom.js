@@ -1,6 +1,7 @@
 import {
     displayCurrentFolderWithId,
-    deleteFolderWithId
+    deleteFolderWithId,
+    deleteTaskWithId
 } from '../index.js';
 
 
@@ -18,11 +19,14 @@ function createTaskElement(taskName) {
     taskDescriptionInDiv.textContent = taskName.description;
     taskDueDateInDiv.textContent = taskName.dueDate;
     taskPriorityInDiv.textContent = taskName.priority;
-    
+
     taskDiv.appendChild(taskTitleInDiv);
     taskDiv.appendChild(taskDescriptionInDiv);
     taskDiv.appendChild(taskDueDateInDiv);
     taskDiv.appendChild(taskPriorityInDiv);
+    createTaskDeleteButton(taskDiv).value = taskName.myTaskUuid;
+
+
     
     return taskDiv;
 }
@@ -88,21 +92,37 @@ function createFolderButton(folderName) {
 }
 
 function createFolderDeleteButton(folder) {
-    const deleteBtn = document.createElement('button');
+    const folderDeleteBtn = document.createElement('button');
 
-    deleteBtn.classList.add('folder-delete-btn');
-    deleteBtn.textContent = '-';
+    folderDeleteBtn.classList.add('folder-delete-btn');
+    folderDeleteBtn.textContent = '-';
 
-    folder.appendChild(deleteBtn);
+    folder.appendChild(folderDeleteBtn);
 
-    deleteBtn.addEventListener('click', function(e) {
-        // getFolderDeleteBtn(e.target);
+    folderDeleteBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         deleteFolderWithId(thisButton.value);
         thisButton.parentNode.remove();
     })
 
-    return deleteBtn;
+    return folderDeleteBtn;
+}
+
+function createTaskDeleteButton(task) {
+    const taskDeleteBtn = document.createElement('button');
+
+    taskDeleteBtn.classList.add('task-delete-btn');
+    taskDeleteBtn.textContent = '-';
+
+    task.appendChild(taskDeleteBtn);
+
+    taskDeleteBtn.addEventListener('click', function(e) {
+        let thisButton = e.target;
+        deleteTaskWithId(testFolder, e.target.value);
+        thisButton.parentNode.remove();
+    })
+
+    return taskDeleteBtn;
 }
 
 // Take in folder name and create folder using function
