@@ -25,9 +25,8 @@ function createTaskElement(taskName) {
     taskDiv.appendChild(taskDueDateInDiv);
     taskDiv.appendChild(taskPriorityInDiv);
     createTaskDeleteButton(taskDiv).value = taskName.myTaskUuid;
+    createTaskEditButton(taskDiv);
 
-
-    
     return taskDiv;
 }
 
@@ -125,6 +124,19 @@ function createTaskDeleteButton(task) {
     })
 
     return taskDeleteBtn;
+}
+
+function createTaskEditButton(task) {
+    const taskEditBtn = document.createElement('button');
+
+    taskEditBtn.classList.add('task-edit-btn');
+    taskEditBtn.textContent = '+';
+
+    task.appendChild(taskEditBtn);
+
+    taskEditBtn.addEventListener('click', function() {
+
+    })
 }
 
 // Take in folder name and create folder using function
