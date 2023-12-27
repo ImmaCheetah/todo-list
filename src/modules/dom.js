@@ -84,8 +84,10 @@ function createFolderButton(folderName) {
     sidebar.appendChild(folderDiv);
 
     folderBtn.addEventListener('click', function() {
+        let currentFolderId = folderName.myFolderUuid;
         displayCurrentFolderWithId(folderName.myFolderUuid);
         console.log(folderName.title, folderName.myFolderUuid);
+        return currentFolderId;
     });
     
     return folderDiv;
@@ -118,7 +120,7 @@ function createTaskDeleteButton(task) {
 
     taskDeleteBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
-        deleteTaskWithId(testFolder, e.target.value);
+        deleteTaskWithId(thisButton.value);
         thisButton.parentNode.remove();
     })
 

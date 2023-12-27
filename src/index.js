@@ -141,12 +141,15 @@ function deleteFolderWithId(buttonId) {
     });
 }
 
-function deleteTaskWithId(folder, buttonId) {
-    folder.tasks.forEach(task => {
-        if (buttonId === task.myTaskUuid) {
-            folder.deleteTask(task);
-        }
-    })
+function deleteTaskWithId(buttonId) {
+    superFolder.folders.forEach(folder => {
+        folder.tasks.forEach(task => {
+            if (buttonId === task.myTaskUuid) {
+                folder.deleteTask(task);
+            }
+        })
+    });
+    console.log(testFolder2);
 }
 
 
