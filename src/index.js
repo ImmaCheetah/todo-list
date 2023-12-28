@@ -56,17 +56,13 @@ function getTaskDialog() {
     return taskDialog;
 }
 
-// displayFolderTasks(inboxFolder);
-// displayFolders(superFolder);
-
 // Open folder modal when clicked
 const addFolderBtn = document.getElementById('folder-add-btn');
 addFolderBtn.addEventListener('click', function() {
     
     const folderDialog = document.getElementById('folder-dialog');
-    // getFolderDialog();
-    // use showModal()
     folderDialog.showModal();
+    
 });
 
 // Event listener to submit folder form
