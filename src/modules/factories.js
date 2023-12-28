@@ -9,7 +9,12 @@ export function Task(title, description, dueDate, priority) {
     const getCompleteState = () => completeState;
 
     const setComplete = () => {
-        completeState = true;
+        if (getCompleteState() == false) {
+            completeState = true;
+        } else {
+            completeState = false;
+        }
+        
     }
     title = title.toString();
     description = description.toString();
