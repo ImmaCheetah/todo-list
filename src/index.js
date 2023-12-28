@@ -145,7 +145,17 @@ function deleteTaskWithId(buttonId) {
             }
         })
     });
-    console.log(testFolder2);
+}
+
+function changeTaskStatus(taskId) {
+    superFolder.folders.forEach(folder => {
+        folder.tasks.forEach(task => {
+            if (taskId === task.myTaskUuid) {
+                task.setComplete();
+            }
+        })
+    });
+    console.log(task1.getCompleteState());
 }
 
 
@@ -167,5 +177,6 @@ console.log(testFolder2);
 export {
     displayCurrentFolderWithId,
     deleteFolderWithId,
-    deleteTaskWithId
+    deleteTaskWithId,
+    changeTaskStatus
 }

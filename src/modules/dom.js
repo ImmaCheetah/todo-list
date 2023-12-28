@@ -1,7 +1,8 @@
 import {
     displayCurrentFolderWithId,
     deleteFolderWithId,
-    deleteTaskWithId
+    deleteTaskWithId,
+    changeTaskStatus
 } from '../index.js';
 
 
@@ -150,7 +151,9 @@ function createTaskStatusButton(task) {
 
     task.appendChild(taskStatusBtn);
 
-    taskStatusBtn.addEventListener('click', function() {
+    taskStatusBtn.addEventListener('click', function(e) {
+        let thisButton = e.target;
+        changeTaskStatus(thisButton.value);
         
     })
 
