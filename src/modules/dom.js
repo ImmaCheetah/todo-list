@@ -159,13 +159,6 @@ function changeTaskFormFields(task) {
     taskDescriptionInForm.value = task.description;
     taskDueDateInForm.value = task.dueDate;
     taskPriorityInForm.value = task.priority;
-    
-    // let taskTitle = taskTitleInForm.value;
-    // let taskDescription = taskDescriptionInForm.value;
-    // let taskDueDate = taskDueDateInForm.value;
-    // let taskPriority = taskPriorityInForm.value;
-
-    // return {taskTitle, taskDescription, taskDueDate, taskPriority};
 } 
 
 function createTaskStatusButton(task) {

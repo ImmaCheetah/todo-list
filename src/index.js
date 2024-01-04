@@ -20,6 +20,8 @@ import {
 
 } from './modules/dom.js';
 
+import { formatDistance, subDays } from "date-fns";
+
 //Super Folder 
 const superFolder = SuperFolder();
 
@@ -31,7 +33,7 @@ const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
 const task2 = Task('movies', 'avatar', 'nov 29', 'med');
 const task3 = Task('coding', 'todo list', 'dec 10', 'low');
 
-task1.editTask('new thing', 'another new thing', 'new date', 'HIGH');
+task1.editTask('new thing', 'another new thing', new Date(), 'HIGH');
 
 // Testing functionalities
 inboxFolder.addTask(task3);
@@ -44,7 +46,7 @@ console.log(superFolder);
 // Open task modal when clicked
 const openTaskModalBtn = document.getElementById('open-task-modal-btn');
 openTaskModalBtn.addEventListener('click', function() {
-
+    getTaskDialog().reset;
     getTaskDialog().showModal();
     appendDropdown(superFolder);
 });
