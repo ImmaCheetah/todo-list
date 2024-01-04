@@ -156,17 +156,18 @@ function changeTaskStatus(taskId) {
             }
         })
     });
-    console.log(task1.getCompleteState());
 }
 
 function findTaskWithId(buttonId) {
+    let output;
     superFolder.folders.forEach(folder => {
         folder.tasks.forEach(task => {
             if (buttonId === task.myTaskUuid) {
-                return task;
+                output = task;
             }
         })
     });
+    return output;
 }
 
 let testFolder = Folder('test');

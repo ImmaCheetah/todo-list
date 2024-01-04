@@ -140,8 +140,8 @@ function createTaskEditButton(task) {
 
     taskEditBtn.addEventListener('click', function(e) {
         console.log(findTaskWithId(e.target.value));
-        // changeTaskFormFields(task);
-        // getTaskDialog().showModal();
+        changeTaskFormFields(findTaskWithId(e.target.value));
+        getTaskDialog().showModal();
     })
 
     return taskEditBtn;
@@ -155,10 +155,10 @@ function changeTaskFormFields(task) {
     const taskDueDateInForm = form.elements['task-due-date'];
     const taskPriorityInForm = form.elements['task-priority'];
 
-    taskTitleInForm.textContent = task.title;
-    taskDescriptionInForm.textContent = task.description;
-    taskDueDateInForm.textContent = task.dueDate;
-    taskPriorityInForm.textContent = task.priority;
+    taskTitleInForm.value = task.title;
+    taskDescriptionInForm.value = task.description;
+    taskDueDateInForm.value = task.dueDate;
+    taskPriorityInForm.value = task.priority;
     
     // let taskTitle = taskTitleInForm.value;
     // let taskDescription = taskDescriptionInForm.value;
