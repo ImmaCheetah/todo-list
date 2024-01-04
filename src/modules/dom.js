@@ -2,7 +2,9 @@ import {
     displayCurrentFolderWithId,
     deleteFolderWithId,
     deleteTaskWithId,
-    changeTaskStatus
+    changeTaskStatus,
+    getTaskDialog,
+    findTaskWithId
 } from '../index.js';
 
 
@@ -136,12 +138,35 @@ function createTaskEditButton(task) {
 
     task.appendChild(taskEditBtn);
 
-    taskEditBtn.addEventListener('click', function() {
-        
+    taskEditBtn.addEventListener('click', function(e) {
+        console.log(findTaskWithId(e.target.value));
+        // changeTaskFormFields(task);
+        // getTaskDialog().showModal();
     })
 
     return taskEditBtn;
 }
+
+function changeTaskFormFields(task) {
+    const form = document.getElementById('main-form');
+
+    const taskTitleInForm = form.elements['task-title'];
+    const taskDescriptionInForm = form.elements['task-description'];
+    const taskDueDateInForm = form.elements['task-due-date'];
+    const taskPriorityInForm = form.elements['task-priority'];
+
+    taskTitleInForm.textContent = task.title;
+    taskDescriptionInForm.textContent = task.description;
+    taskDueDateInForm.textContent = task.dueDate;
+    taskPriorityInForm.textContent = task.priority;
+    
+    // let taskTitle = taskTitleInForm.value;
+    // let taskDescription = taskDescriptionInForm.value;
+    // let taskDueDate = taskDueDateInForm.value;
+    // let taskPriority = taskPriorityInForm.value;
+
+    // return {taskTitle, taskDescription, taskDueDate, taskPriority};
+} 
 
 function createTaskStatusButton(task) {
     const taskStatusBtn = document.createElement('button');
@@ -154,7 +179,7 @@ function createTaskStatusButton(task) {
     taskStatusBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         changeTaskStatus(thisButton.value);
-        
+        // thisButton.parentNode.style.color = 'red';
     })
 
     return taskStatusBtn;

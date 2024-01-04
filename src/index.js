@@ -89,7 +89,7 @@ folderSubmitBtn.addEventListener('click', function(e) {
 // Go through all folders and check if the clicked button value matches folder value
 // then display tasks of that folder to screen
 function displayCurrentFolderWithId(tempId) {
-    // let tempId = this.value;
+
     superFolder.folders.forEach(folder => {
         if (tempId === folder.myFolderUuid) {
             clearTaskContainer();
@@ -147,6 +147,7 @@ function deleteTaskWithId(buttonId) {
     });
 }
 
+
 function changeTaskStatus(taskId) {
     superFolder.folders.forEach(folder => {
         folder.tasks.forEach(task => {
@@ -158,6 +159,15 @@ function changeTaskStatus(taskId) {
     console.log(task1.getCompleteState());
 }
 
+function findTaskWithId(buttonId) {
+    superFolder.folders.forEach(folder => {
+        folder.tasks.forEach(task => {
+            if (buttonId === task.myTaskUuid) {
+                return task;
+            }
+        })
+    });
+}
 
 let testFolder = Folder('test');
 testFolder.addTask(task1);
@@ -178,5 +188,7 @@ export {
     displayCurrentFolderWithId,
     deleteFolderWithId,
     deleteTaskWithId,
-    changeTaskStatus
+    changeTaskStatus,
+    getTaskDialog,
+    findTaskWithId
 }
