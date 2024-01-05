@@ -6,6 +6,7 @@ import {
 
 import {
     getTaskFormInfo,
+    getTaskEditFormInfo,
     getFolderDialog,
     getFolderFormInfo,
     createTaskElement,
@@ -135,11 +136,29 @@ taskAddBtn.addEventListener('click', function(e) {
     getTaskDialog().close();
 })
 
+// Select the button with Id and find task with that Id
+// Change the info of that task and update folder
+// Delete button after and close
 const taskEditConfirmBtn = document.getElementById('task-edit-btn');
-
 taskEditConfirmBtn.addEventListener('click', function(e) {
     e.preventDefault();
+    
+    const btnId = document.querySelector('.edit-btn-id');
 
+    const {taskTitle, taskDescription, taskDueDate, taskPriority} = getTaskEditFormInfo();
+
+    superFolder.folders.forEach(folder => {
+        folder.tasks.forEach(task => {
+            if (btnId.value === task.myTaskUuid) {
+                task.editTask(taskTitle, taskDescription, taskDueDate, taskPriority);
+                displayCurrentFolderWithId(folder.myFolderUuid);
+                console.log(task);
+            }
+        })
+    });
+
+    btnId.remove();
+    getEditDialog().close();
 
 })
 

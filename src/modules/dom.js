@@ -68,6 +68,22 @@ function getTaskFormInfo() {
     return {taskTitle, taskDescription, taskDueDate, taskPriority};
 } 
 
+function getTaskEditFormInfo() {
+    const form = document.getElementById('edit-form');
+
+    const taskTitleInForm = form.elements['task-title'];
+    const taskDescriptionInForm = form.elements['task-description'];
+    const taskDueDateInForm = form.elements['task-due-date'];
+    const taskPriorityInForm = form.elements['task-priority'];
+    
+    let taskTitle = taskTitleInForm.value;
+    let taskDescription = taskDescriptionInForm.value;
+    let taskDueDate = taskDueDateInForm.value;
+    let taskPriority = taskPriorityInForm.value;
+
+    return {taskTitle, taskDescription, taskDueDate, taskPriority};
+} 
+
 // Create button to hold folder and title
 // Add title to div and return
 function createFolderButton(folderName) {
@@ -140,6 +156,15 @@ function createTaskEditButton(task) {
     task.appendChild(taskEditBtn);
 
     taskEditBtn.addEventListener('click', function(e) {
+        // Create a button to hold Id value
+        const editForm = document.getElementById('edit-form');
+        const btnForId = document.createElement('button');
+
+        btnForId.classList.add('edit-btn-id');
+        btnForId.value = e.target.value
+        editForm.appendChild(btnForId);
+
+        // Change form fields to task info and open modal
         changeTaskFormFields(findTaskWithId(e.target.value));
         getEditDialog().showModal();
     })
@@ -235,6 +260,7 @@ function clearSelectMenu(selectOption) {
 
 export {
     getTaskFormInfo,
+    getTaskEditFormInfo,
     getFolderFormInfo,
     createTaskElement,
     createFolderButton,
