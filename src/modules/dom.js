@@ -139,7 +139,6 @@ function createTaskEditButton(task) {
     task.appendChild(taskEditBtn);
 
     taskEditBtn.addEventListener('click', function(e) {
-        console.log(findTaskWithId(e.target.value));
         changeTaskFormFields(findTaskWithId(e.target.value));
         getTaskDialog().showModal();
     })
