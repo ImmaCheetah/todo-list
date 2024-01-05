@@ -101,7 +101,51 @@
                             </div>
                         </form>
                     </dialog>
-
+                    <dialog id="edit-dialog">
+                        <form id="edit-form" name="edit-form" action="" method="POST">
+                            <div class="form-header form-div">
+                                <h3 class="form-title">Edit Task</h3>
+                                <button class="close-btn" type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
+                            </div>
+                            <div id="task-title-div" class="form-div">
+                                <label for="task-title"></label>
+                                <input type="text" name="task-title" id="task-title" placeholder="Title" value="" required>
+                                <span></span>
+                            </div>
+                            <div id="task-description-div" class="form-div">
+                                <label for="task-description"></label>
+                                <input type="text" name="task-description" id="task-description" placeholder="Description" required>
+                                <span></span>
+                            </div>
+                            <div id="task-due-date-div" class="form-div">
+                                <label for="task-due-date"></label>
+                                <input type="date" name="task-due-date" id="task-due-date" required>
+                                <span></span>
+                            </div>
+                            <fieldset id="priority-options">
+                                <legend>Task Priority</legend>
+                              
+                                <div>
+                                  <input type="radio" id="low" name="task-priority" value="Low" checked/>
+                                  <label for="low">Low</label>
+                                </div>
+                              
+                                <div>
+                                  <input type="radio" id="medium" name="task-priority" value="Medium"/>
+                                  <label for="medium">Medium</label>
+                                </div>
+                              
+                                <div>
+                                  <input type="radio" id="high" name="task-priority" value="High"/>
+                                  <label for="high">High</label>
+                                </div>
+                            </fieldset>
+                            <div id="confirm-div" class="form-div">
+                                <button id="task-edit-btn" type="submit">Confirm</button>
+                                <button id="task-reset-btn" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </dialog>
             </div>
         </div>
     </div>

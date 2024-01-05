@@ -58,6 +58,12 @@ function getTaskDialog() {
     return taskDialog;
 }
 
+function getEditDialog() {
+    const editDialog = document.getElementById('edit-dialog');
+
+    return editDialog;
+}
+
 // Open folder modal when clicked
 const addFolderBtn = document.getElementById('folder-add-btn');
 addFolderBtn.addEventListener('click', function() {
@@ -129,6 +135,14 @@ taskAddBtn.addEventListener('click', function(e) {
     getTaskDialog().close();
 })
 
+const taskEditConfirmBtn = document.getElementById('task-edit-btn');
+
+taskEditConfirmBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+
+
+})
+
 function deleteFolderWithId(buttonId) {
     superFolder.folders.forEach(folder => {
         if (buttonId === folder.myFolderUuid) {
@@ -192,5 +206,6 @@ export {
     deleteTaskWithId,
     changeTaskStatus,
     getTaskDialog,
-    findTaskWithId
+    findTaskWithId,
+    getEditDialog
 }

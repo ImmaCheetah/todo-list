@@ -4,7 +4,8 @@ import {
     deleteTaskWithId,
     changeTaskStatus,
     getTaskDialog,
-    findTaskWithId
+    findTaskWithId,
+    getEditDialog
 } from '../index.js';
 
 
@@ -140,14 +141,14 @@ function createTaskEditButton(task) {
 
     taskEditBtn.addEventListener('click', function(e) {
         changeTaskFormFields(findTaskWithId(e.target.value));
-        getTaskDialog().showModal();
+        getEditDialog().showModal();
     })
 
     return taskEditBtn;
 }
 
 function changeTaskFormFields(task) {
-    const form = document.getElementById('main-form');
+    const form = document.getElementById('edit-form');
 
     const taskTitleInForm = form.elements['task-title'];
     const taskDescriptionInForm = form.elements['task-description'];
