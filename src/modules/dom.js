@@ -197,10 +197,19 @@ function createTaskStatusButton(task) {
     taskStatusBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         changeTaskStatus(thisButton.value);
+        toggleCompleteStyle(thisButton);
         // thisButton.parentNode.style.color = 'red';
     })
 
     return taskStatusBtn;
+}
+
+function toggleCompleteStyle(element) {
+    if (!element.parentNode.classList.contains('complete-task')) {
+        element.parentNode.classList.add('complete-task')
+    } else {
+        element.parentNode.classList.remove('complete-task');
+    }
 }
 
 // Take in folder name and create folder using function

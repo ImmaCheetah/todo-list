@@ -26,23 +26,8 @@ import { formatDistance, subDays } from "date-fns";
 //Super Folder 
 const superFolder = SuperFolder();
 
-// Main Folder that tasks will go into
-const inboxFolder = Folder('Inbox');
 
-// Test tasks
-const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
-const task2 = Task('movies', 'avatar', 'nov 29', 'med');
-const task3 = Task('coding', 'todo list', 'dec 10', 'low');
 
-task1.editTask('new thing', 'another new thing', new Date(), 'HIGH');
-
-// Testing functionalities
-inboxFolder.addTask(task3);
-inboxFolder.addTask(task2);
-inboxFolder.addTask(task1);
-inboxFolder.displayTasks();
-superFolder.addFolder(inboxFolder);
-console.log(superFolder);
 
 // Open task modal when clicked
 const openTaskModalBtn = document.getElementById('open-task-modal-btn');
@@ -203,11 +188,15 @@ function findTaskWithId(buttonId) {
     });
     return output;
 }
+// Test tasks
+const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
+const task2 = Task('movies', 'avatar', 'nov 29', 'med');
+const task3 = Task('coding', 'todo list', 'dec 10', 'low');
 
-let testFolder = Folder('test');
-testFolder.addTask(task1);
-superFolder.addFolder(testFolder);
-appendFolder(testFolder);
+let inboxFolder = Folder('Inbox');
+inboxFolder.addTask(task1);
+superFolder.addFolder(inboxFolder);
+appendFolder(inboxFolder);
 
 let testFolder2 = Folder('test2');
 testFolder2.addTask(task2);
