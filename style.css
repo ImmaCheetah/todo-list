@@ -81,3 +81,7 @@ table {
 .task-div {
 	border: 1px solid gray;
 }
+
+.complete-task {
+	color: red;
+}
