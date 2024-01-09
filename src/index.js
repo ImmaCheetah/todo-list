@@ -209,10 +209,22 @@ if (!JSON.parse(localStorage.getItem('folder'))) {
     console.log('no folder');
 } else {
     console.log('a folder exists');
-    const lsFolder = JSON.parse(localStorage.getItem('folder'));
+    // const lsFolder = JSON.parse(localStorage.getItem('folder'));
 
-    createFolderButton(lsFolder);
-    
+    // superFolder.addFolder(lsFolder);
+    // createFolderButton(lsFolder);
+    loadLSFolders();
+}
+
+function loadLSFolders() {
+    for (let i = 0; i < localStorage.length; i++) {
+        // const lsFolder = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        let key = (localStorage.key(i));
+        let x = JSON.parse(localStorage.getItem(key));
+
+        superFolder.addFolder(x);
+        createFolderButton(x);
+    }
 }
 
 // On page load, check for storage
