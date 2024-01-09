@@ -12,7 +12,8 @@ import {
     displayFolderTasks,
     clearTaskContainer,
     appendDropdown,
-    createFolderButton
+    createFolderButton,
+    displayFolders
 
 } from './modules/dom.js';
 
@@ -66,18 +67,14 @@ folderSubmitBtn.addEventListener('click', function(e) {
     let newFolder = Folder(folderTitleInForm);
     appendFolder(newFolder);
     
-    localStorage.setItem('folder', JSON.stringify(newFolder));
+    localStorage.setItem('folders', JSON.stringify(newFolder));
+    console.log('Length of storage when folder is created ' + localStorage.length);
     
     superFolder.addFolder(newFolder);
 
     folderDialog.close();
 });
 
-function displayLocalStorage() {
-
-}
-
-console.log(JSON.parse(localStorage.getItem('folder')));
 // Go through all folders and check if the clicked button value matches folder value
 // then display tasks of that folder to screen
 function displayCurrentFolderWithId(tempId) {
@@ -204,28 +201,64 @@ testFolder2.deleteTask(task2);
 superFolder.addFolder(testFolder2);
 appendFolder(testFolder2);
 
+let folderStorage = [];
+console.log(folderStorage);
 
-if (!JSON.parse(localStorage.getItem('folder'))) {
-    console.log('no folder');
-} else {
+if (localStorage.getItem('folders')) {
     console.log('a folder exists');
-    // const lsFolder = JSON.parse(localStorage.getItem('folder'));
-
-    // superFolder.addFolder(lsFolder);
-    // createFolderButton(lsFolder);
-    loadLSFolders();
-}
-
-function loadLSFolders() {
     for (let i = 0; i < localStorage.length; i++) {
         // const lsFolder = JSON.parse(localStorage.getItem(localStorage.key(i)));
         let key = (localStorage.key(i));
-        let x = JSON.parse(localStorage.getItem(key));
+        console.log('this is the key ' + key);
 
-        superFolder.addFolder(x);
-        createFolderButton(x);
+        let x = JSON.parse(localStorage.getItem(key));
+        console.log(x);
+
+        folderStorage.push(x);
+        console.log(folderStorage);
     }
+    // folderStorage = JSON.parse(localStorage.getItem('folders'));
+    // console.log(folderStorage);
+} else {
+    console.log('no folder');
+    // folderStorage = [];
 }
+
+// folderStorage.forEach(folder => {
+//     folderStorage.push(folder);
+//     console.log(folder);
+// });
+// if (!JSON.parse(localStorage.getItem('folders'))) {
+//     console.log('no folder');
+// } else {
+//     console.log('a folder exists');
+//     const lsFolder = JSON.parse(localStorage.getItem('folders'));
+
+//     // superFolder.addFolder(lsFolder);
+//     // superFolder.forEach(addFolder(lsFolder));
+//     superFolder.forEach(folder => {
+//         superFolder.addFolder(lsFolder);
+//     })
+//     createFolderButton(lsFolder);
+//     // loadLSFolders();
+// }
+
+
+// function loadLSFolders() {
+//     for (let i = 0; i < localStorage.length; i++) {
+//         // const lsFolder = JSON.parse(localStorage.getItem(localStorage.key(i)));
+//         let key = (localStorage.key(i));
+//         let x = JSON.parse(localStorage.getItem(key));
+
+//         superFolder.addFolder(x);
+//         appendFolder(x);
+//     }
+// }
+
+// loadLSFolders();
+
+
+
 
 // On page load, check for storage
 // If storage contains projects, get projects from storage
