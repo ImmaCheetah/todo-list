@@ -7,17 +7,11 @@ import {
 import {
     getTaskFormInfo,
     getTaskEditFormInfo,
-    getFolderDialog,
     getFolderFormInfo,
-    createTaskElement,
-    createFolderButton,
     appendFolder,
     displayFolderTasks,
-    appendTask,
-    displayFolders,
     clearTaskContainer,
     appendDropdown,
-    clearSelectMenu
 
 } from './modules/dom.js';
 
@@ -25,9 +19,6 @@ import { formatDistance, subDays } from "date-fns";
 
 //Super Folder 
 const superFolder = SuperFolder();
-
-
-
 
 // Open task modal when clicked
 const openTaskModalBtn = document.getElementById('open-task-modal-btn');
@@ -75,11 +66,18 @@ folderSubmitBtn.addEventListener('click', function(e) {
     appendFolder(newFolder);
     
     superFolder.addFolder(newFolder);
-    console.log(superFolder.folders);
+
+    localStorage.setItem('folder', JSON.stringify(newFolder));
+    console.log(JSON.parse(localStorage.getItem("folder")));
 
     folderDialog.close();
 });
 
+function displayLocalStorage() {
+
+}
+
+console.log(JSON.parse(localStorage.getItem('folder')));
 // Go through all folders and check if the clicked button value matches folder value
 // then display tasks of that folder to screen
 function displayCurrentFolderWithId(tempId) {
@@ -206,8 +204,69 @@ testFolder2.deleteTask(task2);
 superFolder.addFolder(testFolder2);
 appendFolder(testFolder2);
 
-console.log(testFolder2);
+function populateStorage() {
+    getTaskDialog();
+    localStorage.setItem(getTaskDialog(), "yellow");
 
+    return localStorage.length;
+}
+
+
+if (!JSON.parse(localStorage.getItem('folder'))) {
+    console.log('no folder');
+} else {
+    console.log('a folder exists');
+
+}
+
+// On page load, check for storage
+// If storage contains projects, get projects from storage
+// Put said projects into projects array
+// Display projects array to DOM (functionality you already have)
+
+// localStorage.setItem('testFolderInStorage', JSON.stringify(testFolder2))
+// console.log(JSON.parse(localStorage.getItem('testFolderInStorage')));
+
+function saveToStorage(folder) {
+    
+}
+
+// populateStorage(); 
+
+// function storageAvailable(type) {
+//     let storage;
+//     try {
+//       storage = window[type];
+//       const x = "__storage_test__";
+//       storage.setItem(x, x);
+//       storage.removeItem(x);
+//       return true;
+//     } catch (e) {
+//       return (
+//         e instanceof DOMException &&
+//         // everything except Firefox
+//         (e.code === 22 ||
+//           // Firefox
+//           e.code === 1014 ||
+//           // test name field too, because code might not be present
+//           // everything except Firefox
+//           e.name === "QuotaExceededError" ||
+//           // Firefox
+//           e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
+//         // acknowledge QuotaExceededError only if there's something already stored
+//         storage &&
+//         storage.length !== 0
+//       );
+//     }
+//   }
+
+// if (storageAvailable("localStorage")) {
+// // Yippee! We can use localStorage awesomeness
+// console.log('yay');
+// } else {
+// // Too bad, no localStorage for us
+// console.log('mah');
+// }
 export {
     displayCurrentFolderWithId,
     deleteFolderWithId,

@@ -3,7 +3,6 @@ import {
     deleteFolderWithId,
     deleteTaskWithId,
     changeTaskStatus,
-    getTaskDialog,
     findTaskWithId,
     getEditDialog
 } from '../index.js';
@@ -198,7 +197,6 @@ function createTaskStatusButton(task) {
         let thisButton = e.target;
         changeTaskStatus(thisButton.value);
         toggleCompleteStyle(thisButton);
-        // thisButton.parentNode.style.color = 'red';
     })
 
     return taskStatusBtn;
