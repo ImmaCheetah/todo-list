@@ -12,6 +12,7 @@ import {
     displayFolderTasks,
     clearTaskContainer,
     appendDropdown,
+    createFolderButton
 
 } from './modules/dom.js';
 
@@ -65,10 +66,9 @@ folderSubmitBtn.addEventListener('click', function(e) {
     let newFolder = Folder(folderTitleInForm);
     appendFolder(newFolder);
     
-    superFolder.addFolder(newFolder);
-
     localStorage.setItem('folder', JSON.stringify(newFolder));
-    console.log(JSON.parse(localStorage.getItem("folder")));
+    
+    superFolder.addFolder(newFolder);
 
     folderDialog.close();
 });
@@ -204,19 +204,15 @@ testFolder2.deleteTask(task2);
 superFolder.addFolder(testFolder2);
 appendFolder(testFolder2);
 
-function populateStorage() {
-    getTaskDialog();
-    localStorage.setItem(getTaskDialog(), "yellow");
-
-    return localStorage.length;
-}
-
 
 if (!JSON.parse(localStorage.getItem('folder'))) {
     console.log('no folder');
 } else {
     console.log('a folder exists');
+    const lsFolder = JSON.parse(localStorage.getItem('folder'));
 
+    createFolderButton(lsFolder);
+    
 }
 
 // On page load, check for storage
@@ -227,9 +223,6 @@ if (!JSON.parse(localStorage.getItem('folder'))) {
 // localStorage.setItem('testFolderInStorage', JSON.stringify(testFolder2))
 // console.log(JSON.parse(localStorage.getItem('testFolderInStorage')));
 
-function saveToStorage(folder) {
-    
-}
 
 // populateStorage(); 
 

@@ -243,7 +243,7 @@ function clearTaskContainer() {
 }
 
 function appendDropdown(superFolder) {
-    let index = 0;
+
     const select = document.getElementById('folder-selection');
 
     clearSelectMenu(select);
@@ -277,5 +277,5 @@ export {
     displayFolders,
     clearTaskContainer,
     appendDropdown,
-    clearSelectMenu
+    clearSelectMenu,
 }
