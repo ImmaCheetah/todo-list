@@ -12,6 +12,8 @@ import {
     displayFolderTasks,
     clearTaskContainer,
     appendDropdown,
+    createFolderButton,
+    displayFolders
 
 } from './modules/dom.js';
 
@@ -67,17 +69,16 @@ folderSubmitBtn.addEventListener('click', function(e) {
     
     superFolder.addFolder(newFolder);
 
-    localStorage.setItem('folder', JSON.stringify(newFolder));
-    console.log(JSON.parse(localStorage.getItem("folder")));
+    localStorage.setItem('folders', JSON.stringify(newFolder));
+    console.log('Length of storage when folder is created ' + localStorage.length);
 
     folderDialog.close();
 });
 
-function displayLocalStorage() {
-
-}
-
-console.log(JSON.parse(localStorage.getItem('folder')));
+localStorage.setItem('boop', 'bam');
+localStorage.setItem('boop', 'gf');
+localStorage.setItem('boop', 'fd');
+console.log('Length of storage when folder is created ' + localStorage.length);
 // Go through all folders and check if the clicked button value matches folder value
 // then display tasks of that folder to screen
 function displayCurrentFolderWithId(tempId) {
@@ -204,20 +205,29 @@ testFolder2.deleteTask(task2);
 superFolder.addFolder(testFolder2);
 appendFolder(testFolder2);
 
-function populateStorage() {
-    getTaskDialog();
-    localStorage.setItem(getTaskDialog(), "yellow");
+let folderStorage = [];
+console.log(folderStorage);
 
-    return localStorage.length;
-}
-
-
-if (!JSON.parse(localStorage.getItem('folder'))) {
-    console.log('no folder');
-} else {
+if (localStorage.getItem('folders')) {
     console.log('a folder exists');
+    for (let i = 0; i < localStorage.length; i++) {
+        // const lsFolder = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        let key = (localStorage.key(i));
+        console.log('this is the key ' + key);
 
+        let x = JSON.parse(localStorage.getItem(key));
+        console.log(x);
+
+        folderStorage.push(x);
+        console.log(folderStorage);
+    }
+    // folderStorage = JSON.parse(localStorage.getItem('folders'));
+    // console.log(folderStorage);
+} else {
+    console.log('no folder');
+    // folderStorage = [];
 }
+
 
 // On page load, check for storage
 // If storage contains projects, get projects from storage
@@ -227,9 +237,6 @@ if (!JSON.parse(localStorage.getItem('folder'))) {
 // localStorage.setItem('testFolderInStorage', JSON.stringify(testFolder2))
 // console.log(JSON.parse(localStorage.getItem('testFolderInStorage')));
 
-function saveToStorage(folder) {
-    
-}
 
 // populateStorage(); 
 
