@@ -68,36 +68,21 @@ folderSubmitBtn.addEventListener('click', function(e) {
     let newFolder = Folder(folderTitleInForm);
     appendFolder(newFolder);
 
-    let folderKeyId = 'folder' + newFolder.myFolderUuid;
+    // let folderKeyId = 'folder' + newFolder.myFolderUuid;
     
     // Create key using folder and Id
-    localStorage.setItem(folderKeyId, JSON.stringify(newFolder));
+    // localStorage.setItem(folderKeyId, JSON.stringify(newFolder));
+    saveFolderToStorage(newFolder);
     
     superFolder.addFolder(newFolder);
 
     folderDialog.close();
 
-    return folderKeyId;
+    // return folderKeyId;
 });
 
-// localStorage.setItem('test', 'something');
-// localStorage.setItem('test', 'something else');
-// localStorage.setItem('test', '3rd thing');
-// console.log('Length of storage when folder is created ' + localStorage.length);
 
-// Go through all folders and check if the clicked button value matches folder value
-// then display tasks of that folder to screen
-function displayCurrentFolderWithId(tempId) {
 
-    superFolder.folders.forEach(folder => {
-        if (tempId === folder.myFolderUuid) {
-            clearTaskContainer();
-            //display all tasks of this folder to page
-            displayFolderTasks(folder);
-            console.log("match found");
-        }
-    });
-}
 
 const taskAddBtn = document.getElementById('task-add-btn');
 // Create new task instance using info from form
@@ -117,9 +102,11 @@ taskAddBtn.addEventListener('click', function(e) {
         }
     });
 
+    saveTaskToStorage(newTask);
+    
     // Update the tasks of the folder that is currently being displayed to avoid reloading folder
     displayCurrentFolderWithId(selectedFolderValue);
-
+    
     // Clear form fields
     const taskForm = document.getElementById('main-form');
     taskForm.reset();
@@ -133,11 +120,11 @@ const taskEditConfirmBtn = document.getElementById('task-edit-btn');
 taskEditConfirmBtn.addEventListener('click', function(e) {
     e.preventDefault();
     
-
+    
     const btnId = document.querySelector('.edit-btn-id');
-
+    
     const {taskTitle, taskDescription, taskDueDate, taskPriority} = getTaskEditFormInfo();
-
+    
     superFolder.folders.forEach(folder => {
         folder.tasks.forEach(task => {
             if (btnId.value === task.myTaskUuid) {
@@ -147,11 +134,25 @@ taskEditConfirmBtn.addEventListener('click', function(e) {
             }
         })
     });
-
+    
     btnId.remove();
     getEditDialog().close();
-
+    
 })
+
+// Go through all folders and check if the clicked button value matches folder value
+// then display tasks of that folder to screen
+function displayCurrentFolderWithId(tempId) {
+
+    superFolder.folders.forEach(folder => {
+        if (tempId === folder.myFolderUuid) {
+            clearTaskContainer();
+            //display all tasks of this folder to page
+            displayFolderTasks(folder);
+            console.log("match found");
+        }
+    });
+}
 
 function deleteFolderWithId(buttonId) {
     superFolder.folders.forEach(folder => {
@@ -223,7 +224,6 @@ if (localStorage.length > 0) {
         console.log('this is the key ' + key);
 
         let lsFolder = JSON.parse(localStorage.getItem(key));
-        console.log(lsFolder);
 
         folderStorage.push(lsFolder);
         superFolder.addFolder(lsFolder);
@@ -240,6 +240,14 @@ folderStorage.forEach(folder => {
 });
 
 console.log(folderStorage);
+
+function saveFolderToStorage(folder) {
+    localStorage.setItem('folder'+ folder.myFolderUuid, JSON.stringify(folder));
+}
+
+function saveTaskToStorage(task) {
+    localStorage.setItem('task'+ task.myTaskUuid, JSON.stringify(task));
+}
 
 // On page load, check for storage
 // If storage contains projects, get projects from storage
