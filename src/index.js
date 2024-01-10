@@ -19,7 +19,6 @@ import {
 
 import { formatDistance, subDays } from "date-fns";
 
-let index = 0;
 
 //Super Folder 
 const superFolder = SuperFolder();
@@ -68,13 +67,17 @@ folderSubmitBtn.addEventListener('click', function(e) {
 
     let newFolder = Folder(folderTitleInForm);
     appendFolder(newFolder);
+
+    let folderKeyId = 'folder' + newFolder.myFolderUuid;
     
-    localStorage.setItem(index++, JSON.stringify(newFolder));
-    console.log('Length of storage when folder is created ' + localStorage.length);
+    // Create key using folder and Id
+    localStorage.setItem(folderKeyId, JSON.stringify(newFolder));
     
     superFolder.addFolder(newFolder);
 
     folderDialog.close();
+
+    return folderKeyId;
 });
 
 // localStorage.setItem('test', 'something');
@@ -211,9 +214,11 @@ appendFolder(testFolder2);
 
 let folderStorage = [];
 
-if (localStorage.getItem(index)) {
+if (localStorage.length > 0) {
     console.log('a folder exists');
+    // Loop through LS keys, parse them and add to folder storage and superFolder
     for (let i = 0; i < localStorage.length; i++) {
+
         let key = (localStorage.key(i));
         console.log('this is the key ' + key);
 
@@ -221,96 +226,26 @@ if (localStorage.getItem(index)) {
         console.log(lsFolder);
 
         folderStorage.push(lsFolder);
+        superFolder.addFolder(lsFolder);
     }
 } else {
     console.log('no folder');
-    // folderStorage = [];
+    folderStorage = [];
 }
 
 folderStorage.forEach(folder => {
     // folderStorage.push(folder);
-    createFolderButton(folder);
+    appendFolder(folder);
     console.log(folder);
 });
 
 console.log(folderStorage);
-// if (!JSON.parse(localStorage.getItem('folders'))) {
-//     console.log('no folder');
-// } else {
-//     console.log('a folder exists');
-//     const lsFolder = JSON.parse(localStorage.getItem('folders'));
-
-//     // superFolder.addFolder(lsFolder);
-//     // superFolder.forEach(addFolder(lsFolder));
-//     superFolder.forEach(folder => {
-//         superFolder.addFolder(lsFolder);
-//     })
-//     createFolderButton(lsFolder);
-//     // loadLSFolders();
-// }
-
-
-// function loadLSFolders() {
-//     for (let i = 0; i < localStorage.length; i++) {
-//         // const lsFolder = JSON.parse(localStorage.getItem(localStorage.key(i)));
-//         let key = (localStorage.key(i));
-//         let x = JSON.parse(localStorage.getItem(key));
-
-//         superFolder.addFolder(x);
-//         appendFolder(x);
-//     }
-// }
-
-// loadLSFolders();
-
-
-
 
 // On page load, check for storage
 // If storage contains projects, get projects from storage
 // Put said projects into projects array
 // Display projects array to DOM (functionality you already have)
 
-// localStorage.setItem('testFolderInStorage', JSON.stringify(testFolder2))
-// console.log(JSON.parse(localStorage.getItem('testFolderInStorage')));
-
-
-// populateStorage(); 
-
-// function storageAvailable(type) {
-//     let storage;
-//     try {
-//       storage = window[type];
-//       const x = "__storage_test__";
-//       storage.setItem(x, x);
-//       storage.removeItem(x);
-//       return true;
-//     } catch (e) {
-//       return (
-//         e instanceof DOMException &&
-//         // everything except Firefox
-//         (e.code === 22 ||
-//           // Firefox
-//           e.code === 1014 ||
-//           // test name field too, because code might not be present
-//           // everything except Firefox
-//           e.name === "QuotaExceededError" ||
-//           // Firefox
-//           e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
-//         // acknowledge QuotaExceededError only if there's something already stored
-//         storage &&
-//         storage.length !== 0
-//       );
-//     }
-//   }
-
-// if (storageAvailable("localStorage")) {
-// // Yippee! We can use localStorage awesomeness
-// console.log('yay');
-// } else {
-// // Too bad, no localStorage for us
-// console.log('mah');
-// }
 export {
     displayCurrentFolderWithId,
     deleteFolderWithId,
