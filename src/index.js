@@ -81,9 +81,6 @@ folderSubmitBtn.addEventListener('click', function(e) {
     // return folderKeyId;
 });
 
-
-
-
 const taskAddBtn = document.getElementById('task-add-btn');
 // Create new task instance using info from form
 taskAddBtn.addEventListener('click', function(e) {
@@ -101,6 +98,21 @@ taskAddBtn.addEventListener('click', function(e) {
             folder.addTask(newTask);
         }
     });
+
+    // Go through local storage
+    // Prase back each item
+    // Check it's Id and see if it matches the 
+
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = (localStorage.key(i));
+
+        let lsFolder = JSON.parse(localStorage.getItem(key));
+
+        if (lsFolder.myFolderUuid === selectedFolderValue) {
+            // lsFolder.addTask(newTask);
+            newTask.of(lsFolder);
+        }
+    }
 
     saveTaskToStorage(newTask);
     
@@ -140,6 +152,65 @@ taskEditConfirmBtn.addEventListener('click', function(e) {
     
 })
 
+// Test tasks
+const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
+const task2 = Task('movies', 'avatar', 'nov 29', 'med');
+const task3 = Task('coding', 'todo list', 'dec 10', 'low');
+
+let inboxFolder = Folder('Inbox');
+inboxFolder.addTask(task1);
+superFolder.addFolder(inboxFolder);
+appendFolder(inboxFolder);
+
+let testFolder2 = Folder('test2');
+testFolder2.addTask(task2);
+testFolder2.addTask(task1);
+testFolder2.addTask(task3);
+testFolder2.deleteTask(task2);
+superFolder.addFolder(testFolder2);
+appendFolder(testFolder2);
+
+
+let folderStorage = [];
+
+if (localStorage.length > 0) {
+    console.log('a folder exists');
+    // Loop through LS keys, parse them and add to folder storage and superFolder
+    for (let i = 0; i < localStorage.length; i++) {
+        
+        let key = (localStorage.key(i));
+        console.log('this is the key ' + key);
+        
+        let lsFolder = JSON.parse(localStorage.getItem(key));
+        
+        if (key.includes('folder')) {
+            folderStorage.push(lsFolder);
+            superFolder.addFolder(lsFolder);
+        } else if (key.includes('task')) {
+            testFolder2.addTask(lsFolder);
+            // folderStorage[i].addTask(lsFolder);
+        }
+    }
+} else {
+    console.log('no folder');
+    folderStorage = [];
+}
+
+folderStorage.forEach(folder => {
+    // folderStorage.push(folder);
+    appendFolder(folder);
+    console.log(folder);
+});
+
+console.log(folderStorage);
+
+function saveFolderToStorage(folder) {
+    localStorage.setItem('folder'+ folder.myFolderUuid, JSON.stringify(folder));
+}
+
+function saveTaskToStorage(task) {
+    localStorage.setItem('task'+ task.myTaskUuid, JSON.stringify(task));
+}
 // Go through all folders and check if the clicked button value matches folder value
 // then display tasks of that folder to screen
 function displayCurrentFolderWithId(tempId) {
@@ -195,59 +266,7 @@ function findTaskWithId(buttonId) {
     });
     return output;
 }
-// Test tasks
-const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
-const task2 = Task('movies', 'avatar', 'nov 29', 'med');
-const task3 = Task('coding', 'todo list', 'dec 10', 'low');
 
-let inboxFolder = Folder('Inbox');
-inboxFolder.addTask(task1);
-superFolder.addFolder(inboxFolder);
-appendFolder(inboxFolder);
-
-let testFolder2 = Folder('test2');
-testFolder2.addTask(task2);
-testFolder2.addTask(task1);
-testFolder2.addTask(task3);
-testFolder2.deleteTask(task2);
-superFolder.addFolder(testFolder2);
-appendFolder(testFolder2);
-
-let folderStorage = [];
-
-if (localStorage.length > 0) {
-    console.log('a folder exists');
-    // Loop through LS keys, parse them and add to folder storage and superFolder
-    for (let i = 0; i < localStorage.length; i++) {
-
-        let key = (localStorage.key(i));
-        console.log('this is the key ' + key);
-
-        let lsFolder = JSON.parse(localStorage.getItem(key));
-
-        folderStorage.push(lsFolder);
-        superFolder.addFolder(lsFolder);
-    }
-} else {
-    console.log('no folder');
-    folderStorage = [];
-}
-
-folderStorage.forEach(folder => {
-    // folderStorage.push(folder);
-    appendFolder(folder);
-    console.log(folder);
-});
-
-console.log(folderStorage);
-
-function saveFolderToStorage(folder) {
-    localStorage.setItem('folder'+ folder.myFolderUuid, JSON.stringify(folder));
-}
-
-function saveTaskToStorage(task) {
-    localStorage.setItem('task'+ task.myTaskUuid, JSON.stringify(task));
-}
 
 // On page load, check for storage
 // If storage contains projects, get projects from storage

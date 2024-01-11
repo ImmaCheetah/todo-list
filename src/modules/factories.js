@@ -34,11 +34,18 @@ export function Task(title, description, dueDate, priority) {
         console.log(`Task title - ${title}, Desc - ${description}, Date - ${dueDate}, Priority - ${priority}`);
     }
 
+    const of = (genericObj) => {
+        const { title, description, dueDate, priority} = genericObj;
+        console.log(genericObj, 'checking generic obj');
+        return Task(title, description, dueDate, priority);
+    }
+
     return {
         get title() {return title}, 
         get description() {return description}, 
         get dueDate() {return dueDate}, 
         get priority() {return priority},
+        of,
         getCompleteState,
         setComplete, 
         changePriority,
@@ -48,6 +55,12 @@ export function Task(title, description, dueDate, priority) {
     };
 };
 
+  
+// Task.of = ( genericObj )=>{
+// const { title, description, dueDate, priority} = genericObj;
+
+// return Task(title, description, dueDate, priority);
+// }
 
 export function Folder(title) {
     
