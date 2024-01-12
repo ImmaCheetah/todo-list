@@ -1,8 +1,8 @@
 import {v4 as uuidv4} from 'uuid';
 
-export function Task(title, description, dueDate, priority) {
+export function Task(title, description, dueDate, priority, myTaskUuid = uuidv4()) {
 
-    let myTaskUuid = uuidv4();
+    // let myTaskUuid = uuidv4();
 
     let completeState = false;
 
@@ -34,18 +34,11 @@ export function Task(title, description, dueDate, priority) {
         console.log(`Task title - ${title}, Desc - ${description}, Date - ${dueDate}, Priority - ${priority}`);
     }
 
-    const of = (genericObj) => {
-        const { title, description, dueDate, priority} = genericObj;
-        console.log(genericObj, 'checking generic obj');
-        return Task(title, description, dueDate, priority);
-    }
-
     return {
         get title() {return title}, 
         get description() {return description}, 
         get dueDate() {return dueDate}, 
         get priority() {return priority},
-        of,
         getCompleteState,
         setComplete, 
         changePriority,
@@ -55,21 +48,17 @@ export function Task(title, description, dueDate, priority) {
     };
 };
 
-  
-// Task.of = ( genericObj )=>{
-// const { title, description, dueDate, priority} = genericObj;
-
-// return Task(title, description, dueDate, priority);
-// }
-
-export function Folder(title) {
+export function Folder(title, myFolderUuid=uuidv4()) {
     
 
-    let myFolderUuid = uuidv4();
+    // let myFolderUuid = uuidv4();
     let tasks = [];
 
     const addTask = (newTaskName) => {
         tasks.push(newTaskName);
+
+
+        // localStorage.setItem(newTaskName.myTaskUuid, JSON.stringify(newTaskName));
     }
 
     const displayTasks = () => {
@@ -86,7 +75,6 @@ export function Folder(title) {
             }
         }
     }
-
     
     return {title, tasks, myFolderUuid, addTask, displayTasks, deleteTask};
 }
@@ -96,6 +84,8 @@ export function SuperFolder() {
 
     const addFolder = (newFolderName) => {
         folders.push(newFolderName);
+
+        // localStorage.setItem(newFolderName.myFolderUuid, JSON.stringify(newFolderName));
     }
 
     const deleteFolder = (folderName) => {
@@ -104,6 +94,9 @@ export function SuperFolder() {
                 folders.splice(i, 1);
             }
         }
+
+        localStorage.removeItem(folderName.myFolderUuid);
+
     }
 
     return {folders, addFolder, deleteFolder}
