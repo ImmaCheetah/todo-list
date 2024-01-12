@@ -223,6 +223,7 @@ function saveFolderToStorage(folder) {
 function saveTaskToStorage(task) {
     localStorage.setItem('task'+ task.myTaskUuid, JSON.stringify(task));
 }
+
 // Go through all folders and check if the clicked button value matches folder value
 // then display tasks of that folder to screen
 function displayCurrentFolderWithId(tempId) {
