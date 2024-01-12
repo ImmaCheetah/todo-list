@@ -68,7 +68,8 @@ folderSubmitBtn.addEventListener('click', function(e) {
     let newFolder = Folder(folderTitleInForm);
     appendFolder(newFolder);
 
-    localStorage.setItem(newFolder.myFolderUuid, JSON.stringify(newFolder));
+    localStorage.setItem('folders', JSON.stringify(newFolder));
+
     // saveFolderToStorage(newFolder);
     
     superFolder.addFolder(newFolder);
@@ -98,6 +99,7 @@ taskAddBtn.addEventListener('click', function(e) {
 
     for (let i = 0; i < localStorage.length; i++) {
         let key = (localStorage.key(i));
+        console.log(key);
 
         let lsFolder = JSON.parse(localStorage.getItem(key));
 
@@ -176,11 +178,19 @@ superFolder.addFolder(testFolder2);
 appendFolder(testFolder2);
 
 function loadPresetFolders() {
-    if (localStorage.length >= 0) {
-        superFolder.folders.forEach(folder => {
-            localStorage.setItem(folder.myFolderUuid, JSON.stringify(folder));
-        })
-    }
+    // Old method of storing by unique Ids
+    // if (localStorage.length >= 0) {
+    //     superFolder.folders.forEach(folder => {
+    //         localStorage.setItem('folders', JSON.stringify(folder));
+    //         // folder.tasks.forEach(task => {
+
+    //         //     localStorage.setItem(task.myTaskUuid, JSON.stringify(task));
+    //         // })
+    //     })
+    // }
+    // Stores under one key
+    localStorage.setItem('folders', JSON.stringify(superFolder));
+    console.log(JSON.parse(localStorage.getItem('folders')));
 }
 
 loadPresetFolders();
@@ -199,20 +209,20 @@ function recreateFolderObj(targetObj, replacementObj) {
     return replacementObj;
 }
 
-let testTask = Task('SOMETHING', 'DESC', new Date(), 'HIGH');
+function addLsItem(object) {
+    let allFolders = JSON.parse(localStorage.getItem('folders')) || [];
+
+
+}
+
+// let testTask = Task('SOMETHING', 'DESC', new Date(), 'HIGH');
 // console.log(testTask);
-
-localStorage.setItem(testTask.myTaskUuid, JSON.stringify(testTask));
-
+// localStorage.setItem(testTask.myTaskUuid, JSON.stringify(testTask));
 // console.log(JSON.parse(localStorage.getItem(testTask.myTaskUuid)));
-
-let lsTask = JSON.parse(localStorage.getItem(testTask.myTaskUuid));
-
+// let lsTask = JSON.parse(localStorage.getItem(testTask.myTaskUuid));
 // testTask.recreateTaskObj(lsTask, testTask);
-
-let recreatedTask = recreateTaskObj(lsTask, testTask);
-
-recreatedTask.changePriority('low');
+// let recreatedTask = recreateTaskObj(lsTask, testTask);
+// recreatedTask.changePriority('low');
 // console.log(recreatedTask);
 
 
