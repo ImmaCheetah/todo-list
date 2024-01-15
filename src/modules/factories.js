@@ -79,7 +79,7 @@ export function Folder(title, myFolderUuid=uuidv4()) {
     return {title, tasks, myFolderUuid, addTask, displayTasks, deleteTask};
 }
 
-export function SuperFolder() {
+export function SuperFolder(mySuperFolderUuid=uuidv4()) {
     let folders = []
 
     const addFolder = (newFolderName) => {
@@ -99,5 +99,5 @@ export function SuperFolder() {
 
     }
 
-    return {folders, addFolder, deleteFolder}
+    return {folders, addFolder, deleteFolder, mySuperFolderUuid}
 }

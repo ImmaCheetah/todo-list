@@ -12,7 +12,6 @@ import {
     displayFolderTasks,
     clearTaskContainer,
     appendDropdown,
-    createFolderButton,
     displayFolders
 
 } from './modules/dom.js';
@@ -67,16 +66,16 @@ folderSubmitBtn.addEventListener('click', function(e) {
 
     let newFolder = Folder(folderTitleInForm);
     appendFolder(newFolder);
-
-    localStorage.setItem('folders', JSON.stringify(newFolder));
-
-    // saveFolderToStorage(newFolder);
     
     superFolder.addFolder(newFolder);
+    localStorage.setItem('folders', JSON.stringify(superFolder));
+
+    let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
+
+    recreateSuperFolderFromObject(superFolderFromLs);
 
     folderDialog.close();
 
-    // return folderKeyId;
 });
 
 const taskAddBtn = document.getElementById('task-add-btn');
@@ -97,23 +96,12 @@ taskAddBtn.addEventListener('click', function(e) {
         }
     });
 
-    for (let i = 0; i < localStorage.length; i++) {
-        let key = (localStorage.key(i));
-        console.log(key);
+    localStorage.setItem('folders', JSON.stringify(superFolder));
 
-        let lsFolder = JSON.parse(localStorage.getItem(key));
+    let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
 
-        if (lsFolder.myFolderUuid === selectedFolderValue) {
-            let thisFolder = findFolderWithId(selectedFolderValue);
-            let recreatedFolder = recreateFolderObj(lsFolder, thisFolder);
+    recreateSuperFolderFromObject(superFolderFromLs);
 
-            console.log(recreatedFolder);
-            recreatedFolder.addTask(task1);
-        }
-    }
-
-    // saveTaskToStorage(newTask);
-    
     // Update the tasks of the folder that is currently being displayed to avoid reloading folder
     displayCurrentFolderWithId(selectedFolderValue);
     
@@ -123,21 +111,12 @@ taskAddBtn.addEventListener('click', function(e) {
     getTaskDialog().close();
 })
 
-function findFolderWithId(buttonId) {
-    superFolder.folders.forEach(folder => {
-        if (buttonId === folder.myFolderUuid) {
-            return folder;
-        }
-    });
-}
-
 // Select the button with Id and find task with that Id
 // Change the info of that task and update folder
 // Delete button after and close
 const taskEditConfirmBtn = document.getElementById('task-edit-btn');
 taskEditConfirmBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    
     
     const btnId = document.querySelector('.edit-btn-id');
     
@@ -174,61 +153,34 @@ testFolder2.addTask(task1);
 testFolder2.addTask(task3);
 testFolder2.deleteTask(task2);
 superFolder.addFolder(testFolder2);
-// superFolder.deleteFolder(testFolder2);
 appendFolder(testFolder2);
 
 function loadPresetFolders() {
-    // Old method of storing by unique Ids
-    // if (localStorage.length >= 0) {
-    //     superFolder.folders.forEach(folder => {
-    //         localStorage.setItem('folders', JSON.stringify(folder));
-    //         // folder.tasks.forEach(task => {
+    if (localStorage.getItem('folders')){
+        let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
 
-    //         //     localStorage.setItem(task.myTaskUuid, JSON.stringify(task));
-    //         // })
-    //     })
-    // }
-    // Stores under one key
-    localStorage.setItem('folders', JSON.stringify(superFolder));
-    console.log(JSON.parse(localStorage.getItem('folders')));
+        displayFolders(recreateSuperFolderFromObject(superFolderFromLs));
+
+        recreateSuperFolderFromObject(superFolderFromLs);
+    } else {
+        localStorage.setItem('folders', JSON.stringify(superFolder));
+    }
 }
 
 loadPresetFolders();
 
+// Recreate task from genereic object
 function recreateTaskObj(targetObj) {
     const {title, description, dueDate, priority, myTaskUuid} = targetObj;
 
     return Task(title, description, dueDate, priority, myTaskUuid);
 }
 
-function recreateFolderObj(targetObj) {
-    const {title,  myFolderUuid} = targetObj;
-
-    return Folder(title, myFolderUuid);
-}
-
-
-let testTask = Task('SOMETHING', 'DESC', new Date(), 'HIGH');
-localStorage.setItem(testTask.myTaskUuid, JSON.stringify(testTask));
-
-let lsTask = JSON.parse(localStorage.getItem(testTask.myTaskUuid));
-
-let recreatedTask = recreateTaskObj(lsTask, testTask);
-recreatedTask.changePriority('low');
-console.log(recreatedTask); // priority is low
-
-
+// Recreate a folder from generic object
+// Loop through GENERIC objects tasks
+// For each task, recreate a task and add to that folder
 function recreateFolderFromObject(genericObj) {
-    // given the generic object, create the `Folder`.
-    // this means with the same id and name/tile.
-    //
-    // Once we have a Folder, we want to loop over the
-    //  generic object's `tasks` array, and  for each thing
-    //  in that array, create and add a new Task to this
-    //  Folder.
-    // 
-    // Once that is done, we can simply return the 
-    //  Folder we created!
+
     const {title,  myFolderUuid} = genericObj;
     
     let folderDupe = Folder(title, myFolderUuid);
@@ -241,26 +193,28 @@ function recreateFolderFromObject(genericObj) {
     
 }
 
-let lsTestFolder = Folder('DUPE TEST');
-lsTestFolder.addTask(task1)
-lsTestFolder.addTask(task2);
-localStorage.setItem('test folder', JSON.stringify(lsTestFolder));
+function recreateSuperFolderFromObject(genericObj) {
+    const {mySuperFolderUuid} = genericObj;
 
-let genericFolder = JSON.parse(localStorage.getItem('test folder'));
+    let superFolderDupe = SuperFolder(mySuperFolderUuid);
 
-let newLsFolder = recreateFolderFromObject(genericFolder);
-newLsFolder.addTask(task1);
-console.log(newLsFolder);
+    genericObj.folders.forEach(folder => {
+        superFolderDupe.addFolder(recreateFolderFromObject(folder))
+    })
 
-// createFolderFromObject(genericFolder);
-
-function saveFolderToStorage(folder) {
-    localStorage.setItem('folder'+ folder.myFolderUuid, JSON.stringify(folder));
+    return superFolderDupe;
 }
 
-function saveTaskToStorage(task) {
-    localStorage.setItem('task'+ task.myTaskUuid, JSON.stringify(task));
-}
+let lsSuperFolder = SuperFolder();
+lsSuperFolder.addFolder(testFolder2);
+lsSuperFolder.addFolder(inboxFolder);
+localStorage.setItem('lsSuperFolder', JSON.stringify(lsSuperFolder));
+
+let genericSuperFolder = JSON.parse(localStorage.getItem('lsSuperFolder'));
+
+let newLsSuperFolder = recreateSuperFolderFromObject(genericSuperFolder);
+console.log(newLsSuperFolder);
+
 
 // Go through all folders and check if the clicked button value matches folder value
 // then display tasks of that folder to screen
@@ -294,7 +248,6 @@ function deleteTaskWithId(buttonId) {
         })
     });
 }
-
 
 function changeTaskStatus(taskId) {
     superFolder.folders.forEach(folder => {
