@@ -195,36 +195,64 @@ function loadPresetFolders() {
 
 loadPresetFolders();
 
-function recreateTaskObj(targetObj, replacementObj) {
+function recreateTaskObj(targetObj) {
     const {title, description, dueDate, priority, myTaskUuid} = targetObj;
 
-    replacementObj = Task(title, description, dueDate, priority, myTaskUuid);
-    return replacementObj;
+    return Task(title, description, dueDate, priority, myTaskUuid);
 }
 
-function recreateFolderObj(targetObj, replacementObj) {
+function recreateFolderObj(targetObj) {
     const {title,  myFolderUuid} = targetObj;
 
-    replacementObj = Task(title, myFolderUuid);
-    return replacementObj;
+    return Folder(title, myFolderUuid);
 }
 
-function addLsItem(object) {
-    let allFolders = JSON.parse(localStorage.getItem('folders')) || [];
+
+let testTask = Task('SOMETHING', 'DESC', new Date(), 'HIGH');
+localStorage.setItem(testTask.myTaskUuid, JSON.stringify(testTask));
+
+let lsTask = JSON.parse(localStorage.getItem(testTask.myTaskUuid));
+
+let recreatedTask = recreateTaskObj(lsTask, testTask);
+recreatedTask.changePriority('low');
+console.log(recreatedTask); // priority is low
 
 
+function recreateFolderFromObject(genericObj) {
+    // given the generic object, create the `Folder`.
+    // this means with the same id and name/tile.
+    //
+    // Once we have a Folder, we want to loop over the
+    //  generic object's `tasks` array, and  for each thing
+    //  in that array, create and add a new Task to this
+    //  Folder.
+    // 
+    // Once that is done, we can simply return the 
+    //  Folder we created!
+    const {title,  myFolderUuid} = genericObj;
+    
+    let folderDupe = Folder(title, myFolderUuid);
+
+    genericObj.tasks.forEach(task => {
+        folderDupe.addTask(recreateTaskObj(task));
+    })
+
+    return folderDupe;
+    
 }
 
-// let testTask = Task('SOMETHING', 'DESC', new Date(), 'HIGH');
-// console.log(testTask);
-// localStorage.setItem(testTask.myTaskUuid, JSON.stringify(testTask));
-// console.log(JSON.parse(localStorage.getItem(testTask.myTaskUuid)));
-// let lsTask = JSON.parse(localStorage.getItem(testTask.myTaskUuid));
-// testTask.recreateTaskObj(lsTask, testTask);
-// let recreatedTask = recreateTaskObj(lsTask, testTask);
-// recreatedTask.changePriority('low');
-// console.log(recreatedTask);
+let lsTestFolder = Folder('DUPE TEST');
+lsTestFolder.addTask(task1)
+lsTestFolder.addTask(task2);
+localStorage.setItem('test folder', JSON.stringify(lsTestFolder));
 
+let genericFolder = JSON.parse(localStorage.getItem('test folder'));
+
+let newLsFolder = recreateFolderFromObject(genericFolder);
+newLsFolder.addTask(task1);
+console.log(newLsFolder);
+
+// createFolderFromObject(genericFolder);
 
 function saveFolderToStorage(folder) {
     localStorage.setItem('folder'+ folder.myFolderUuid, JSON.stringify(folder));
