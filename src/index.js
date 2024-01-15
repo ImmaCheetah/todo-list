@@ -27,7 +27,7 @@ const openTaskModalBtn = document.getElementById('open-task-modal-btn');
 openTaskModalBtn.addEventListener('click', function() {
     getTaskDialog().reset;
     getTaskDialog().showModal();
-    appendDropdown(superFolder);
+    appendDropdown(JSON.parse(localStorage.getItem('folders')));
 });
 
 // Get task dialog and return 
@@ -68,7 +68,7 @@ folderSubmitBtn.addEventListener('click', function(e) {
     appendFolder(newFolder);
     
     superFolder.addFolder(newFolder);
-    localStorage.setItem('folders', JSON.stringify(superFolder));
+    // localStorage.setItem('folders', JSON.stringify(superFolder));
 
     let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
 
@@ -96,7 +96,7 @@ taskAddBtn.addEventListener('click', function(e) {
         }
     });
 
-    localStorage.setItem('folders', JSON.stringify(superFolder));
+    // localStorage.setItem('folders', JSON.stringify(superFolder));
 
     let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
 
@@ -159,9 +159,9 @@ function loadPresetFolders() {
     if (localStorage.getItem('folders')){
         let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
 
-        displayFolders(recreateSuperFolderFromObject(superFolderFromLs));
-
         recreateSuperFolderFromObject(superFolderFromLs);
+
+        displayFolders(recreateSuperFolderFromObject(superFolderFromLs));
     } else {
         localStorage.setItem('folders', JSON.stringify(superFolder));
     }
@@ -169,7 +169,7 @@ function loadPresetFolders() {
 
 loadPresetFolders();
 
-// Recreate task from genereic object
+// Recreate task from generic object
 function recreateTaskObj(targetObj) {
     const {title, description, dueDate, priority, myTaskUuid} = targetObj;
 
