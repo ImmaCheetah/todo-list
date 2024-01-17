@@ -25,10 +25,17 @@ function createTaskElement(taskName) {
     taskDescriptionInDiv.textContent = taskName.description;
     taskDueDateInDiv.textContent = taskName.dueDate;
     taskPriorityInDiv.textContent = taskName.priority;
-    console.log('HEY',taskName.priority);
 
     // Add colour of priority
     changePriorityStyle(taskDiv, (taskName.priority).toLowerCase());
+
+    if (taskName.getCompleteState() == false) {
+        return;
+    } else {
+        changeCompleteStateStyle(taskDiv, 'complete-task');
+    }
+    console.log('OOOOI',taskName.getCompleteState());
+    // toggleCompleteStyle(taskDiv);
 
     taskDiv.appendChild(taskTitleInDiv);
     taskDiv.appendChild(taskDescriptionInDiv);
@@ -45,6 +52,10 @@ function createTaskElement(taskName) {
 
 function changePriorityStyle(element, priority) {
     element.classList.add(priority);
+}
+
+function changeCompleteStateStyle(element, completeClass) {
+    element.classList.add(completeClass);
 }
 
 // Take in task and where to append
@@ -99,7 +110,7 @@ function getTaskEditFormInfo() {
 // Create button to hold folder and title
 // Add title to div and return
 function createFolderButton(folderName) {
-    const sidebar = document.querySelector('.sidebar');
+    const sidebar = document.querySelector('.sidebar-top');
     const folderDiv = document.createElement('div');
     const folderBtn = document.createElement('button');
 
@@ -136,7 +147,7 @@ function createFolderButton(folderName) {
 function appendFolder(folderName) {
     let folderDOM = createFolderButton(folderName);
     
-    const sidebarFolders = document.querySelector('.sidebar');
+    const sidebarFolders = document.querySelector('.sidebar-top');
     const inboxDiv = document.querySelector('.inbox-div');
 
     if(folderName.myFolderUuid === 'inboxFolder') {
@@ -244,7 +255,9 @@ function createTaskStatusButton(task) {
     taskStatusBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         changeTaskStatus(thisButton.value);
+        
         toggleCompleteStyle(thisButton);
+        setLocalStorage();
     })
 
     return taskStatusBtn;

@@ -163,7 +163,7 @@ function loadPresetFolders() {
         chores.addTask(task1);
         superFolder.addFolder(chores);
         appendFolder(chores);
-        console.log('else stuf happened');
+        console.log('else stuff happened', task2.getCompleteState());
     }
 }
 
