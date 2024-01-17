@@ -20,7 +20,7 @@ import { formatDistance, subDays } from "date-fns";
 
 
 //Super Folder 
-const superFolder = SuperFolder();
+let superFolder = SuperFolder('123456');
 
 // Open task modal when clicked
 const openTaskModalBtn = document.getElementById('open-task-modal-btn');
@@ -68,7 +68,7 @@ folderSubmitBtn.addEventListener('click', function(e) {
     appendFolder(newFolder);
     
     superFolder.addFolder(newFolder);
-    // localStorage.setItem('folders', JSON.stringify(superFolder));
+    localStorage.setItem('folders', JSON.stringify(superFolder));
 
     let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
 
@@ -96,7 +96,7 @@ taskAddBtn.addEventListener('click', function(e) {
         }
     });
 
-    // localStorage.setItem('folders', JSON.stringify(superFolder));
+    localStorage.setItem('folders', JSON.stringify(superFolder));
 
     let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
 
@@ -158,15 +158,21 @@ appendFolder(testFolder2);
 function loadPresetFolders() {
     if (localStorage.getItem('folders')){
         let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
-
         recreateSuperFolderFromObject(superFolderFromLs);
-
-        displayFolders(recreateSuperFolderFromObject(superFolderFromLs));
+        // superFolderFromLs.folders.forEach((folder) => {
+        //     superFolder.addFolder(folder)
+        //     // Folder(folder.title, folder.myFolderUuid);
+        //     folder.tasks.forEach((task) => {
+        //         // Task(task.title, task.description. task.dueDate, task.priority, task.myTaskUuid);
+        //         folder.addTask(recreateTaskObj(task));
+        //     })
+        // });
+        displayFolders(superFolder);
+        console.log('Inside of loading preset, after displaying', superFolderFromLs);
     } else {
-        localStorage.setItem('folders', JSON.stringify(superFolder));
+        return;
     }
 }
-
 loadPresetFolders();
 
 // Recreate task from generic object
@@ -196,25 +202,29 @@ function recreateFolderFromObject(genericObj) {
 function recreateSuperFolderFromObject(genericObj) {
     const {mySuperFolderUuid} = genericObj;
 
-    let superFolderDupe = SuperFolder(mySuperFolderUuid);
+    superFolder = SuperFolder(mySuperFolderUuid);
 
     genericObj.folders.forEach(folder => {
-        superFolderDupe.addFolder(recreateFolderFromObject(folder))
+        superFolder.addFolder(recreateFolderFromObject(folder))
     })
 
-    return superFolderDupe;
+    console.log('from recreate super folder function', superFolder);
+    return superFolder;
 }
 
-let lsSuperFolder = SuperFolder();
-lsSuperFolder.addFolder(testFolder2);
-lsSuperFolder.addFolder(inboxFolder);
-localStorage.setItem('lsSuperFolder', JSON.stringify(lsSuperFolder));
+function deleteFolderFromLS(folderId) {
+    let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
 
-let genericSuperFolder = JSON.parse(localStorage.getItem('lsSuperFolder'));
+    superFolderFromLs.folders.forEach(folder =>{
+        if (folder.myFolderUuid === folderId) {
+            folder.splice()
+        } 
+    })
+}
 
-let newLsSuperFolder = recreateSuperFolderFromObject(genericSuperFolder);
-console.log(newLsSuperFolder);
-
+function setLocalStorage() {
+    localStorage.setItem('folders', JSON.stringify(superFolder));
+}
 
 // Go through all folders and check if the clicked button value matches folder value
 // then display tasks of that folder to screen
@@ -278,5 +288,7 @@ export {
     changeTaskStatus,
     getTaskDialog,
     findTaskWithId,
-    getEditDialog
+    getEditDialog,
+    superFolder,
+    setLocalStorage
 }

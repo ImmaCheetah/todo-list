@@ -4,8 +4,17 @@ import {
     deleteTaskWithId,
     changeTaskStatus,
     findTaskWithId,
-    getEditDialog
+    getEditDialog,
+    superFolder,
+    setLocalStorage
+
 } from '../index.js';
+
+// import {
+//     Task,
+//     Folder,
+//     SuperFolder
+// } from './modules/factories.js';
 
 
 // Create all elements for each task property and change text content to corresponding value
@@ -123,7 +132,10 @@ function createFolderDeleteButton(folder) {
     folderDeleteBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         deleteFolderWithId(thisButton.value);
+        // console.log(superFolder);
+        // localStorage.setItem('folder', JSON.stringify(superFolder));
         thisButton.parentNode.remove();
+        setLocalStorage();
     })
 
     return folderDeleteBtn;
@@ -141,6 +153,7 @@ function createTaskDeleteButton(task) {
         let thisButton = e.target;
         deleteTaskWithId(thisButton.value);
         thisButton.parentNode.remove();
+        setLocalStorage();
     })
 
     return taskDeleteBtn;
