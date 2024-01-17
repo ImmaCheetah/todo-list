@@ -5,17 +5,11 @@ import {
     changeTaskStatus,
     findTaskWithId,
     getEditDialog,
-    superFolder,
     setLocalStorage
 
 } from '../index.js';
 
-// import {
-//     Task,
-//     Folder,
-//     SuperFolder
-// } from './modules/factories.js';
-
+import { format, compareAsc } from "date-fns";
 
 // Create all elements for each task property and change text content to corresponding value
 // Then add them to a main div and return
@@ -70,7 +64,7 @@ function getTaskFormInfo() {
     
     let taskTitle = taskTitleInForm.value;
     let taskDescription = taskDescriptionInForm.value;
-    let taskDueDate = taskDueDateInForm.value;
+    let taskDueDate = format(new Date(taskDueDateInForm.value), "MMM do\, yyyy");
     let taskPriority = taskPriorityInForm.value;
 
     return {taskTitle, taskDescription, taskDueDate, taskPriority};

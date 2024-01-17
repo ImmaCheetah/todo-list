@@ -16,7 +16,7 @@ import {
 
 } from './modules/dom.js';
 
-import { formatDistance, subDays } from "date-fns";
+import { format } from "date-fns";
 
 
 //Super Folder 
@@ -149,9 +149,9 @@ function loadPresetFolders() {
         displayFolders(superFolder);
         console.log('Inside of loading preset, after displaying', superFolderFromLs);
     } else {
-        const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
-        const task2 = Task('movies', 'avatar', 'nov 29', 'med');
-        const task3 = Task('coding', 'todo list', 'dec 10', 'low');
+        const task1 = Task('chores', 'wash dishes', format(new Date(2024, 2, 19), "MMM do\, yyyy"), 'high');
+        const task2 = Task('movies', 'avatar', format(new Date(2024, 3, 20), "MMM do\, yyyy"), 'med');
+        const task3 = Task('coding', 'todo list', format(new Date(2024, 1, 30), "MMM do\, yyyy"), 'low');
 
         let inboxFolder = Folder('Inbox', 'inboxFolder');
         inboxFolder.addTask(task1);
