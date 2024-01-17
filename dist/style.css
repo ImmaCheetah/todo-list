@@ -85,3 +85,15 @@ table {
 .complete-task {
 	color: red;
 }
+
+.high {
+	border-left: 3px solid red;
+}
+
+.medium {
+	border-left: 3px solid rgb(255, 153, 0);
+}
+
+.low {
+	border-left: 3px solid rgb(127, 218, 22);
+}

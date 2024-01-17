@@ -149,25 +149,24 @@ function loadPresetFolders() {
         displayFolders(superFolder);
         console.log('Inside of loading preset, after displaying', superFolderFromLs);
     } else {
-        const task1 = Task('chores', 'wash dishes', format(new Date(2024, 2, 19), "MMM do\, yyyy"), 'high');
-        const task2 = Task('movies', 'avatar', format(new Date(2024, 3, 20), "MMM do\, yyyy"), 'med');
-        const task3 = Task('coding', 'todo list', format(new Date(2024, 1, 30), "MMM do\, yyyy"), 'low');
+        const task1 = Task('Wash dishes', 'Finish washing rest of the dishes', format(new Date(2024, 2, 19), "MMM do\, yyyy"), 'High');
+        const task2 = Task('Vaccuum', 'Clean 2nd floor', format(new Date(2024, 3, 20), "MMM do\, yyyy"), 'Medium');
+        const task3 = Task('Finish project', 'Iron out bugs from THAT project', format(new Date(2024, 1, 30), "MMM do\, yyyy"), 'Low');
 
         let inboxFolder = Folder('Inbox', 'inboxFolder');
-        inboxFolder.addTask(task1);
+        inboxFolder.addTask(task3);
         superFolder.addFolder(inboxFolder);
         appendFolder(inboxFolder);
 
-        let testFolder2 = Folder('test2');
-        testFolder2.addTask(task2);
-        testFolder2.addTask(task1);
-        testFolder2.addTask(task3);
-        testFolder2.deleteTask(task2);
-        superFolder.addFolder(testFolder2);
-        appendFolder(testFolder2);
+        let chores = Folder('House Chores');
+        chores.addTask(task2);
+        chores.addTask(task1);
+        superFolder.addFolder(chores);
+        appendFolder(chores);
         console.log('else stuf happened');
     }
 }
+
 loadPresetFolders();
 
 // Recreate task from generic object
@@ -203,7 +202,6 @@ function recreateSuperFolderFromObject(genericObj) {
         superFolder.addFolder(recreateFolderFromObject(folder))
     })
 
-    console.log('from recreate super folder function', superFolder);
     return superFolder;
 }
 

@@ -50,7 +50,6 @@ export function Task(title, description, dueDate, priority, myTaskUuid = uuidv4(
 
 export function Folder(title, myFolderUuid=uuidv4()) {
     
-
     // let myFolderUuid = uuidv4();
     let tasks = [];
 

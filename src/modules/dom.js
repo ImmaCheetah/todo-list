@@ -9,7 +9,7 @@ import {
 
 } from '../index.js';
 
-import { format, compareAsc } from "date-fns";
+import { format } from "date-fns";
 
 // Create all elements for each task property and change text content to corresponding value
 // Then add them to a main div and return
@@ -25,16 +25,26 @@ function createTaskElement(taskName) {
     taskDescriptionInDiv.textContent = taskName.description;
     taskDueDateInDiv.textContent = taskName.dueDate;
     taskPriorityInDiv.textContent = taskName.priority;
+    console.log('HEY',taskName.priority);
+
+    // Add colour of priority
+    changePriorityStyle(taskDiv, (taskName.priority).toLowerCase());
 
     taskDiv.appendChild(taskTitleInDiv);
     taskDiv.appendChild(taskDescriptionInDiv);
     taskDiv.appendChild(taskDueDateInDiv);
     taskDiv.appendChild(taskPriorityInDiv);
+
+
     createTaskDeleteButton(taskDiv).value = taskName.myTaskUuid;
     createTaskEditButton(taskDiv).value = taskName.myTaskUuid;
     createTaskStatusButton(taskDiv).value = taskName.myTaskUuid;
 
     return taskDiv;
+}
+
+function changePriorityStyle(element, priority) {
+    element.classList.add(priority);
 }
 
 // Take in task and where to append
@@ -247,8 +257,6 @@ function toggleCompleteStyle(element) {
         element.parentNode.classList.remove('complete-task');
     }
 }
-
-
 
 function getFolderFormInfo() {
     const folderForm = document.getElementById('folder-form');
