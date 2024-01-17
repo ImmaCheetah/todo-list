@@ -137,40 +137,32 @@ taskEditConfirmBtn.addEventListener('click', function(e) {
     
 })
 
-// Test tasks
-const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
-const task2 = Task('movies', 'avatar', 'nov 29', 'med');
-const task3 = Task('coding', 'todo list', 'dec 10', 'low');
-
-let inboxFolder = Folder('Inbox');
-inboxFolder.addTask(task1);
-superFolder.addFolder(inboxFolder);
-appendFolder(inboxFolder);
-
-let testFolder2 = Folder('test2');
-testFolder2.addTask(task2);
-testFolder2.addTask(task1);
-testFolder2.addTask(task3);
-testFolder2.deleteTask(task2);
-superFolder.addFolder(testFolder2);
-appendFolder(testFolder2);
 
 function loadPresetFolders() {
     if (localStorage.getItem('folders')){
         let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
         recreateSuperFolderFromObject(superFolderFromLs);
-        // superFolderFromLs.folders.forEach((folder) => {
-        //     superFolder.addFolder(folder)
-        //     // Folder(folder.title, folder.myFolderUuid);
-        //     folder.tasks.forEach((task) => {
-        //         // Task(task.title, task.description. task.dueDate, task.priority, task.myTaskUuid);
-        //         folder.addTask(recreateTaskObj(task));
-        //     })
-        // });
+
         displayFolders(superFolder);
         console.log('Inside of loading preset, after displaying', superFolderFromLs);
     } else {
-        return;
+        const task1 = Task('chores', 'wash dishes', 'nov 23', 'high');
+        const task2 = Task('movies', 'avatar', 'nov 29', 'med');
+        const task3 = Task('coding', 'todo list', 'dec 10', 'low');
+
+        let inboxFolder = Folder('Inbox', 'inboxFolder');
+        inboxFolder.addTask(task1);
+        superFolder.addFolder(inboxFolder);
+        appendFolder(inboxFolder);
+
+        let testFolder2 = Folder('test2');
+        testFolder2.addTask(task2);
+        testFolder2.addTask(task1);
+        testFolder2.addTask(task3);
+        testFolder2.deleteTask(task2);
+        superFolder.addFolder(testFolder2);
+        appendFolder(testFolder2);
+        console.log('else stuf happened');
     }
 }
 loadPresetFolders();
@@ -212,15 +204,6 @@ function recreateSuperFolderFromObject(genericObj) {
     return superFolder;
 }
 
-function deleteFolderFromLS(folderId) {
-    let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
-
-    superFolderFromLs.folders.forEach(folder =>{
-        if (folder.myFolderUuid === folderId) {
-            folder.splice()
-        } 
-    })
-}
 
 function setLocalStorage() {
     localStorage.setItem('folders', JSON.stringify(superFolder));

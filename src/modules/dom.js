@@ -103,14 +103,14 @@ function createFolderButton(folderName) {
     folderBtn.classList.add('folder-button');
     folderBtn.textContent = folderName.title;
     folderBtn.value = folderName.myFolderUuid;
-
+    
     folderDiv.appendChild(folderBtn);
     
     // Create the del btn and  assign same id as folder to it
     createFolderDeleteButton(folderDiv).value = folderName.myFolderUuid;
-
+    
     sidebar.appendChild(folderDiv);
-
+    
     folderBtn.addEventListener('click', function() {
         let currentFolderId = folderName.myFolderUuid;
         displayCurrentFolderWithId(folderName.myFolderUuid);
@@ -119,6 +119,29 @@ function createFolderButton(folderName) {
     });
     
     return folderDiv;
+}
+
+// Take in folder name and create folder using function
+// Append to sidebar
+function appendFolder(folderName) {
+    let folderDOM = createFolderButton(folderName);
+    
+    const sidebarFolders = document.querySelector('.sidebar');
+    const inboxDiv = document.querySelector('.inbox-div');
+
+    if(folderName.myFolderUuid === 'inboxFolder') {
+        inboxDiv.appendChild(folderDOM);
+    } else {
+        sidebarFolders.appendChild(folderDOM);
+    }
+}
+
+// Take in super folder name to loop through each folder and append to sidebar
+function displayFolders(superFolderName) {
+    // clearSidebar();
+    superFolderName.folders.forEach(folder => {
+        appendFolder(folder);
+    });
 }
 
 function createFolderDeleteButton(folder) {
@@ -223,22 +246,6 @@ function toggleCompleteStyle(element) {
     }
 }
 
-// Take in folder name and create folder using function
-// Append to sidebar
-function appendFolder(folderName) {
-    let folderDOM = createFolderButton(folderName);
-    
-    const sidebarFolders = document.querySelector('.sidebar');
-    sidebarFolders.appendChild(folderDOM);
-}
-
-// Take in super folder name to loop through each folder and append to sidebar
-function displayFolders(superFolderName) {
-    // clearSidebar();
-    superFolderName.folders.forEach(folder => {
-        appendFolder(folder);
-    });
-}
 
 
 function getFolderFormInfo() {
