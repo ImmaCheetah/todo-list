@@ -46,6 +46,8 @@ function getEditDialog() {
 // Open folder modal when clicked
 const addFolderBtn = document.getElementById('folder-add-btn');
 addFolderBtn.addEventListener('click', function() {
+    const folderForm = document.getElementById('folder-form');
+    folderForm.reset();
     
     const folderDialog = document.getElementById('folder-dialog');
     folderDialog.showModal();
@@ -132,6 +134,7 @@ taskEditConfirmBtn.addEventListener('click', function(e) {
         })
     });
     
+    setLocalStorage();
     btnId.remove();
     getEditDialog().close();
     
