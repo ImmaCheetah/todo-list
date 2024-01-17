@@ -108,6 +108,12 @@ function createFolderButton(folderName) {
     
     // Create the del btn and  assign same id as folder to it
     createFolderDeleteButton(folderDiv).value = folderName.myFolderUuid;
+
+    // Remove delete button of inbox folder
+    if (folderName.myFolderUuid === 'inboxFolder') {
+        let childBtn = folderDiv.childNodes[1];
+        childBtn.parentNode.removeChild(childBtn);
+    }
     
     sidebar.appendChild(folderDiv);
     
@@ -150,7 +156,9 @@ function createFolderDeleteButton(folder) {
     folderDeleteBtn.classList.add('folder-delete-btn');
     folderDeleteBtn.textContent = '-';
 
+    
     folder.appendChild(folderDeleteBtn);
+    
 
     folderDeleteBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
