@@ -17,40 +17,44 @@
     </div>
     <div class="container">
         <div class="sidebar">
-            <div class="inbox-div">
-                
+            <div class="sidebar-top">
+                <div class="inbox-div">
+            
+                </div>
+                <div class="folder-title-div">
+                    <h3>Folders</h3>
+                    <button id="folder-add-btn">Add Folder</button>
+                </div>
+            
+                <dialog id="folder-dialog">
+                    <form id="folder-form" name="folder-form">
+                        <div class="form-header form-div">
+                            <h3 class="form-title">Add a Folder</h3>
+                            <button class="close-btn" type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
+                        </div>
+                        <div id="folder-title-div" class="form-div">
+                            <label for="folder-title"></label>
+                            <input type="text" name="folder-title" id="folder-title" placeholder="Title" value="" required>
+                            <span></span>
+                        </div>
+                        <div id="confirm-div" class="form-div">
+                            <button id="folder-confirm-btn" formmethod="dialog">Add</button>
+                            <button id="folder-cancel-btn" type="reset">Reset</button>
+                        </div>
+                    </form>
+                </dialog>
             </div>
-            <div class="folder-title-div">
-                <h3>Folders</h3>
-                <button id="folder-add-btn">Add Folder</button>
+            <div class="sidebar-bottom">
+                <div id="add-button-div">
+                    <button id="open-task-modal-btn">Add Task</button>
+                </div>
             </div>
-            <!-- <div class="folders-div">
-
-            </div> -->
-            <dialog id="folder-dialog">
-                <form id="folder-form" name="folder-form">
-                    <div class="form-header form-div">
-                        <h3 class="form-title">Add a Folder</h3>
-                        <button class="close-btn" type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
-                    </div>
-                    <div id="folder-title-div" class="form-div">
-                        <label for="folder-title"></label>
-                        <input type="text" name="folder-title" id="folder-title" placeholder="Title" value="" required>
-                        <span></span>
-                    </div>
-                    <div id="confirm-div" class="form-div">
-                        <button id="folder-confirm-btn" formmethod="dialog">Add</button>
-                        <button id="folder-cancel-btn" type="reset">Reset</button>
-                    </div>
-                </form>
-            </dialog>
         </div>
+        
         <div class="right-content">
             <div class="main-content">
                 <div id="content-container">
-                    <div id="add-button-div">
-                        <button id="open-task-modal-btn">Add Task</button>
-                    </div>
+                    
                     <div id="task-container" class="task-container">
                     </div>
                     <dialog id="task-dialog">
@@ -71,7 +75,7 @@
                             </div>
                             <div id="task-due-date-div" class="form-div">
                                 <label for="task-due-date"></label>
-                                <input type="date" name="task-due-date" id="task-due-date" required>
+                                <input type="date" name="task-due-date" id="task-due-date" value="2024-01-01" required>
                                 <span></span>
                             </div>
                             <fieldset id="priority-options">
