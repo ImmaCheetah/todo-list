@@ -251,6 +251,7 @@ function changeTaskStatus(taskId) {
         folder.tasks.forEach(task => {
             if (taskId === task.myTaskUuid) {
                 task.setComplete();
+                console.log(task.getCompleteState());
             }
         })
     });

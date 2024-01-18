@@ -23,7 +23,7 @@ function createTaskElement(taskName) {
     taskDiv.classList.add('task-div');
     taskTitleInDiv.textContent = taskName.title;
     taskDescriptionInDiv.textContent = taskName.description;
-    taskDueDateInDiv.textContent = taskName.dueDate;
+    taskDueDateInDiv.textContent = 'Due: '+taskName.dueDate;
     taskPriorityInDiv.textContent = taskName.priority;
 
     // Add colour of priority
@@ -255,7 +255,7 @@ function createTaskStatusButton(task) {
     taskStatusBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         changeTaskStatus(thisButton.value);
-        
+
         toggleCompleteStyle(thisButton);
         setLocalStorage();
     })
