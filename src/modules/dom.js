@@ -30,11 +30,11 @@ function createTaskElement(taskName) {
     changePriorityStyle(taskDiv, (taskName.priority).toLowerCase());
 
     if (taskName.getCompleteState() == false) {
-        return;
+        console.log('it works');
     } else {
         changeCompleteStateStyle(taskDiv, 'complete-task');
     }
-    console.log('OOOOI',taskName.getCompleteState());
+    console.log(taskName.getCompleteState());
     // toggleCompleteStyle(taskDiv);
 
     taskDiv.appendChild(taskTitleInDiv);

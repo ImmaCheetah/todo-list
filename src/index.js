@@ -163,6 +163,7 @@ function loadPresetFolders() {
         chores.addTask(task1);
         superFolder.addFolder(chores);
         appendFolder(chores);
+        task2.setComplete();
         console.log('else stuff happened', task2.getCompleteState());
 
         setLocalStorage();
