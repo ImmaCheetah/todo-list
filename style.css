@@ -97,8 +97,32 @@ body {
 	color: white;
 	background-color: var(--sidebar);
 	padding: 1em;
-	border: 1px solid gray;
 	border-radius: 0.5em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.task-left-div {
+	display: flex;
+	align-items: center;
+	inline-size: 1150px;
+	word-break: break-all;
+	overflow-wrap: break-word;
+}
+
+.task-left-div h4 {
+	font-size: 2em;
+	font-weight: bold;
+	width: 200px;
+}
+
+.task-left-div p {
+	font-size: 1.2em;
+	font-style: italic;
+}
+.task-right-div {
+	/* width: 300px; */
 }
 
 .complete-task {
