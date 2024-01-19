@@ -15,16 +15,33 @@ import { format } from "date-fns";
 // Then add them to a main div and return
 function createTaskElement(taskName) {
     const taskDiv = document.createElement('div');
-    const taskTitleInDiv = document.createElement('p');
+    const taskTitleInDiv = document.createElement('h4');
     const taskDescriptionInDiv = document.createElement('p');
     const taskDueDateInDiv = document.createElement('p');
     const taskPriorityInDiv = document.createElement('p');
+    const taskLeftDiv = document.createElement('div');
+    const taskRightDiv = document.createElement('div');
+    const taskTitleDiv = document.createElement('div');
+    const taskDescriptionDiv = document.createElement('div');
+
     
     taskDiv.classList.add('task-div');
     taskTitleInDiv.textContent = taskName.title;
     taskDescriptionInDiv.textContent = taskName.description;
     taskDueDateInDiv.textContent = 'Due: '+taskName.dueDate;
     taskPriorityInDiv.textContent = taskName.priority;
+
+    taskLeftDiv.classList.add('task-left-div');
+    taskRightDiv.classList.add('task-right-div');
+    taskTitleDiv.classList.add('task-title-div');
+    taskDescriptionDiv.classList.add('task-description-div');
+
+    taskTitleDiv.appendChild(taskTitleInDiv);
+    taskDescriptionDiv.appendChild(taskDescriptionInDiv);
+
+    taskLeftDiv.appendChild(taskTitleDiv);
+    taskLeftDiv.appendChild(taskDescriptionDiv);
+    taskRightDiv.appendChild(taskDueDateInDiv);
 
     // Add colour of priority
     changePriorityStyle(taskDiv, (taskName.priority).toLowerCase());
@@ -37,15 +54,15 @@ function createTaskElement(taskName) {
     console.log(taskName.getCompleteState());
     // toggleCompleteStyle(taskDiv);
 
-    taskDiv.appendChild(taskTitleInDiv);
-    taskDiv.appendChild(taskDescriptionInDiv);
-    taskDiv.appendChild(taskDueDateInDiv);
-    taskDiv.appendChild(taskPriorityInDiv);
+    taskDiv.appendChild(taskLeftDiv);
+    // taskDiv.appendChild(taskDescriptionInDiv);
+    taskDiv.appendChild(taskRightDiv);
+    // taskDiv.appendChild(taskPriorityInDiv);
 
 
-    createTaskDeleteButton(taskDiv).value = taskName.myTaskUuid;
-    createTaskEditButton(taskDiv).value = taskName.myTaskUuid;
-    createTaskStatusButton(taskDiv).value = taskName.myTaskUuid;
+    createTaskDeleteButton(taskRightDiv).value = taskName.myTaskUuid;
+    createTaskEditButton(taskRightDiv).value = taskName.myTaskUuid;
+    createTaskStatusButton(taskRightDiv).value = taskName.myTaskUuid;
 
     return taskDiv;
 }
@@ -264,10 +281,10 @@ function createTaskStatusButton(task) {
 }
 
 function toggleCompleteStyle(element) {
-    if (!element.parentNode.classList.contains('complete-task')) {
-        element.parentNode.classList.add('complete-task')
+    if (!element.parentNode.parentNode.classList.contains('complete-task')) {
+        element.parentNode.parentNode.classList.add('complete-task')
     } else {
-        element.parentNode.classList.remove('complete-task');
+        element.parentNode.parentNode.classList.remove('complete-task');
     }
 }
 
