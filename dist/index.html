@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aleo&family=Kanit&family=Lato:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
     <title>Track a Task</title>
 </head>
 <body>
+    
     <script src="main.js" defer></script>
     <div id="header">
         <div class="main-logo">
@@ -19,37 +20,37 @@
         <h2>Track a Task</h2>
     </div>
     <div class="container">
+        
+        <dialog id="folder-dialog">
+            <form id="folder-form" name="folder-form">
+                <div class="form-header form-div">
+                    <h3 class="form-title">Add a Folder</h3>
+                    <button class="close-btn" type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
+                </div>
+                <div id="folder-title-div" class="form-div">
+                    <label for="folder-title"></label>
+                    <input type="text" name="folder-title" id="folder-title" placeholder="Title" value="" maxlength="20" required>
+                    <span></span>
+                </div>
+                <div id="confirm-div" class="form-div">
+                    <button id="folder-confirm-btn" formmethod="dialog">Add</button>
+                    <button id="folder-cancel-btn" type="reset">Reset</button>
+                </div>
+            </form>
+        </dialog>
         <div class="sidebar">
             <div class="sidebar-top">
                 <div class="inbox-div">
-            
+
                 </div>
                 <div class="folder-title-div">
-                    <h3>Folders</h3>
-                    <button id="folder-add-btn">Add Folder</button>
+                    <button id="folder-add-btn">Add Folder +</button>
                 </div>
             
-                <dialog id="folder-dialog">
-                    <form id="folder-form" name="folder-form">
-                        <div class="form-header form-div">
-                            <h3 class="form-title">Add a Folder</h3>
-                            <button class="close-btn" type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
-                        </div>
-                        <div id="folder-title-div" class="form-div">
-                            <label for="folder-title"></label>
-                            <input type="text" name="folder-title" id="folder-title" placeholder="Title" value="" required>
-                            <span></span>
-                        </div>
-                        <div id="confirm-div" class="form-div">
-                            <button id="folder-confirm-btn" formmethod="dialog">Add</button>
-                            <button id="folder-cancel-btn" type="reset">Reset</button>
-                        </div>
-                    </form>
-                </dialog>
             </div>
             <div class="sidebar-bottom">
                 <div id="add-button-div">
-                    <button id="open-task-modal-btn">Add Task</button>
+                    <button id="open-task-modal-btn">Add Task +</button>
                 </div>
             </div>
         </div>
@@ -57,7 +58,9 @@
         <div class="right-content">
             <div class="main-content">
                 <div id="content-container">
-                    
+                    <div class="title-display-div">
+                        <h5 class="folder-display-title">Greetings</h5>
+                    </div>
                     <div id="task-container" class="task-container">
                     </div>
                     <dialog id="task-dialog">

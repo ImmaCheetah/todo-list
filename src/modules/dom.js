@@ -60,9 +60,9 @@ function createTaskElement(taskName) {
     // taskDiv.appendChild(taskPriorityInDiv);
 
 
-    createTaskDeleteButton(taskRightDiv).value = taskName.myTaskUuid;
-    createTaskEditButton(taskRightDiv).value = taskName.myTaskUuid;
     createTaskStatusButton(taskRightDiv).value = taskName.myTaskUuid;
+    createTaskEditButton(taskRightDiv).value = taskName.myTaskUuid;
+    createTaskDeleteButton(taskRightDiv).value = taskName.myTaskUuid;
 
     return taskDiv;
 }
@@ -118,7 +118,7 @@ function getTaskEditFormInfo() {
     
     let taskTitle = taskTitleInForm.value;
     let taskDescription = taskDescriptionInForm.value;
-    let taskDueDate = taskDueDateInForm.value;
+    let taskDueDate = format(new Date(taskDueDateInForm.value), "MMM do\, yyyy");
     let taskPriority = taskPriorityInForm.value;
 
     return {taskTitle, taskDescription, taskDueDate, taskPriority};
@@ -150,6 +150,13 @@ function createFolderButton(folderName) {
     sidebar.appendChild(folderDiv);
     
     folderBtn.addEventListener('click', function() {
+        const titleDisplay = document.querySelector('.title-display-div');
+        const folderTitle = document.querySelector('.folder-display-title');
+
+        // folderTitle.textContent = '';
+        folderTitle.textContent = folderName.title;
+        // titleDisplay.appendChild(folderTitle);
+
         let currentFolderId = folderName.myFolderUuid;
         displayCurrentFolderWithId(folderName.myFolderUuid);
         console.log(folderName.title, folderName.myFolderUuid);
@@ -215,7 +222,7 @@ function createTaskDeleteButton(task) {
     taskDeleteBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         deleteTaskWithId(thisButton.value);
-        thisButton.parentNode.remove();
+        thisButton.parentNode.parentNode.remove();
         setLocalStorage();
     })
 
