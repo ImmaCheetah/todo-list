@@ -192,8 +192,11 @@ function displayFolders(superFolderName) {
 function createFolderDeleteButton(folder) {
     const folderDeleteBtn = document.createElement('button');
 
-    folderDeleteBtn.classList.add('folder-delete-btn');
-    folderDeleteBtn.textContent = '-';
+    let folderDeleteIcon = new Image();
+    folderDeleteIcon.src = '../src/img/delete.png';
+
+    folderDeleteIcon.classList.add('folder-delete-icon');
+    folderDeleteBtn.appendChild(folderDeleteIcon);
 
     
     folder.appendChild(folderDeleteBtn);
@@ -204,7 +207,7 @@ function createFolderDeleteButton(folder) {
         deleteFolderWithId(thisButton.value);
         // console.log(superFolder);
         // localStorage.setItem('folder', JSON.stringify(superFolder));
-        thisButton.parentNode.remove();
+        thisButton.parentNode.parentNode.remove();
         setLocalStorage();
     })
 
@@ -213,16 +216,18 @@ function createFolderDeleteButton(folder) {
 
 function createTaskDeleteButton(task) {
     const taskDeleteBtn = document.createElement('button');
+    let taskDeleteIcon = new Image();
+    taskDeleteIcon.src = '../src/img/delete.png';
 
-    taskDeleteBtn.classList.add('task-delete-btn');
-    taskDeleteBtn.textContent = '-';
+    taskDeleteIcon.classList.add('task-modify-btn');
+    taskDeleteBtn.appendChild(taskDeleteIcon);
 
     task.appendChild(taskDeleteBtn);
 
     taskDeleteBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         deleteTaskWithId(thisButton.value);
-        thisButton.parentNode.parentNode.remove();
+        thisButton.parentNode.parentNode.parentNode.remove();
         setLocalStorage();
     })
 
@@ -232,8 +237,14 @@ function createTaskDeleteButton(task) {
 function createTaskEditButton(task) {
     const taskEditBtn = document.createElement('button');
 
-    taskEditBtn.classList.add('task-edit-btn');
-    taskEditBtn.textContent = '+';
+    let taskEditIcon = new Image();
+    taskEditIcon.src = '../src/img/edit.png';
+
+    taskEditIcon.classList.add('task-modify-btn');
+    taskEditBtn.appendChild(taskEditIcon);
+
+    // taskEditBtn.classList.add('task-edit-btn');
+    // taskEditBtn.textContent = '+';
 
     task.appendChild(taskEditBtn);
 
@@ -254,25 +265,14 @@ function createTaskEditButton(task) {
     return taskEditBtn;
 }
 
-function changeTaskFormFields(task) {
-    const form = document.getElementById('edit-form');
-
-    const taskTitleInForm = form.elements['task-title'];
-    const taskDescriptionInForm = form.elements['task-description'];
-    const taskDueDateInForm = form.elements['task-due-date'];
-    const taskPriorityInForm = form.elements['task-priority'];
-
-    taskTitleInForm.value = task.title;
-    taskDescriptionInForm.value = task.description;
-    taskDueDateInForm.value = task.dueDate;
-    taskPriorityInForm.value = task.priority;
-} 
-
 function createTaskStatusButton(task) {
     const taskStatusBtn = document.createElement('button');
 
-    taskStatusBtn.classList.add('task-status-btn');
-    taskStatusBtn.textContent = '✔';
+    let taskStatusIcon = new Image();
+    taskStatusIcon.src = '../src/img/check.png';
+
+    taskStatusIcon.classList.add('task-modify-btn');
+    taskStatusBtn.appendChild(taskStatusIcon);
 
     task.appendChild(taskStatusBtn);
 
@@ -288,12 +288,26 @@ function createTaskStatusButton(task) {
 }
 
 function toggleCompleteStyle(element) {
-    if (!element.parentNode.parentNode.classList.contains('complete-task')) {
-        element.parentNode.parentNode.classList.add('complete-task')
+    if (!element.parentNode.parentNode.parentNode.classList.contains('complete-task')) {
+        element.parentNode.parentNode.parentNode.classList.add('complete-task')
     } else {
-        element.parentNode.parentNode.classList.remove('complete-task');
+        element.parentNode.parentNode.parentNode.classList.remove('complete-task');
     }
 }
+
+function changeTaskFormFields(task) {
+    const form = document.getElementById('edit-form');
+
+    const taskTitleInForm = form.elements['task-title'];
+    const taskDescriptionInForm = form.elements['task-description'];
+    const taskDueDateInForm = form.elements['task-due-date'];
+    const taskPriorityInForm = form.elements['task-priority'];
+
+    taskTitleInForm.value = task.title;
+    taskDescriptionInForm.value = task.description;
+    taskDueDateInForm.value = task.dueDate;
+    taskPriorityInForm.value = task.priority;
+} 
 
 function getFolderFormInfo() {
     const folderForm = document.getElementById('folder-form');
