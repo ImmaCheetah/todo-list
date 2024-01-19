@@ -109,8 +109,12 @@ body {
 
 .folder-div {
 	display: flex;
-	gap: 0.4em;
+	/* gap: 0.4em; */
+	align-items: end;
+}
 
+.folder-delete-icon {
+	width: 1em;
 }
 
 .folder-div button {
@@ -149,7 +153,7 @@ body {
 	color: white;
 	background-color: var(--sidebar);
 	padding: 1em;
-	padding-right: 2em;
+
 	border-radius: 0.5em;
 	display: flex;
 	justify-content: space-between;
@@ -179,6 +183,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	min-width: 300px;
 }
 
 .task-right-div p {
@@ -188,14 +193,22 @@ body {
 }
 
 .task-right-div button {
-	margin-right: 0.5em;
-	padding: 0.25em 0.5em;
+	margin-right: 0.2em;
+	padding: 0.2em 0.4em;
+	border: none;
 }
 
 .complete-task {
 	color: #ffffff8d;
 	background-color: #54585ea1;
 }
+
+.task-modify-btn {
+	width: 2em;
+	pointer-events: none;
+}
+
+
 
 .high {
 	border-left: 5px solid rgb(211, 33, 33);
@@ -209,12 +222,64 @@ body {
 	border-left: 5px solid #7289da;
 }
 
+/* DIALOGS ||  */
+#folder-dialog, #edit-dialog, #task-dialog {
+	background-color: var(--sidebar);
+	border: none;
+	border-radius: 0.4em;
+	padding: 2em;
+}
+
+.form-header {
+	display: flex;
+	justify-content: space-between;
+	color: white;
+	align-items: center;
+	font-size: 1.4em;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
+form button {
+	font-size: 1.3em;
+	padding: 0.2em;
+}
+
+form input {
+	border-radius: 0.4em;
+	border: none;
+	padding: 0.8em;
+	font-size: 1em;
+}
+
+.form-header button {
+	font-size: 0.8em;
+	padding: 0.5em;
+}
+
+fieldset {
+	color: white;
+	font-size: 1.2em;
+}
+
+select {
+	font-size: 1.3em;
+}
+
 /* ALL BUTTONS || */
 button {
 	appearance: none;
-	border: solid 1px white;
+	border: none;
 	border-radius: 0.4em;
 	background-color: var(--sidebar);
 	color: white;
 	font-family: 'Dosis', sans-serif;
+}
+
+button:hover {
+	background-color: #69696959;
 }
