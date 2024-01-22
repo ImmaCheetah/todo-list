@@ -176,9 +176,9 @@ loadPresetFolders();
 
 // Recreate task from generic object
 function recreateTaskObj(targetObj) {
-    const {title, description, dueDate, priority, myTaskUuid} = targetObj;
+    const {title, description, dueDate, priority, myTaskUuid, completeState} = targetObj;
 
-    return Task(title, description, dueDate, priority, myTaskUuid);
+    return Task(title, description, dueDate, priority, myTaskUuid, completeState);
 }
 
 // Recreate a folder from generic object
