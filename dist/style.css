@@ -59,7 +59,7 @@ body {
 	font-family: 'Dosis', sans-serif;
 	display: grid;
 	grid-template-rows: 1fr 10fr;
-
+	box-sizing: border-box;
 	min-height: 100vh;
 }
 /* HEADER || */
@@ -78,6 +78,7 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 6fr;
+	min-height: 100vh;
 }
 
 .task-container {
