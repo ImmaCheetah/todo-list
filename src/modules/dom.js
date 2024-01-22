@@ -227,7 +227,7 @@ function createTaskDeleteButton(task) {
     taskDeleteBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         deleteTaskWithId(thisButton.value);
-        thisButton.parentNode.parentNode.parentNode.remove();
+        thisButton.parentNode.parentNode.remove();
         setLocalStorage();
     })
 
@@ -242,6 +242,9 @@ function createTaskEditButton(task) {
 
     taskEditIcon.classList.add('task-modify-btn');
     taskEditBtn.appendChild(taskEditIcon);
+
+    // taskEditBtn.classList.add('task-edit-btn');
+    // taskEditBtn.textContent = '+';
 
     task.appendChild(taskEditBtn);
 

@@ -2,7 +2,9 @@ import {v4 as uuidv4} from 'uuid';
 
 export function Task(title, description, dueDate, priority, myTaskUuid = uuidv4(), completeState = false) {
 
-    // completeState = false;
+    // let myTaskUuid = uuidv4();
+
+    // let completeState = false;
 
     const getCompleteState = () => completeState;
 
