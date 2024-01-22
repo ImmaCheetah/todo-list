@@ -78,7 +78,7 @@ body {
 .container {
     display: grid;
     grid-template-columns: 1fr 6fr;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 }
 
 .task-container {
