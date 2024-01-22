@@ -56,7 +56,10 @@ table {
 
 body {
 	font-family: 'Dosis', sans-serif;
-	/* font-family: 'Courier New', Courier, monospace; */
+	display: grid;
+	grid-template-rows: 1fr 10fr;
+	box-sizing: border-box;
+	min-height: 100vh;
 }
 /* HEADER || */
 #header {
@@ -68,14 +71,14 @@ body {
 	font-size: 2.5em;
 	/* font-weight: bold; */
 	padding-left: 1em;
-	height: 2em;
+	height: 1.95em;
 }
 
 /* CONTAINER || */
 .container {
     display: grid;
     grid-template-columns: 1fr 6fr;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 }
 
 .task-container {
