@@ -103,9 +103,11 @@ taskAddBtn.addEventListener('click', function(e) {
     let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
 
     recreateSuperFolderFromObject(superFolderFromLs);
+    const folderTitle = document.querySelector('.folder-display-title');
+    folderTitle.textContent = selectedFolderValue;
 
     // Update the tasks of the folder that is currently being displayed to avoid reloading folder
-    displayCurrentFolderWithId(selectedFolderValue);
+    displayCurrentFolderWithId(selectedFolder.textContent);
     
     // Clear form fields
     const taskForm = document.getElementById('main-form');
@@ -252,6 +254,7 @@ function changeTaskStatus(taskId) {
             if (taskId === task.myTaskUuid) {
                 task.setComplete();
                 console.log(task.getCompleteState());
+                setLocalStorage();
             }
         })
     });

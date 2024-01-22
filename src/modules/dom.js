@@ -207,7 +207,7 @@ function createFolderDeleteButton(folder) {
         deleteFolderWithId(thisButton.value);
         // console.log(superFolder);
         // localStorage.setItem('folder', JSON.stringify(superFolder));
-        thisButton.parentNode.parentNode.remove();
+        thisButton.parentNode.remove();
         setLocalStorage();
     })
 
@@ -242,9 +242,6 @@ function createTaskEditButton(task) {
 
     taskEditIcon.classList.add('task-modify-btn');
     taskEditBtn.appendChild(taskEditIcon);
-
-    // taskEditBtn.classList.add('task-edit-btn');
-    // taskEditBtn.textContent = '+';
 
     task.appendChild(taskEditBtn);
 
@@ -288,10 +285,10 @@ function createTaskStatusButton(task) {
 }
 
 function toggleCompleteStyle(element) {
-    if (!element.parentNode.parentNode.parentNode.classList.contains('complete-task')) {
-        element.parentNode.parentNode.parentNode.classList.add('complete-task')
+    if (!element.parentNode.parentNode.classList.contains('complete-task')) {
+        element.parentNode.parentNode.classList.add('complete-task')
     } else {
-        element.parentNode.parentNode.parentNode.classList.remove('complete-task');
+        element.parentNode.parentNode.classList.remove('complete-task');
     }
 }
 
