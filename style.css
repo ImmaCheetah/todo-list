@@ -27,6 +27,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	box-sizing: border-box;
 }
 ol, ul {
 	list-style: none;
@@ -57,6 +58,7 @@ table {
 body {
 	font-family: 'Dosis', sans-serif;
 	/* font-family: 'Courier New', Courier, monospace; */
+	/* min-height: 100vh; */
 }
 /* HEADER || */
 #header {
@@ -115,6 +117,7 @@ body {
 
 .folder-delete-icon {
 	width: 1em;
+	pointer-events: none;
 }
 
 .folder-div button {
