@@ -70,16 +70,14 @@ body {
 	background-color: var(--header);
 	color: white;
 	font-size: 2.5em;
-	/* font-weight: bold; */
 	padding-left: 1em;
-	height: 2em;
+	height: 1.95em;
 }
 
 /* CONTAINER || */
 .container {
     display: grid;
     grid-template-columns: 1fr 6fr;
-	/* min-height: 90vh; */
 }
 
 .task-container {
@@ -97,7 +95,7 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	padding-left: 1.5em;
-    /* width: 300px; */
+    min-width: 300px;
 }
 
 .sidebar button {

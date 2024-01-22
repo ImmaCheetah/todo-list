@@ -176,9 +176,9 @@ loadPresetFolders();
 
 // Recreate task from generic object
 function recreateTaskObj(targetObj) {
-    const {title, description, dueDate, priority, myTaskUuid, completeState} = targetObj;
+    const {title, description, dueDate, priority, myTaskUuid} = targetObj;
 
-    return Task(title, description, dueDate, priority, myTaskUuid, completeState);
+    return Task(title, description, dueDate, priority, myTaskUuid);
 }
 
 // Recreate a folder from generic object
@@ -254,7 +254,7 @@ function changeTaskStatus(taskId) {
             if (taskId === task.myTaskUuid) {
                 task.setComplete();
                 console.log(task.getCompleteState());
-                setLocalStorage();
+                setLocalStorage()
             }
         })
     });
