@@ -61,6 +61,7 @@ body {
 	grid-template-rows: 1fr 10fr;
 	box-sizing: border-box;
 	min-height: 100vh;
+	
 }
 /* HEADER || */
 #header {
@@ -96,7 +97,7 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 	padding-left: 1.5em;
-    min-width: 300px;
+    min-width: 270px;
 }
 
 .sidebar button {
