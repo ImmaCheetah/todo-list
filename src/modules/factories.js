@@ -2,8 +2,6 @@ import {v4 as uuidv4} from 'uuid';
 
 export function Task(title, description, dueDate, priority, myTaskUuid = uuidv4(), completeState = false) {
 
-    // let myTaskUuid = uuidv4();
-
     // let completeState = false;
 
     const getCompleteState = () => completeState;
@@ -50,14 +48,10 @@ export function Task(title, description, dueDate, priority, myTaskUuid = uuidv4(
 
 export function Folder(title, myFolderUuid=uuidv4()) {
     
-    // let myFolderUuid = uuidv4();
     let tasks = [];
 
     const addTask = (newTaskName) => {
         tasks.push(newTaskName);
-
-
-        // localStorage.setItem(newTaskName.myTaskUuid, JSON.stringify(newTaskName));
     }
 
     const displayTasks = () => {
@@ -83,8 +77,6 @@ export function SuperFolder(mySuperFolderUuid=uuidv4()) {
 
     const addFolder = (newFolderName) => {
         folders.push(newFolderName);
-
-        // localStorage.setItem(newFolderName.myFolderUuid, JSON.stringify(newFolderName));
     }
 
     const deleteFolder = (folderName) => {
@@ -93,9 +85,6 @@ export function SuperFolder(mySuperFolderUuid=uuidv4()) {
                 folders.splice(i, 1);
             }
         }
-
-        localStorage.removeItem(folderName.myFolderUuid);
-
     }
 
     return {folders, addFolder, deleteFolder, mySuperFolderUuid}

@@ -95,6 +95,7 @@ taskAddBtn.addEventListener('click', function(e) {
     superFolder.folders.forEach(folder => {
         if (selectedFolderValue === folder.myFolderUuid) {
             folder.addTask(newTask);
+            console.log('oi',newTask.getCompleteState());
         }
     });
 
@@ -174,9 +175,9 @@ loadPresetFolders();
 
 // Recreate task from generic object
 function recreateTaskObj(targetObj) {
-    const {title, description, dueDate, priority, myTaskUuid} = targetObj;
+    const {title, description, dueDate, priority, myTaskUuid, completeState} = targetObj;
 
-    return Task(title, description, dueDate, priority, myTaskUuid);
+    return Task(title, description, dueDate, priority, myTaskUuid, completeState);
 }
 
 // Recreate a folder from generic object
