@@ -11,6 +11,10 @@ import {
 
 import { format } from "date-fns";
 
+import CheckIcon from '../img/check.png';
+import EditIcon from '../img/edit.png';
+import DeleteIcon from '../img/delete.png';
+
 // Create all elements for each task property and change text content to corresponding value
 // Then add them to a main div and return
 function createTaskElement(taskName) {
@@ -193,7 +197,7 @@ function createFolderDeleteButton(folder) {
     const folderDeleteBtn = document.createElement('button');
 
     let folderDeleteIcon = new Image();
-    folderDeleteIcon.src = '../src/img/delete.png';
+    folderDeleteIcon.src = DeleteIcon;
 
     folderDeleteIcon.classList.add('folder-delete-icon');
     folderDeleteBtn.appendChild(folderDeleteIcon);
@@ -217,7 +221,7 @@ function createFolderDeleteButton(folder) {
 function createTaskDeleteButton(task) {
     const taskDeleteBtn = document.createElement('button');
     let taskDeleteIcon = new Image();
-    taskDeleteIcon.src = '../src/img/delete.png';
+    taskDeleteIcon.src = DeleteIcon;
 
     taskDeleteIcon.classList.add('task-modify-btn');
     taskDeleteBtn.appendChild(taskDeleteIcon);
@@ -238,7 +242,7 @@ function createTaskEditButton(task) {
     const taskEditBtn = document.createElement('button');
 
     let taskEditIcon = new Image();
-    taskEditIcon.src = '../src/img/edit.png';
+    taskEditIcon.src = EditIcon;
 
     taskEditIcon.classList.add('task-modify-btn');
     taskEditBtn.appendChild(taskEditIcon);
@@ -269,7 +273,7 @@ function createTaskStatusButton(task) {
     const taskStatusBtn = document.createElement('button');
 
     let taskStatusIcon = new Image();
-    taskStatusIcon.src = '../src/img/check.png';
+    taskStatusIcon.src = CheckIcon;
 
     taskStatusIcon.classList.add('task-modify-btn');
     taskStatusBtn.appendChild(taskStatusIcon);
