@@ -60,9 +60,9 @@ body {
 	display: grid;
 	grid-template-rows: 1fr 10fr;
 	box-sizing: border-box;
-	min-height: 100vh;
-	
+	min-height: 100vh;	
 }
+
 /* HEADER || */
 #header {
 	display: flex;
@@ -146,6 +146,10 @@ body {
 	font-size: 3em;
 	padding-left: 0.5em;
 	padding-top: 0.5em;
+}
+
+#open-task-modal-btn {
+	margin-bottom: 2em;
 }
 
 /* TASK CONTENT || */
