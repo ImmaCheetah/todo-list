@@ -9,7 +9,7 @@ import {
 
 } from '../index.js';
 
-import { format } from "date-fns";
+import { format, parse, parseISO } from "date-fns";
 
 import CheckIcon from '../img/check.png';
 import EditIcon from '../img/edit.png';
@@ -307,9 +307,11 @@ function changeTaskFormFields(task) {
     const taskDueDateInForm = form.elements['task-due-date'];
     const taskPriorityInForm = form.elements['task-priority'];
 
+    let tempDate = parse(task.dueDate, 'MMM do, yyyy', new Date());
+
     taskTitleInForm.value = task.title;
     taskDescriptionInForm.value = task.description;
-    taskDueDateInForm.value = task.dueDate;
+    taskDueDateInForm.valueAsDate = tempDate;
     taskPriorityInForm.value = task.priority;
 } 
 

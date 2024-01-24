@@ -16,9 +16,12 @@ import {
 
 } from './modules/dom.js';
 
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 
+// let testDate = "Mar 1st, 2024";
 
+// let formattedDate = format(parse('2019-02-11T14:00:00', 'MM/dd/yyyy'));
+// console.log(formattedDate);
 //Super Folder 
 let superFolder = SuperFolder('123456');
 
@@ -130,7 +133,6 @@ taskEditConfirmBtn.addEventListener('click', function(e) {
             if (btnId.value === task.myTaskUuid) {
                 task.editTask(taskTitle, taskDescription, taskDueDate, taskPriority);
                 displayCurrentFolderWithId(folder.myFolderUuid);
-                console.log(task);
             }
         })
     });
@@ -177,6 +179,7 @@ loadPresetFolders();
 function recreateTaskObj(targetObj) {
     const {title, description, dueDate, priority, myTaskUuid, completeState} = targetObj;
 
+    console.log('TASK RECREATE',Task(title, description, dueDate, priority, myTaskUuid, completeState));
     return Task(title, description, dueDate, priority, myTaskUuid, completeState);
 }
 
@@ -252,7 +255,7 @@ function changeTaskStatus(taskId) {
         folder.tasks.forEach(task => {
             if (taskId === task.myTaskUuid) {
                 task.setComplete();
-                console.log(task.getCompleteState());
+                // console.log(task.getCompleteState());
                 setLocalStorage();
             }
         })
