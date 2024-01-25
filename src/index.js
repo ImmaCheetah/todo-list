@@ -16,12 +16,8 @@ import {
 
 } from './modules/dom.js';
 
-import { format, parse } from "date-fns";
+import { format } from "date-fns";
 
-// let testDate = "Mar 1st, 2024";
-
-// let formattedDate = format(parse('2019-02-11T14:00:00', 'MM/dd/yyyy'));
-// console.log(formattedDate);
 //Super Folder 
 let superFolder = SuperFolder('123456');
 
@@ -98,7 +94,7 @@ taskAddBtn.addEventListener('click', function(e) {
     superFolder.folders.forEach(folder => {
         if (selectedFolderValue === folder.myFolderUuid) {
             folder.addTask(newTask);
-            console.log('oi',newTask.getCompleteState());
+            console.log('oi',newTask.completeState);
         }
     });
 
@@ -150,7 +146,6 @@ function loadPresetFolders() {
         recreateSuperFolderFromObject(superFolderFromLs);
 
         displayFolders(superFolder);
-        console.log('Inside of loading preset, after displaying', superFolderFromLs);
     } else {
         const task1 = Task('Wash dishes', 'Finish washing rest of the dishes', format(new Date(2024, 2, 19), "MMM do\, yyyy"), 'High');
         const task2 = Task('Vaccuum', 'Clean 2nd floor', format(new Date(2024, 3, 20), "MMM do\, yyyy"), 'Medium');
@@ -167,7 +162,7 @@ function loadPresetFolders() {
         superFolder.addFolder(chores);
         appendFolder(chores);
         task2.setComplete();
-        console.log('else stuff happened', task2.getCompleteState());
+        console.log('else stuff happened', task2.completeState);
 
         setLocalStorage();
     }
@@ -175,11 +170,17 @@ function loadPresetFolders() {
 
 loadPresetFolders();
 
+let testTask = Task('title', 'desc', '2024-01-01', 'med', '12345');
+// console.log(JSON.stringify(testTask));
+// console.log('HELLOOOOP',testTask.completeState);
+testTask.setComplete();
+console.log(testTask.completeState);
+
 // Recreate task from generic object
 function recreateTaskObj(targetObj) {
     const {title, description, dueDate, priority, myTaskUuid, completeState} = targetObj;
 
-    console.log('TASK RECREATE',Task(title, description, dueDate, priority, myTaskUuid, completeState));
+    console.log('TASK RECREATE',Task(title, description, dueDate, priority, myTaskUuid));
     return Task(title, description, dueDate, priority, myTaskUuid, completeState);
 }
 
@@ -255,7 +256,7 @@ function changeTaskStatus(taskId) {
         folder.tasks.forEach(task => {
             if (taskId === task.myTaskUuid) {
                 task.setComplete();
-                // console.log(task.getCompleteState());
+                console.log(task.completeState);
                 setLocalStorage();
             }
         })

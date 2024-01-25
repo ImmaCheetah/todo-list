@@ -4,16 +4,18 @@ export function Task(title, description, dueDate, priority, myTaskUuid = uuidv4(
 
     // let completeState = false;
 
-    const getCompleteState = () => completeState;
-
     const setComplete = () => {
-        if (getCompleteState() == false) {
+        console.log('function innit', completeState);
+        if (completeState == false) {
+            console.log('inside if', completeState);
             completeState = true;
+            console.log('inside if after true', completeState);
         } else {
             completeState = false;
         }
-        
+        console.log('outside if', completeState);
     }
+
     title = title.toString();
     description = description.toString();
 
@@ -37,7 +39,7 @@ export function Task(title, description, dueDate, priority, myTaskUuid = uuidv4(
         get description() {return description}, 
         get dueDate() {return dueDate}, 
         get priority() {return priority},
-        getCompleteState,
+        get completeState() {return completeState},
         setComplete, 
         changePriority,
         editTask,

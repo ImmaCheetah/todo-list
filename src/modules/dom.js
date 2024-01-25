@@ -9,7 +9,7 @@ import {
 
 } from '../index.js';
 
-import { format, parse, parseISO } from "date-fns";
+import { format, parse } from "date-fns";
 
 import CheckIcon from '../img/check.png';
 import EditIcon from '../img/edit.png';
@@ -50,19 +50,14 @@ function createTaskElement(taskName) {
     // Add colour of priority
     changePriorityStyle(taskDiv, (taskName.priority).toLowerCase());
 
-    if (taskName.getCompleteState() == false) {
-        console.log('it works');
+    if (taskName.completeState == false) {
+        console.log('');
     } else {
         changeCompleteStateStyle(taskDiv, 'complete-task');
     }
-    console.log(taskName.getCompleteState());
-    // toggleCompleteStyle(taskDiv);
 
     taskDiv.appendChild(taskLeftDiv);
-    // taskDiv.appendChild(taskDescriptionInDiv);
     taskDiv.appendChild(taskRightDiv);
-    // taskDiv.appendChild(taskPriorityInDiv);
-
 
     createTaskStatusButton(taskRightDiv).value = taskName.myTaskUuid;
     createTaskEditButton(taskRightDiv).value = taskName.myTaskUuid;
