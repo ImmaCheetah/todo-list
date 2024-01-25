@@ -1,294 +1,374 @@
 /* CSS RESET */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-    text-decoration: none;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
 }
 
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
-	box-sizing: border-box;
+  line-height: 1;
+  box-sizing: border-box;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 :root {
-    --primary-clr: #381d1f;
-    --header: #282b30;
-    --border-clr: #A50519;
-    --main-text-clr: rgb(255, 254, 254);
-    --bg: #424549;
-    --sidebar: #36393e;
-    --light-txt-clr: rgb(148, 148, 148);
+  --primary-clr: #381d1f;
+  --header: #282b30;
+  --border-clr: #a50519;
+  --main-text-clr: rgb(255, 254, 254);
+  --bg: #424549;
+  --sidebar: #36393e;
+  --light-txt-clr: rgb(148, 148, 148);
 }
 
 body {
-	font-family: 'Dosis', sans-serif;
-	display: grid;
-	grid-template-rows: 1fr 10fr;
-	box-sizing: border-box;
-	min-height: 100vh;	
+  font-family: "Dosis", sans-serif;
+  display: grid;
+  grid-template-rows: 1fr 10fr;
+  box-sizing: border-box;
+  min-height: 100vh;
 }
 
 /* HEADER || */
 #header {
-	display: flex;
-	align-items: center;
-	font-weight: bold;
-	background-color: var(--header);
-	color: white;
-	font-size: 2.5em;
-	padding-left: 1em;
-	height: 1.95em;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  background-color: var(--header);
+  color: white;
+  font-size: 2.5em;
+  padding-left: 1em;
+  height: 1.95em;
 }
 
 /* CONTAINER || */
 .container {
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-	/* min-height: 100vh; */
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  /* min-height: 100vh; */
 }
 
 .task-container {
-	padding: 1em;
-	display: flex;
-	flex-direction: column;
-	gap: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 /* SIDEBAR || */
 .sidebar {
-    background-color: var(--sidebar);
-    /* min-height: 100vh; */
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	padding-left: 1.5em;
-    min-width: 270px;
+  background-color: var(--sidebar);
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 1.5em;
+  min-width: 270px;
 }
 
 .sidebar button {
-	font-size: 1.4em;
-	padding: 0.2em 0.5em;
+  font-size: 1.4em;
+  padding: 0.2em 0.5em;
 }
 
 .sidebar-top {
-	display: flex;
-	flex-direction: column;
-	gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .folder-div {
-	display: flex;
-	/* gap: 0.4em; */
-	align-items: end;
+  display: flex;
+  /* gap: 0.4em; */
+  align-items: end;
 }
 
 .folder-delete-icon {
-	width: 1em;
-	pointer-events: none;
+  width: 1em;
+  pointer-events: none;
 }
 
 .folder-div button {
-	font-size: 1.2em;
-	padding: 0.2em 0.5em;
-	max-width: 10em;
-	word-break: break-all;
-	overflow-wrap: break-word;
-	text-align: left;
+  font-size: 1.2em;
+  padding: 0.2em 0.5em;
+  max-width: 10em;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  text-align: left;
 }
 
 .inbox-div .folder-div button {
-	margin-top: 1em;
-	font-size: 1.4em;
-	padding: 0.2em 0.5em;
+  margin-top: 1em;
+  font-size: 1.4em;
+  padding: 0.2em 0.5em;
 }
 
 .right-content {
-	background-color: var(--bg);
+  background-color: var(--bg);
 }
 
 .title-display-div {
-	color: white;
-	font-size: 3em;
-	padding-left: 0.5em;
-	padding-top: 0.5em;
+  color: white;
+  font-size: 3em;
+  padding-left: 0.5em;
+  padding-top: 0.5em;
 }
 
 #open-task-modal-btn {
-	margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 
 /* TASK CONTENT || */
 
 .task-container {
-	padding: 2em 5em;
+  padding: 2em 5em;
 }
 
 .task-div {
-	color: white;
-	background-color: var(--sidebar);
-	padding: 1em;
+  color: white;
+  background-color: var(--sidebar);
+  padding: 1em;
 
-	border-radius: 0.5em;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .task-left-div {
-	display: flex;
-	align-items: center;
-	inline-size: 1150px;
-	word-break: break-all;
-	overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
+  inline-size: 1150px;
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .task-left-div h4 {
-	font-size: 1.8em;
-	font-weight: bold;
-	width: 200px;
+  font-size: 1.8em;
+  font-weight: bold;
+  width: 200px;
 }
 
 .task-left-div p {
-	font-size: 1.1em;
-	font-style: italic;
+  font-size: 1.1em;
+  font-style: italic;
 }
 .task-right-div {
-	text-align: left;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	min-width: 300px;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 300px;
 }
 
 .task-right-div p {
-	font-size: 1.2em;
-	font-weight: bold;
-	padding-right: 0.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-right: 0.5em;
 }
 
 .task-right-div button {
-	margin-right: 0.2em;
-	padding: 0.2em 0.4em;
-	border: none;
+  margin-right: 0.2em;
+  padding: 0.2em 0.4em;
+  border: none;
 }
 
 .complete-task {
-	color: #ffffff8d;
-	background-color: #54585ea1;
+  color: #ffffff8d;
+  background-color: #54585ea1;
 }
 
 .task-modify-btn {
-	width: 2em;
-	pointer-events: none;
+  width: 2em;
+  pointer-events: none;
 }
 
-
-
 .high {
-	border-left: 5px solid rgb(211, 33, 33);
+  border-left: 5px solid rgb(211, 33, 33);
 }
 
 .medium {
-	border-left: 5px solid rgb(235, 149, 20);
+  border-left: 5px solid rgb(235, 149, 20);
 }
 
 .low {
-	border-left: 5px solid #7289da;
+  border-left: 5px solid #7289da;
 }
 
 /* DIALOGS ||  */
-#folder-dialog, #edit-dialog, #task-dialog {
-	background-color: var(--sidebar);
-	border: none;
-	border-radius: 0.4em;
-	padding: 2em;
+#folder-dialog,
+#edit-dialog,
+#task-dialog {
+  background-color: var(--sidebar);
+  border: none;
+  border-radius: 0.4em;
+  padding: 2em;
 }
 
 .form-header {
-	display: flex;
-	justify-content: space-between;
-	color: white;
-	align-items: center;
-	font-size: 1.4em;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  align-items: center;
+  font-size: 1.4em;
 }
 
 form {
-	display: flex;
-	flex-direction: column;
-	gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 form button {
-	font-size: 1.3em;
-	padding: 0.2em;
+  font-size: 1.3em;
+  padding: 0.2em;
 }
 
 form input {
-	border-radius: 0.4em;
-	border: none;
-	padding: 0.8em;
-	font-size: 1em;
+  border-radius: 0.4em;
+  border: none;
+  padding: 0.8em;
+  font-size: 1em;
 }
 
 .form-header button {
-	font-size: 0.8em;
-	padding: 0.5em;
+  font-size: 0.8em;
+  padding: 0.5em;
 }
 
 fieldset {
-	color: white;
-	font-size: 1.2em;
+  color: white;
+  font-size: 1.2em;
 }
 
 select {
-	font-size: 1.3em;
+  font-size: 1.3em;
 }
 
 /* ALL BUTTONS || */
 button {
-	appearance: none;
-	border: none;
-	border-radius: 0.4em;
-	background-color: var(--sidebar);
-	color: white;
-	font-family: 'Dosis', sans-serif;
+  appearance: none;
+  border: none;
+  border-radius: 0.4em;
+  background-color: var(--sidebar);
+  color: white;
+  font-family: "Dosis", sans-serif;
 }
 
 button:hover {
-	background-color: #69696959;
+  background-color: #69696959;
 }
