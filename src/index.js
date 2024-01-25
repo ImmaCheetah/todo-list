@@ -94,7 +94,6 @@ taskAddBtn.addEventListener('click', function(e) {
     superFolder.folders.forEach(folder => {
         if (selectedFolderValue === folder.myFolderUuid) {
             folder.addTask(newTask);
-            console.log('oi',newTask.completeState);
         }
     });
 
@@ -161,8 +160,6 @@ function loadPresetFolders() {
         chores.addTask(task1);
         superFolder.addFolder(chores);
         appendFolder(chores);
-        task2.setComplete();
-        console.log('else stuff happened', task2.completeState);
 
         setLocalStorage();
     }
@@ -170,17 +167,10 @@ function loadPresetFolders() {
 
 loadPresetFolders();
 
-let testTask = Task('title', 'desc', '2024-01-01', 'med', '12345');
-// console.log(JSON.stringify(testTask));
-// console.log('HELLOOOOP',testTask.completeState);
-testTask.setComplete();
-console.log(testTask.completeState);
-
 // Recreate task from generic object
 function recreateTaskObj(targetObj) {
     const {title, description, dueDate, priority, myTaskUuid, completeState} = targetObj;
 
-    console.log('TASK RECREATE',Task(title, description, dueDate, priority, myTaskUuid));
     return Task(title, description, dueDate, priority, myTaskUuid, completeState);
 }
 
@@ -227,7 +217,6 @@ function displayCurrentFolderWithId(tempId) {
             clearTaskContainer();
             //display all tasks of this folder to page
             displayFolderTasks(folder);
-            console.log("match found");
         }
     });
 }
@@ -235,7 +224,6 @@ function displayCurrentFolderWithId(tempId) {
 function deleteFolderWithId(buttonId) {
     superFolder.folders.forEach(folder => {
         if (buttonId === folder.myFolderUuid) {
-            console.log(buttonId);
             superFolder.deleteFolder(folder);
         }
     });
@@ -256,7 +244,6 @@ function changeTaskStatus(taskId) {
         folder.tasks.forEach(task => {
             if (taskId === task.myTaskUuid) {
                 task.setComplete();
-                console.log(task.completeState);
                 setLocalStorage();
             }
         })

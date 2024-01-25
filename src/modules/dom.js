@@ -50,9 +50,7 @@ function createTaskElement(taskName) {
     // Add colour of priority
     changePriorityStyle(taskDiv, (taskName.priority).toLowerCase());
 
-    if (taskName.completeState == false) {
-        console.log('');
-    } else {
+    if (taskName.completeState != false) {
         changeCompleteStateStyle(taskDiv, 'complete-task');
     }
 
@@ -158,7 +156,6 @@ function createFolderButton(folderName) {
 
         let currentFolderId = folderName.myFolderUuid;
         displayCurrentFolderWithId(folderName.myFolderUuid);
-        console.log(folderName.title, folderName.myFolderUuid);
         return currentFolderId;
     });
     
@@ -204,8 +201,6 @@ function createFolderDeleteButton(folder) {
     folderDeleteBtn.addEventListener('click', function(e) {
         let thisButton = e.target;
         deleteFolderWithId(thisButton.value);
-        // console.log(superFolder);
-        // localStorage.setItem('folder', JSON.stringify(superFolder));
         thisButton.parentNode.remove();
         setLocalStorage();
     })

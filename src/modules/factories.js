@@ -2,18 +2,12 @@ import {v4 as uuidv4} from 'uuid';
 
 export function Task(title, description, dueDate, priority, myTaskUuid = uuidv4(), completeState = false) {
 
-    // let completeState = false;
-
     const setComplete = () => {
-        console.log('function innit', completeState);
         if (completeState == false) {
-            console.log('inside if', completeState);
             completeState = true;
-            console.log('inside if after true', completeState);
         } else {
             completeState = false;
         }
-        console.log('outside if', completeState);
     }
 
     title = title.toString();
