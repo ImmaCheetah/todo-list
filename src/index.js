@@ -138,7 +138,6 @@ taskEditConfirmBtn.addEventListener('click', function(e) {
     
 })
 
-
 function loadPresetFolders() {
     if (localStorage.getItem('folders')){
         let superFolderFromLs = JSON.parse(localStorage.getItem('folders'));
@@ -202,7 +201,6 @@ function recreateSuperFolderFromObject(genericObj) {
 
     return superFolder;
 }
-
 
 function setLocalStorage() {
     localStorage.setItem('folders', JSON.stringify(superFolder));
